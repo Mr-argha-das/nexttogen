@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Institute logo">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#3730a3" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#g)" />
+  <path d="M32 15 53 26 32 37 11 26z" fill="#fff" />
+  <path d="M21 31v10c0 4 5 7 11 7s11-3 11-7V31l-11 6z" fill="#fbbf24" />
+  <path d="M52 27v12" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+</svg>

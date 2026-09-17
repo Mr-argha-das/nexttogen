@@ -1,0 +1,308 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BarChart3,
+  CalendarDays,
+  Clock,
+  Eye,
+  Share2,
+  Tag,
+  User,
+} from "lucide-react";
+import { getPostBySlug, getSettings, incrementPostViews, listPosts } from "@/lib/data";
+import { articleSchema, breadcrumbSchema, buildMetadata } from "@/lib/seo";
+import { formatDate, initials, safeJsonLd, truncate } from "@/lib/utils";
+import { BlogCard, CtaBand } from "@/components/site/cards";
+import { NewsletterForm } from "@/components/site/newsletter-form";
+import { Markdown } from "@/lib/markdown";
+import { CATEGORY_ICONS } from "@/components/site/cards";
+import { CourseArt, Orbs } from "@/components/site/decor";
+
+export const revalidate = 300;
+
+export async function generateStaticParams() {
+  try {
+    return listPosts().map((post) => ({ slug: post.slug }));
+  } catch {
+    return [];
+  }
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+  const settings = getSettings();
+  if (!post) {
+    return buildMetadata({
+      settings,
+      title: "Article not found",
+      description: "This article is no longer available.",
+      path: `/blog/${slug}`,
+      noIndex: true,
+    });
+  }
+  return buildMetadata({
+    settings,
+    title: post.seoTitle || post.title,
+    description: post.seoDescription || post.excerpt,
+    path: `/blog/${post.slug}`,
+    keywords: post.tags,
+    image: post.coverImage ?? undefined,
+    type: "article",
+    publishedTime: post.publishedAt,
+  });
+}
+
+export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+  if (!post) notFound();
+
+  const settings = getSettings();
+  incrementPostViews(post.id);
+  const related = listPosts({ category: post.category, limit: 4 }).filter((item) => item.id !== post.id).slice(0, 3);
+  const fallbackRelated = listPosts({ limit: 4 }).filter((item) => item.id !== post.id).slice(0, 3);
+  const suggestions = related.length ? related : fallbackRelated;
+  const shareUrl = `${(process.env.NEXT_PUBLIC_SITE_URL || "").replace(/\/$/, "")}/blog/${post.slug}`;
+  const shareText = encodeURIComponent(`${post.title} — ${settings.siteName}`);
+
+  return (
+    <>
+      <article>
+        {/* Hero */}
+        <header className="relative overflow-hidden border-b border-white/10 bg-[var(--grad-brand-deep)] text-white">
+          <div className="dot-grid pointer-events-none absolute inset-0 opacity-[0.14]" />
+          <Orbs tone="mixed" className="opacity-60" />
+          <div className="container-x relative py-12 sm:py-16">
+            <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-2 text-[12px] text-white/55">
+              <Link href="/" className="transition-colors hover:text-white">
+                Home
+              </Link>
+              <span className="text-white/25">/</span>
+              <Link href="/blog" className="transition-colors hover:text-white">
+                Blog
+              </Link>
+              <span className="text-white/25">/</span>
+              <span className="font-semibold text-white">{post.category}</span>
+            </nav>
+
+            <div className="max-w-3xl">
+              <span className="chip chip-glass">{post.category}</span>
+              <h1 className="display-2 mt-5 text-white" style={{ fontSize: "clamp(1.65rem, 3.4vw, 2.5rem)" }}>
+                {post.title}
+              </h1>
+              <p className="mt-5 text-[15.5px] leading-7 text-white/70">{post.excerpt}</p>
+
+              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-[13px] text-white/60">
+                <span className="flex items-center gap-2">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/12 text-[12px] font-bold text-white ring-1 ring-white/20">
+                    {initials(post.author)}
+                  </span>
+                  <span>
+                    <span className="block font-semibold text-white">{post.author}</span>
+                    <span className="block text-[12px] text-white/50">{post.authorRole ?? "Faculty"}</span>
+                  </span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CalendarDays className="h-4 w-4" /> {formatDate(post.publishedAt, "long")}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Clock className="h-4 w-4" /> {post.readMinutes} min read
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Eye className="h-4 w-4" /> {(post.views + 1).toLocaleString("en-IN")} views
+                </span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div className="section pt-12">
+          <div className="container-x grid gap-10 lg:grid-cols-[1fr_330px] lg:items-start">
+            <div>
+              <div className="card overflow-hidden">
+                <div className="relative h-44 overflow-hidden sm:h-60">
+                  <CourseArt seed={post.slug} icon={CATEGORY_ICONS[post.category] ?? BarChart3} />
+                  <div className="absolute inset-x-6 bottom-5 flex flex-wrap items-center gap-2">
+                    <span className="chip chip-glass">{settings.siteName} · Career guide</span>
+                    <span className="chip chip-glass">{post.readMinutes} min read</span>
+                  </div>
+                </div>
+                <div className="p-6 sm:p-9">
+                  <Markdown content={post.content} />
+                </div>
+              </div>
+
+              {/* Tags + share */}
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Tag className="h-4 w-4 text-slate-400" />
+                  {post.tags.map((tag) => (
+                    <Link key={tag} href={`/blog?tag=${encodeURIComponent(tag)}`} className="chip chip-neutral">
+                      #{tag}
+                    </Link>
+                  ))}
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="flex items-center gap-1.5 text-[12.5px] font-semibold text-slate-500">
+                    <Share2 className="h-4 w-4" /> Share:
+                  </span>
+                  <a
+                    href={`https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline btn-sm"
+                  >
+                    WhatsApp
+                  </a>
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(shareUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline btn-sm"
+                  >
+                    X
+                  </a>
+                  <a
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline btn-sm"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
+              </div>
+
+              <div className="mt-8 flex items-center justify-between gap-4 rounded-2xl border border-line bg-canvas p-5">
+                <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-700">
+                  <ArrowLeft className="h-4 w-4" /> All articles
+                </Link>
+                <Link href="/courses" className="btn btn-primary btn-sm">
+                  Browse courses <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <aside className="space-y-5 lg:sticky lg:top-24">
+              <div className="card card-hover p-5">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--grad-brand)] text-sm font-bold text-white shadow-[var(--shadow-sm)]">
+                    {initials(post.author)}
+                  </span>
+                  <div>
+                    <p className="text-[14px] font-bold text-ink">{post.author}</p>
+                    <p className="text-[12px] text-slate-500">{post.authorRole ?? "Faculty"}</p>
+                  </div>
+                </div>
+                <p className="mt-3 text-[13px] leading-6 text-slate-600">
+                  Teaches at {settings.siteName} and helps students become industry-ready.
+                </p>
+                <Link href="/about#faculty" className="mt-3 inline-flex items-center gap-1 text-[13px] font-semibold text-brand-700">
+                  More about our faculty <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+
+              <div className="card overflow-hidden border-0 shadow-[var(--shadow-lg)]">
+                <div className="relative overflow-hidden bg-[var(--grad-brand-deep)] p-5 text-white">
+                  <Orbs className="opacity-40" />
+                  <p className="eyebrow relative !text-accent-300">Build the skill</p>
+                  <h3 className="relative mt-2 font-heading text-base font-bold">Take the full course on this topic</h3>
+                  <p className="relative mt-2 text-[13px] text-white/75">
+                    Live projects, a real portfolio and placement support.
+                  </p>
+                  <Link href="/courses" className="btn btn-accent relative mt-4 w-full">
+                    View courses
+                  </Link>
+                </div>
+              </div>
+
+              <div className="card p-5">
+                <h3 className="font-heading text-[15px] font-bold">More articles like this</h3>
+                <ul className="mt-3 space-y-3">
+                  {listPosts({ limit: 4 })
+                    .filter((item) => item.id !== post.id)
+                    .slice(0, 3)
+                    .map((item) => (
+                      <li key={item.id}>
+                        <Link href={`/blog/${item.slug}`} className="group block">
+                          <p className="text-[13.5px] font-semibold leading-6 text-ink group-hover:text-brand-700">
+                            {truncate(item.title, 70)}
+                          </p>
+                          <p className="mt-0.5 text-[11.5px] text-slate-500">
+                            {formatDate(item.publishedAt)} · {item.readMinutes} min
+                          </p>
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+
+              <div className="card p-5">
+                <h3 className="font-heading text-[15px] font-bold">Newsletter</h3>
+                <p className="mt-2 text-[13px] leading-6 text-slate-600">
+                  New articles and batch updates — two to four emails a month.
+                </p>
+                <div className="mt-4">
+                  <NewsletterForm compact />
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          {/* Related */}
+          {suggestions.length ? (
+            <div className="container-x mt-14">
+              <div className="flex items-end justify-between gap-3">
+                <h2 className="font-heading text-xl font-bold">Also worth reading</h2>
+                <Link href="/blog" className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
+                  All articles <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+              <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {suggestions.map((item) => (
+                  <BlogCard key={item.id} post={item} />
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </article>
+
+      <CtaBand
+        title="Done reading? Time to learn it hands-on"
+        description={`Book a demo class at ${settings.siteName}, speak with a trainer and put together a plan for your career.`}
+        primary={{ href: "/apply", label: "Book a demo class" }}
+        secondary={{ href: "/contact", label: "Contact us" }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonLd([
+            articleSchema(
+              {
+                title: post.title,
+                excerpt: post.excerpt,
+                slug: post.slug,
+                publishedAt: post.publishedAt,
+                author: post.author,
+                coverImage: post.coverImage,
+              },
+              settings,
+            ),
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Blog", path: "/blog" },
+              { name: post.title, path: `/blog/${post.slug}` },
+            ]),
+          ]),
+        }}
+      />
+    </>
+  );
+}
