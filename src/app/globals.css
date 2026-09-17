@@ -1,0 +1,339 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Theme tokens
+   --brand / --brand-accent runtime par DB settings se set hote hain
+   (admin → Settings → Brand colors). Baaki shades unse derive hote hain.
+------------------------------------------------------------------- */
+:root {
+  --brand: #4f46e5;
+  --brand-accent: #f59e0b;
+
+  --brand-50: color-mix(in srgb, var(--brand) 6%, white);
+  --brand-100: color-mix(in srgb, var(--brand) 12%, white);
+  --brand-200: color-mix(in srgb, var(--brand) 24%, white);
+  --brand-300: color-mix(in srgb, var(--brand) 42%, white);
+  --brand-400: color-mix(in srgb, var(--brand) 70%, white);
+  --brand-500: var(--brand);
+  --brand-600: color-mix(in srgb, var(--brand) 88%, black);
+  --brand-700: color-mix(in srgb, var(--brand) 76%, black);
+  --brand-800: color-mix(in srgb, var(--brand) 64%, black);
+  --brand-900: color-mix(in srgb, var(--brand) 52%, black);
+
+  --accent-50: color-mix(in srgb, var(--brand-accent) 10%, white);
+  --accent-100: color-mix(in srgb, var(--brand-accent) 20%, white);
+  --accent-500: var(--brand-accent);
+  --accent-600: color-mix(in srgb, var(--brand-accent) 85%, black);
+
+  --ink: #0f172a;
+  --muted: #64748b;
+  --surface: #ffffff;
+  --canvas: #f8fafc;
+  --line: #e2e8f0;
+}
+
+@theme inline {
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-brand: var(--brand);
+
+  --color-accent-50: var(--accent-50);
+  --color-accent-100: var(--accent-100);
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+  --color-accent: var(--brand-accent);
+
+  --color-ink: var(--ink);
+  --color-canvas: var(--canvas);
+  --color-line: var(--line);
+
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  --radius-xl: 0.9rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.75rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  ::selection {
+    background: var(--brand-200);
+    color: var(--brand-900);
+  }
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-x {
+      padding-inline: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-x {
+      padding-inline: 2rem;
+    }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.925rem;
+    padding: 0.7rem 1.25rem;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease,
+      background-color 0.15s ease,
+      color 0.15s ease;
+    white-space: nowrap;
+  }
+  .btn:active {
+    transform: translateY(1px) scale(0.995);
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+    color: white;
+    box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--brand) 70%, transparent);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 16px 30px -14px color-mix(in srgb, var(--brand) 85%, transparent);
+  }
+  .btn-accent {
+    background: var(--brand-accent);
+    color: #1f2937;
+    box-shadow: 0 10px 24px -14px color-mix(in srgb, var(--brand-accent) 80%, transparent);
+  }
+  .btn-outline {
+    border: 1px solid var(--line);
+    background: white;
+    color: var(--ink);
+  }
+  .btn-outline:hover {
+    border-color: var(--brand-300);
+    color: var(--brand-700);
+    background: var(--brand-50);
+  }
+  .btn-ghost {
+    color: var(--brand-700);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    background: var(--brand-50);
+  }
+  .btn-lg {
+    padding: 0.9rem 1.6rem;
+    font-size: 1rem;
+  }
+  .btn-sm {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.82rem;
+    border-radius: 0.6rem;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.04);
+  }
+  .card-hover {
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    border-color: var(--brand-200);
+    box-shadow: 0 22px 40px -28px rgb(15 23 42 / 0.35);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 999px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--brand-50);
+    color: var(--brand-700);
+    border: 1px solid var(--brand-100);
+  }
+  .chip-accent {
+    background: var(--accent-50);
+    color: #92400e;
+    border-color: var(--accent-100);
+  }
+  .chip-neutral {
+    background: #f1f5f9;
+    color: #334155;
+    border-color: #e2e8f0;
+  }
+
+  .section {
+    padding-block: 3.5rem;
+  }
+  @media (min-width: 640px) {
+    .section {
+      padding-block: 4.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section {
+      padding-block: 5.5rem;
+    }
+  }
+
+  .eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brand-600);
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid var(--line);
+    background: white;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.925rem;
+    color: var(--ink);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .field::placeholder {
+    color: #94a3b8;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--brand-400);
+    box-shadow: 0 0 0 4px var(--brand-100);
+  }
+  .label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.35rem;
+  }
+
+  .prose-custom a {
+    color: var(--brand-700);
+    font-weight: 600;
+  }
+
+  .mesh {
+    background-image:
+      radial-gradient(60% 50% at 15% 10%, color-mix(in srgb, var(--brand) 22%, transparent) 0%, transparent 60%),
+      radial-gradient(50% 50% at 85% 0%, color-mix(in srgb, var(--brand-accent) 24%, transparent) 0%, transparent 60%),
+      radial-gradient(40% 40% at 50% 100%, color-mix(in srgb, var(--brand) 12%, transparent) 0%, transparent 60%);
+  }
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgb(148 163 184 / 0.16) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(148 163 184 / 0.16) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .animate-rise {
+    animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-fade {
+    animation: fade 0.4s ease both;
+  }
+  .animate-pop {
+    animation: pop 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
