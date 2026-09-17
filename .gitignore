@@ -10,3 +10,5 @@ dist
 
 # Admin data (generated at runtime)
 .data/
+public/uploads/*
+!public/uploads/README.txt

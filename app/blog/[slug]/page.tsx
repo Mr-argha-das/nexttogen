@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import BlogCard from "@/components/BlogCard";
 import { useSiteData } from "@/lib/siteData";
+import { RenderRich } from "@/components/RichTextArea";
 
 export default function BlogPost() {
   const params = useParams();
@@ -61,17 +62,28 @@ export default function BlogPost() {
 
       <article className="container-x py-14 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-6 text-[17px] leading-[1.75] text-ink-700">
-          <div className="aspect-[16/8] rounded-2xl bg-gradient-to-br from-brand-700 to-brand-950 relative overflow-hidden">
-            <div className="absolute inset-0 bg-hero-radial opacity-80" />
-          </div>
-          <p>The world of learning is undergoing its most profound shift in a century. As artificial intelligence reshapes industries and the half-life of skills shrinks, the ability to learn, unlearn and relearn has become the single most valuable meta-skill of our time.</p>
-          <p>At NextToGen, we've spent a decade studying what separates learners who thrive from those who stagnate. The pattern is unmistakable: consistent, deliberate practice in community, guided by mentorship, and anchored to real-world outcomes.</p>
-          <h2 className="heading text-2xl md:text-3xl pt-4">The three pillars of accelerated mastery</h2>
-          <p>Across every cohort, across every domain — from machine learning to product design — three forces consistently predict transformative outcomes. They are not talent, privilege, or IQ. They are structure, support and stakes.</p>
-          <blockquote className="border-l-4 border-gold-400 bg-gold-50/50 p-6 rounded-r-xl my-8">
-            <p className="font-serif italic text-brand-900 text-xl">"The best time to plant a tree was 20 years ago. The second best time is now."</p>
-          </blockquote>
-          <p>If you're ready to begin, explore our programs, apply in under five minutes, or reach out to a counsellor. The future rewards those who start.</p>
+          {post.image ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={post.image} alt={post.title} className="aspect-[16/8] w-full rounded-2xl object-cover border border-ink-100" />
+          ) : (
+            <div className="aspect-[16/8] rounded-2xl bg-gradient-to-br from-brand-700 to-brand-950 relative overflow-hidden">
+              <div className="absolute inset-0 bg-hero-radial opacity-80" />
+            </div>
+          )}
+          {post.content ? (
+            <RenderRich text={post.content} />
+          ) : (
+            <>
+              <p>The world of learning is undergoing its most profound shift in a century. As artificial intelligence reshapes industries and the half-life of skills shrinks, the ability to learn, unlearn and relearn has become the single most valuable meta-skill of our time.</p>
+              <p>At NextToGen, we've spent a decade studying what separates learners who thrive from those who stagnate. The pattern is unmistakable: consistent, deliberate practice in community, guided by mentorship, and anchored to real-world outcomes.</p>
+              <h2 className="heading text-2xl md:text-3xl pt-4">The three pillars of accelerated mastery</h2>
+              <p>Across every cohort, across every domain — from machine learning to product design — three forces consistently predict transformative outcomes. They are not talent, privilege, or IQ. They are structure, support and stakes.</p>
+              <blockquote className="border-l-4 border-gold-400 bg-gold-50/50 p-6 rounded-r-xl my-8">
+                <p className="font-serif italic text-brand-900 text-xl">"The best time to plant a tree was 20 years ago. The second best time is now."</p>
+              </blockquote>
+              <p>If you're ready to begin, explore our programs, apply in under five minutes, or reach out to a counsellor. The future rewards those who start.</p>
+            </>
+          )}
         </div>
 
         <aside className="space-y-6">
@@ -86,8 +98,13 @@ export default function BlogPost() {
             <div className="mt-4 space-y-4">
               {related.map((r) => (
                 <Link key={r.slug} href={`/blog/${r.slug}`} className="flex gap-3 group">
-                  <div className="h-16 w-16 rounded-lg bg-gradient-to-br from-brand-700 to-brand-950 shrink-0" />
-                  <div>
+                  <div className="h-16 w-16 rounded-lg overflow-hidden bg-gradient-to-br from-brand-700 to-brand-950 shrink-0">
+                    {r.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={r.image} alt={r.title} className="h-full w-full object-cover" />
+                    ) : null}
+                  </div>
+                  <div className="min-w-0">
                     <p className="text-sm font-semibold text-brand-900 group-hover:text-brand-700 line-clamp-2">{r.title}</p>
                     <p className="text-xs text-ink-500 mt-1">{r.date}</p>
                   </div>

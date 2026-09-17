@@ -12,10 +12,17 @@ export type Course = {
   students: number;
   instructor: string;
   instructorRole: string;
+  instructorBio?: string;
   image: string;
+  bannerImage?: string;
   accent: string; // tailwind color classes
   bestseller?: boolean;
   description: string;
+  longDescription?: string; // markdown-like paragraphs
+  whatYouLearn?: string[];
+  requirements?: string[];
+  curriculum?: { title: string; lessons: string[] }[];
+  includes?: string[]; // sidebar bullets
 };
 
 export const categories = [
@@ -292,6 +299,7 @@ export type BlogPost = {
   author: string;
   avatar: string;
   image: string;
+  content?: string; // rich text paragraphs separated by \n\n
 };
 
 export const featuredPosts: BlogPost[] = [

@@ -6,15 +6,20 @@ export default function BlogCard({ post }: { post: BlogPost }) {
   return (
     <article className="group overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-glow-brand">
       <Link href={`/blog/${post.slug}`} className="block">
-        <div className="relative aspect-[16/10] overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-700 via-brand-800 to-brand-950" />
-          <div
-            className="absolute inset-0 opacity-25"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 30% 30%, rgba(232,177,42,0.4), transparent 60%), radial-gradient(circle at 80% 70%, rgba(106,119,186,0.5), transparent 60%)"
-            }}
-          />
+        <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-700 via-brand-800 to-brand-950">
+          {post.image ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={post.image} alt={post.title} className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          ) : null}
+          <div className={`absolute inset-0 ${post.image ? "bg-gradient-to-t from-brand-950/80 via-brand-950/20 to-transparent" : ""}`}>
+            <div
+              className="absolute inset-0 opacity-25"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 30% 30%, rgba(232,177,42,0.4), transparent 60%), radial-gradient(circle at 80% 70%, rgba(106,119,186,0.5), transparent 60%)"
+              }}
+            />
+          </div>
           <div className="absolute inset-0 flex items-end p-5">
             <span className="rounded-full bg-gold-400 text-brand-950 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em]">
               {post.category}

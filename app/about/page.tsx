@@ -248,14 +248,20 @@ export default function AboutPage() {
               >
                 <p className="text-white/85 leading-relaxed">"{t.quote}"</p>
                 <div className="mt-5 flex items-center gap-3">
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="h-10 w-10 rounded-full border-2 border-gold-400"
-                  />
-                  <div>
-                    <p className="font-semibold text-white text-sm">{t.name}</p>
-                    <p className="text-xs text-white/60">{t.role}</p>
+                  {t.avatar ? (
+                    <img
+                      src={t.avatar}
+                      alt={t.name}
+                      className="h-10 w-10 rounded-full border-2 border-gold-400 object-cover"
+                    />
+                  ) : (
+                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 text-brand-950 border-2 border-gold-400 flex items-center justify-center font-bold text-xs">
+                      {t.name.split(" ").map((s: string) => s[0]).filter(Boolean).slice(0, 2).join("").toUpperCase()}
+                    </div>
+                  )}
+                  <div className="min-w-0">
+                    <p className="font-semibold text-white text-sm truncate">{t.name}</p>
+                    <p className="text-xs text-white/60 truncate">{t.role}</p>
                   </div>
                 </div>
               </div>

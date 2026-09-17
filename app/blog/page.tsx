@@ -55,15 +55,23 @@ export default function BlogPage() {
             className="grid lg:grid-cols-2 gap-8 rounded-3xl overflow-hidden bg-white shadow-soft border border-ink-100 group hover:shadow-glow-brand transition"
           >
             <div className="relative aspect-[4/3] lg:aspect-auto bg-gradient-to-br from-brand-700 to-brand-950 overflow-hidden">
-              <div className="absolute inset-0 bg-hero-radial opacity-80" />
-              <div
-                className="absolute inset-0 opacity-20"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(to right, rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.2) 1px, transparent 1px)",
-                  backgroundSize: "32px 32px"
-                }}
-              />
+              {featured.image ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={featured.image} alt={featured.title} className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+              ) : (
+                <>
+                  <div className="absolute inset-0 bg-hero-radial opacity-80" />
+                  <div
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(to right, rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.2) 1px, transparent 1px)",
+                      backgroundSize: "32px 32px"
+                    }}
+                  />
+                </>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-950/50 to-transparent" />
               <div className="absolute top-6 left-6">
                 <span className="rounded-full bg-gold-400 text-brand-950 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em]">
                   Featured

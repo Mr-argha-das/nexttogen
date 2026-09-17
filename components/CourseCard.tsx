@@ -9,9 +9,12 @@ export default function CourseCard({ course }: { course: Course }) {
     <article className="group overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-glow-brand">
       <Link href={`/courses/${course.slug}`} className="block">
         <div className="relative aspect-[16/10] overflow-hidden bg-brand-900">
-          {/* Use gradient + pattern instead of remote image for reliability */}
+          {course.image || course.bannerImage ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={course.image || course.bannerImage!} alt={course.title} className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          ) : null}
           <div
-            className={`absolute inset-0 bg-gradient-to-br ${course.accent}`}
+            className={`absolute inset-0 bg-gradient-to-br ${course.accent} ${course.image || course.bannerImage ? "opacity-60" : ""}`}
           />
           <div
             className="absolute inset-0 opacity-20"
