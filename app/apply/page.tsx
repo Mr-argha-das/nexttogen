@@ -383,12 +383,12 @@ export default function ApplyPage() {
           </div>
 
           {/* Actions */}
-          <div className="mt-10 flex items-center justify-between gap-3">
+          <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
             <button
               type="button"
               disabled={step === 1}
               onClick={() => setStep((s) => Math.max(1, s - 1))}
-              className="btn-outline disabled:opacity-40"
+              className="btn-outline disabled:opacity-40 w-full sm:w-auto"
             >
               <ArrowLeft className="h-4 w-4" /> Back
             </button>
@@ -396,14 +396,14 @@ export default function ApplyPage() {
               <button
                 type="button"
                 onClick={() => setStep((s) => Math.min(steps.length, s + 1))}
-                className="btn-gold"
+                className="btn-gold w-full sm:w-auto"
               >
                 Continue <ArrowRight className="h-4 w-4" />
               </button>
             ) : (
               <button
                 type="button"
-                disabled={!form.agree}
+                disabled={!form.agree || submitting}
                 onClick={async () => {
                 if (!form.agree) return;
                 setSubmitting(true);
@@ -424,12 +424,17 @@ export default function ApplyPage() {
                   setSubmitting(false);
                 }
               }}
-                className="btn-gold disabled:opacity-40"
+                className="btn-gold disabled:opacity-40 w-full sm:w-auto"
               >
-                Submit Application <ArrowRight className="h-4 w-4" />
+                {submitting ? "Submitting…" : (<>Submit Application <ArrowRight className="h-4 w-4" /></>)}
               </button>
             )}
           </div>
+          {submitError && (
+            <div className="mt-4 rounded-xl bg-red-50 border border-red-200 p-3 text-sm text-red-800">
+              {submitError}
+            </div>
+          )}
         </div>
       </section>
     </>

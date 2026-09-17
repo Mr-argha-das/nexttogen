@@ -108,7 +108,7 @@ export default function CoursesPage() {
             Showing <span className="font-bold text-brand-900">{filtered.length}</span> course
             {filtered.length !== 1 ? "s" : ""}
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {["All Levels", "Beginner", "Intermediate", "Advanced"].map((l) => (
               <button
                 key={l}

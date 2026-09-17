@@ -50,11 +50,11 @@ export default function HomePage() {
                 <Sparkles className="h-3.5 w-3.5" /> Admissions Open · Fall 2026 Cohort
               </span>
               <div className="mt-4 h-[1px] w-24 bg-gradient-to-r from-gold-400 to-transparent" />
-              <h1 className="heading mt-5 text-4xl sm:text-5xl md:text-6xl lg:text-[84px] text-white">
+              <h1 className="heading mt-5 text-[34px] xs:text-4xl sm:text-5xl md:text-6xl lg:text-[84px] text-white leading-[1.05]">
                 Shaping{" "}
-                <span className="relative inline-block italic font-[500]">
+                <span className="relative inline-block italic font-[500] overflow-visible">
                   <span className="relative z-10 text-gold-400">tomorrow's</span>
-                  <span className="absolute inset-x-0 bottom-2 h-3 bg-gold-400/20 -skew-x-6" />
+                  <span className="absolute left-0 right-0 bottom-1 md:bottom-2 h-2 md:h-3 bg-gold-400/20 -skew-x-6 -mx-0.5" />
                 </span>{" "}
                 leaders,<br className="hidden md:block" />
                 <span className="text-white/80 font-[400] italic font-serif tracking-wide">one mind at a time.</span>
@@ -136,12 +136,12 @@ export default function HomePage() {
                 </div>
 
                 {/* Floating stat card */}
-                <div className="absolute -left-6 top-10 glass !bg-white/90 !text-ink-800 p-4 w-56 shadow-xl animate-float [animation-delay:0.5s]">
+                <div className="hidden sm:block absolute -left-4 md:-left-6 top-10 glass !bg-white/90 !text-ink-800 p-3 md:p-4 w-48 md:w-56 shadow-xl animate-float [animation-delay:0.5s]">
                   <div className="flex items-center gap-2">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className="h-4 w-4 fill-gold-400 text-gold-400"
+                        className="h-3.5 w-3.5 md:h-4 md:w-4 fill-gold-400 text-gold-400"
                       />
                     ))}
                   </div>
@@ -149,14 +149,14 @@ export default function HomePage() {
                   <p className="text-xs text-ink-500">from 3,200+ reviews</p>
                 </div>
 
-                <div className="absolute -right-4 bottom-16 glass !bg-white/90 !text-ink-800 p-4 w-60 shadow-xl animate-float [animation-delay:1s]">
+                <div className="hidden sm:block absolute -right-2 md:-right-4 bottom-16 glass !bg-white/90 !text-ink-800 p-3 md:p-4 w-52 md:w-60 shadow-xl animate-float [animation-delay:1s]">
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-xl bg-brand-100 text-brand-800 flex items-center justify-center">
+                    <div className="h-10 w-10 rounded-xl bg-brand-100 text-brand-800 flex items-center justify-center shrink-0">
                       <Briefcase className="h-5 w-5" />
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold">1,200+ Hiring Partners</p>
-                      <p className="text-xs text-ink-500">Google · Microsoft · Infosys</p>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold truncate">1,200+ Hiring Partners</p>
+                      <p className="text-xs text-ink-500 truncate">Google · Microsoft · Infosys</p>
                     </div>
                   </div>
                 </div>

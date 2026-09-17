@@ -187,7 +187,7 @@ export default function SupportPage() {
                 <p className="text-xs font-bold uppercase tracking-wider text-ink-500">
                   Choose an amount
                 </p>
-                <div className="mt-4 grid grid-cols-3 gap-3">
+                <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {amounts.map((a) => (
                     <button
                       type="button"
@@ -196,7 +196,7 @@ export default function SupportPage() {
                         setAmount(a);
                         setCustom("");
                       }}
-                      className={`rounded-xl border px-3 py-4 text-sm font-bold transition ${
+                      className={`rounded-xl border px-3 py-4 text-sm font-bold transition whitespace-nowrap ${
                         amount === a && !custom
                           ? "border-brand-800 bg-brand-50 ring-2 ring-brand-200 text-brand-900"
                           : "border-ink-200 text-ink-700 hover:border-brand-500"
@@ -340,7 +340,7 @@ export default function SupportPage() {
                   Talk to Partnerships <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
-              <div className="grid grid-cols-3 gap-3 text-white/60 font-display font-semibold text-center">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-white/60 font-display font-semibold text-center">
                 {[
                   "Google.org",
                   "Infosys Fdn",
@@ -354,7 +354,7 @@ export default function SupportPage() {
                 ].map((p) => (
                   <div
                     key={p}
-                    className="rounded-xl border border-white/10 bg-white/5 py-6 px-2 hover:text-gold-400 hover:border-gold-400/40 transition text-sm"
+                    className="rounded-xl border border-white/10 bg-white/5 py-5 px-2 sm:py-6 hover:text-gold-400 hover:border-gold-400/40 transition text-xs sm:text-sm break-words"
                   >
                     {p}
                   </div>

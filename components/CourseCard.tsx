@@ -41,7 +41,7 @@ export default function CourseCard({ course }: { course: Course }) {
       </Link>
 
       <div className="p-6">
-        <div className="flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-500">
           <span className="inline-flex items-center gap-1">
             <Clock className="h-3.5 w-3.5" /> {course.duration}
           </span>
@@ -76,13 +76,13 @@ export default function CourseCard({ course }: { course: Course }) {
           </div>
         </div>
 
-        <div className="mt-5 flex items-center justify-between pt-4 border-t border-ink-100">
-          <div className="flex items-center gap-2">
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-ink-100">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-1 rounded-full bg-brand-50 text-brand-800 px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.2em]">
               {course.level}
             </span>
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-400">
-              · Cohort based
+              · Cohort
             </span>
           </div>
           <Link

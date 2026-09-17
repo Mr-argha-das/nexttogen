@@ -80,11 +80,11 @@ export default function BlogPage() {
               <p className="mt-4 text-ink-600 leading-[1.7]">
                 {featured.excerpt}
               </p>
-              <div className="mt-6 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <img src={featured.avatar} alt={featured.author} className="h-10 w-10 rounded-full object-cover" />
-                  <div>
-                    <p className="text-sm font-semibold text-ink-800">{featured.author}</p>
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-3 min-w-0">
+                  <img src={featured.avatar} alt={featured.author} className="h-10 w-10 rounded-full object-cover shrink-0" />
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-ink-800 truncate">{featured.author}</p>
                     <p className="text-xs text-ink-500">{featured.date} · {featured.readTime}</p>
                   </div>
                 </div>

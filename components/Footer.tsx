@@ -162,16 +162,16 @@ export default function Footer() {
                 <CheckCircle2 className="h-5 w-5" /> You're subscribed — thank you!
               </div>
             ) : (
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
-                  className="flex-1 rounded-full bg-white/10 border border-white/15 px-5 py-3 text-sm text-white placeholder-white/50 focus:outline-none focus:border-gold-400"
+                  className="flex-1 w-full rounded-full bg-white/10 border border-white/15 px-5 py-3 text-sm text-white placeholder-white/50 focus:outline-none focus:border-gold-400"
                 />
-                <button className="btn-gold whitespace-nowrap" type="submit">
+                <button className="btn-gold whitespace-nowrap w-full sm:w-auto" type="submit">
                   Subscribe <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
@@ -179,9 +179,9 @@ export default function Footer() {
           </div>
         </form>
 
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-white/50">
+        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-white/50 text-center">
           <p>© {new Date().getFullYear()} NextToGen Academy. All rights reserved.</p>
-          <div className="flex gap-6 items-center">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 items-center">
             <Link href="/contact#legal" className="hover:text-gold-400">
               Privacy Policy
             </Link>

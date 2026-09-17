@@ -63,8 +63,8 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Link href="/apply" className="btn-outline">
-            Sign In
+          <Link href="/admin/login" className="btn-outline">
+            Admin
           </Link>
           <Link href="/apply" className="btn-gold">
             Apply Now
@@ -93,11 +93,11 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <div className="flex gap-3 pt-3">
-              <Link href="/apply" className="btn-outline flex-1">
-                Sign In
+            <div className="flex flex-col sm:flex-row gap-3 pt-3">
+              <Link href="/admin/login" className="btn-outline w-full sm:w-auto sm:flex-1 justify-center">
+                Admin
               </Link>
-              <Link href="/apply" className="btn-gold flex-1">
+              <Link href="/apply" className="btn-gold w-full sm:w-auto sm:flex-1 justify-center">
                 Apply Now
               </Link>
             </div>
