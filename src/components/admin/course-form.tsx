@@ -55,7 +55,7 @@ export function CourseForm({ course }: { course?: Course }) {
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <label className="label" htmlFor="title">
-              Course ka naam <span className="text-rose-500">*</span>
+              Course title <span className="text-rose-500">*</span>
             </label>
             <input
               id="title"

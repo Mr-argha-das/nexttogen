@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
+  BarChart3,
   CalendarDays,
   Clock,
   Eye,
@@ -17,6 +18,8 @@ import { formatDate, initials, safeJsonLd, truncate } from "@/lib/utils";
 import { BlogCard, CtaBand } from "@/components/site/cards";
 import { NewsletterForm } from "@/components/site/newsletter-form";
 import { Markdown } from "@/lib/markdown";
+import { CATEGORY_ICONS } from "@/components/site/cards";
+import { CourseArt, Orbs } from "@/components/site/decor";
 
 export const revalidate = 300;
 
@@ -70,36 +73,37 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     <>
       <article>
         {/* Hero */}
-        <header className="relative overflow-hidden border-b border-slate-100 bg-canvas">
-          <div className="mesh pointer-events-none absolute inset-0 opacity-60" />
-          <div className="container-x relative py-10 sm:py-14">
-            <nav aria-label="Breadcrumb" className="mb-4 flex flex-wrap items-center gap-1 text-[12.5px] text-slate-500">
-              <Link href="/" className="hover:text-brand-700">
+        <header className="relative overflow-hidden border-b border-white/10 bg-[var(--grad-brand-deep)] text-white">
+          <div className="dot-grid pointer-events-none absolute inset-0 opacity-[0.14]" />
+          <Orbs tone="mixed" className="opacity-60" />
+          <div className="container-x relative py-12 sm:py-16">
+            <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-2 text-[12px] text-white/55">
+              <Link href="/" className="transition-colors hover:text-white">
                 Home
               </Link>
-              <span className="text-slate-300">/</span>
-              <Link href="/blog" className="hover:text-brand-700">
+              <span className="text-white/25">/</span>
+              <Link href="/blog" className="transition-colors hover:text-white">
                 Blog
               </Link>
-              <span className="text-slate-300">/</span>
-              <span className="font-medium text-slate-700">{post.category}</span>
+              <span className="text-white/25">/</span>
+              <span className="font-semibold text-white">{post.category}</span>
             </nav>
 
             <div className="max-w-3xl">
-              <span className="chip chip-accent">{post.category}</span>
-              <h1 className="mt-4 font-heading text-[1.7rem] font-extrabold leading-tight sm:text-[2.2rem]">
+              <span className="chip chip-glass">{post.category}</span>
+              <h1 className="display-2 mt-5 text-white" style={{ fontSize: "clamp(1.65rem, 3.4vw, 2.5rem)" }}>
                 {post.title}
               </h1>
-              <p className="mt-4 text-[15.5px] leading-7 text-slate-600">{post.excerpt}</p>
+              <p className="mt-5 text-[15.5px] leading-7 text-white/70">{post.excerpt}</p>
 
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-[13px] text-slate-500">
+              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-[13px] text-white/60">
                 <span className="flex items-center gap-2">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-[12px] font-bold text-white">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/12 text-[12px] font-bold text-white ring-1 ring-white/20">
                     {initials(post.author)}
                   </span>
                   <span>
-                    <span className="block font-semibold text-ink">{post.author}</span>
-                    <span className="block text-[12px] text-slate-500">{post.authorRole ?? "Faculty"}</span>
+                    <span className="block font-semibold text-white">{post.author}</span>
+                    <span className="block text-[12px] text-white/50">{post.authorRole ?? "Faculty"}</span>
                   </span>
                 </span>
                 <span className="flex items-center gap-1.5">
@@ -116,19 +120,18 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           </div>
         </header>
 
-        <div className="section pt-8">
-          <div className="container-x grid gap-10 lg:grid-cols-[1fr_320px] lg:items-start">
+        <div className="section pt-12">
+          <div className="container-x grid gap-10 lg:grid-cols-[1fr_330px] lg:items-start">
             <div>
               <div className="card overflow-hidden">
-                <div className="relative h-44 bg-gradient-to-br from-slate-800 via-slate-900 to-brand-900 sm:h-56">
-                  <div className="grid-lines absolute inset-0 opacity-25" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="rounded-xl bg-white/10 px-4 py-2 text-[12px] font-semibold uppercase tracking-wider text-white/80 backdrop-blur">
-                      {settings.siteName} · Career Guide
-                    </span>
+                <div className="relative h-44 overflow-hidden sm:h-60">
+                  <CourseArt seed={post.slug} icon={CATEGORY_ICONS[post.category] ?? BarChart3} />
+                  <div className="absolute inset-x-6 bottom-5 flex flex-wrap items-center gap-2">
+                    <span className="chip chip-glass">{settings.siteName} · Career guide</span>
+                    <span className="chip chip-glass">{post.readMinutes} min read</span>
                   </div>
                 </div>
-                <div className="p-6 sm:p-8">
+                <div className="p-6 sm:p-9">
                   <Markdown content={post.content} />
                 </div>
               </div>
@@ -174,7 +177,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                 </div>
               </div>
 
-              <div className="mt-8 flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-canvas p-5">
+              <div className="mt-8 flex items-center justify-between gap-4 rounded-2xl border border-line bg-canvas p-5">
                 <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-700">
                   <ArrowLeft className="h-4 w-4" /> All articles
                 </Link>
@@ -186,9 +189,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
             {/* Sidebar */}
             <aside className="space-y-5 lg:sticky lg:top-24">
-              <div className="card p-5">
+              <div className="card card-hover p-5">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-sm font-bold text-white">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--grad-brand)] text-sm font-bold text-white shadow-[var(--shadow-sm)]">
                     {initials(post.author)}
                   </span>
                   <div>
@@ -204,14 +207,15 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                 </Link>
               </div>
 
-              <div className="card overflow-hidden">
-                <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
-                  <p className="text-[12px] font-semibold uppercase tracking-wider text-white/70">Build the skill</p>
-                  <h3 className="mt-1 font-heading text-base font-bold">Take the full course on this topic</h3>
-                  <p className="mt-2 text-[13px] text-white/80">
+              <div className="card overflow-hidden border-0 shadow-[var(--shadow-lg)]">
+                <div className="relative overflow-hidden bg-[var(--grad-brand-deep)] p-5 text-white">
+                  <Orbs className="opacity-40" />
+                  <p className="eyebrow relative !text-accent-300">Build the skill</p>
+                  <h3 className="relative mt-2 font-heading text-base font-bold">Take the full course on this topic</h3>
+                  <p className="relative mt-2 text-[13px] text-white/75">
                     Live projects, a real portfolio and placement support.
                   </p>
-                  <Link href="/courses" className="btn btn-accent mt-4 w-full">
+                  <Link href="/courses" className="btn btn-accent relative mt-4 w-full">
                     View courses
                   </Link>
                 </div>

@@ -40,13 +40,15 @@ export default async function TestimonialsPage() {
     <>
       <PageHero
         eyebrow="Testimonials"
-        title="Real stories, in our students' own words"
+        tone="dark"
+        title={<>Real stories, in our students&apos; <span className="text-gradient">own words</span></>}
         description={`We do not write these reviews. Students write them after completing their course. Learners from ${cities.length} cities have studied with us and shared their experience here.`}
         crumbs={[{ label: "Testimonials" }]}
       />
 
-      <section className="pt-8">
-        <div className="container-x grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+      {/* stat cards pulled up over the hero */}
+      <section className="relative z-10 -mt-8">
+        <div className="container-x grid grid-cols-2 gap-4 lg:grid-cols-4">
           {stats.map((stat) => (
             <StatCard key={stat.label} icon={stat.icon} value={stat.value} label={stat.label} />
           ))}
@@ -54,18 +56,18 @@ export default async function TestimonialsPage() {
       </section>
 
       {/* Featured reviews */}
-      <section className="section">
+      <section className="section pt-16">
         <div className="container-x">
-          <div className="flex flex-wrap items-end justify-between gap-3">
+          <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="eyebrow">Placement stories</p>
-              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Students who landed their first job 🎉</h2>
+              <h2 className="display-2 mt-3">Students who landed their first job</h2>
             </div>
-            <p className="text-[13px] text-slate-500">
+            <p className="max-w-sm text-[13px] leading-6 text-slate-500">
               Salary figures are shared by the students themselves, and some company names are withheld for privacy.
             </p>
           </div>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((testimonial) => (
               <TestimonialCard key={testimonial.id} testimonial={testimonial} />
             ))}
@@ -74,18 +76,18 @@ export default async function TestimonialsPage() {
       </section>
 
       {/* All reviews */}
-      <section className="section bg-canvas pt-0">
-        <div className="container-x pt-14">
-          <div className="flex flex-wrap items-end justify-between gap-3">
+      <section className="band-canvas section pt-0">
+        <div className="container-x pt-16">
+          <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="eyebrow">All reviews</p>
-              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">What our students wrote</h2>
+              <h2 className="display-2 mt-3">What our students wrote</h2>
             </div>
-            <span className="chip chip-neutral">
-              <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" /> {settings.averageRating}/5 average
+            <span className="chip chip-outline">
+              <Star className="h-3.5 w-3.5 fill-accent-400 text-accent-400" /> {settings.averageRating}/5 average rating
             </span>
           </div>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((testimonial) => (
               <TestimonialCard key={testimonial.id} testimonial={testimonial} />
             ))}
@@ -95,24 +97,29 @@ export default async function TestimonialsPage() {
 
       {/* Video + trust */}
       <section className="section">
-        <div className="container-x grid gap-8 lg:grid-cols-2 lg:items-center">
+        <div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="eyebrow">Video reviews</p>
-            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Prefer to hear it directly from students?</h2>
-            <p className="mt-4 text-[15px] leading-7 text-slate-600">
+            <h2 className="display-2 mt-3">Prefer to hear it directly from students?</h2>
+            <p className="mt-5 text-[15.5px] leading-8 text-slate-600">
               Video testimonials are available on campus, and with the student&apos;s consent you can speak to placed
               alumni directly. It is the fastest way to verify everything: ask a counsellor and we will connect you with
               two or three students.
             </p>
-            <ul className="mt-6 space-y-3 text-[14px] text-slate-700">
+            <ul className="mt-7 grid gap-3 sm:grid-cols-2">
               {[
                 "Speak directly with placed students",
-                "Attend a live demo class during a campus visit",
+                "Attend a live demo class on a campus visit",
                 "Ask for a written breakdown of fees and EMI",
                 "Review placement records on campus in person",
               ].map((item) => (
-                <li key={item} className="flex items-start gap-2.5">
-                  <Video className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
+                <li
+                  key={item}
+                  className="flex items-start gap-3 rounded-2xl border border-line bg-white px-4 py-3.5 text-[13.5px] font-medium text-slate-700 shadow-[var(--shadow-xs)] transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-[var(--shadow-sm)]"
+                >
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
+                    <Video className="h-3.5 w-3.5" />
+                  </span>
                   {item}
                 </li>
               ))}
@@ -127,15 +134,17 @@ export default async function TestimonialsPage() {
             </div>
           </div>
 
-          <div className="card p-6">
-            <Quote className="h-8 w-8 text-brand-200" />
-            <p className="mt-4 text-[15px] leading-8 text-slate-700">
+          <div className="card card-rail p-6 sm:p-8">
+            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--grad-brand)] text-white shadow-[var(--shadow-brand)]">
+              <Quote className="h-6 w-6" />
+            </span>
+            <p className="mt-5 text-[15.5px] leading-8 text-slate-700">
               “We do not just sell courses. During counselling we are honest about the work involved, the time it takes
               and what the fee plan will look like. For students who put in 10 to 12 hours a week, our placement record
               is {settings.placementRate}%.”
             </p>
             <p className="mt-4 text-[13px] font-semibold text-ink">— Placement Cell, {settings.siteName}</p>
-            <div className="mt-6 grid grid-cols-3 gap-3 border-t border-dashed border-slate-200 pt-5 text-center">
+            <div className="mt-6 grid grid-cols-3 gap-3 border-t border-dashed border-line pt-6 text-center">
               <div>
                 <p className="font-heading text-lg font-extrabold text-ink">{formatINR(3, { compact: false })}–12 LPA</p>
                 <p className="text-[11.5px] text-slate-500">Salary range reported</p>

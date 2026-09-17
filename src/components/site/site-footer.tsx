@@ -1,9 +1,19 @@
 import Link from "next/link";
-import { GraduationCap, MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
+import {
+  GraduationCap,
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  ArrowUpRight,
+  BadgeCheck,
+  Sparkles,
+} from "lucide-react";
 import { SOCIAL_ICONS } from "./social-icons";
 import type { SiteSettings } from "@/lib/types";
 import { FOOTER_COURSE_LINKS, FOOTER_QUICK_LINKS } from "@/lib/nav";
 import { NewsletterForm } from "./newsletter-form";
+import { Orbs } from "./decor";
 
 const SOCIALS = [
   { key: "facebook", label: "Facebook" },
@@ -16,61 +26,90 @@ const SOCIALS = [
 
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
   const year = new Date().getFullYear();
+  const activeSocials = SOCIALS.filter((social) => settings[social.key]);
 
   return (
-    <footer className="mt-auto border-t border-slate-800 bg-ink text-slate-300">
-      {/* Newsletter */}
-      <div className="border-b border-slate-800">
-        <div className="container-x grid gap-6 py-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+    <footer className="relative mt-auto overflow-hidden bg-[var(--grad-brand-deep)] text-slate-300">
+      <Orbs tone="mixed" className="opacity-40" />
+      <div className="dot-grid pointer-events-none absolute inset-0 opacity-[0.1]" />
+
+      {/* ------------------------------- newsletter ------------------------------ */}
+      <div className="relative border-b border-white/10">
+        <div className="container-x grid gap-8 py-12 lg:grid-cols-[1.15fr_1fr] lg:items-center">
           <div>
-            <h3 className="font-heading text-xl font-bold text-white sm:text-2xl">
-              Free career counselling and batch alerts
+            <span className="chip chip-glass">
+              <Sparkles className="h-3.5 w-3.5" /> Career tips &amp; batch alerts
+            </span>
+            <h3 className="display-3 mt-4 text-white">
+              Free career counselling and new batch announcements
             </h3>
-            <p className="mt-2 max-w-xl text-sm text-slate-400">
-              New batches, scholarship announcements and career guides from our trainers — delivered to your inbox.
+            <p className="mt-3 max-w-xl text-[14px] leading-7 text-white/65">
+              Scholarship announcements, new batches and career guides from our trainers — straight to your inbox. No
+              spam, unsubscribe any time.
             </p>
           </div>
-          <NewsletterForm />
+          <div className="rounded-2xl border border-white/12 bg-white/[0.06] p-5 backdrop-blur">
+            <NewsletterForm />
+          </div>
         </div>
       </div>
 
-      <div className="container-x grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+      {/* --------------------------------- links -------------------------------- */}
+      <div className="container-x relative grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white">
-              <GraduationCap className="h-5 w-5" />
+          <div className="flex items-center gap-3">
+            <span className="flex h-11 w-11 items-center justify-center rounded-[0.9rem] bg-white/10 text-white ring-1 ring-white/15">
+              <GraduationCap className="h-5.5 w-5.5" />
             </span>
-            <span className="font-heading text-lg font-extrabold text-white">{settings.siteShortName}</span>
+            <span>
+              <span className="block font-heading text-lg font-extrabold text-white">{settings.siteShortName}</span>
+              <span className="block text-[10px] font-bold uppercase tracking-[0.2em] text-accent-300">Institute</span>
+            </span>
           </div>
-          <p className="mt-4 text-sm leading-6 text-slate-400">
+
+          <p className="mt-5 text-[13.5px] leading-7 text-white/60">
             {settings.legalName}. Established {settings.foundedYear} — practical skill training, small batches and
-            genuine placement support.
+            genuine placement support in {settings.city}.
           </p>
+
           <div className="mt-5 flex flex-wrap gap-2">
-            {SOCIALS.filter((social) => settings[social.key]).map(({ key, label }) => {
-              const Icon = SOCIAL_ICONS[key];
-              return (
-                <a
-                  key={key}
-                  href={settings[key]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-700 text-slate-400 transition-colors hover:border-brand-500 hover:bg-brand-500/10 hover:text-white"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              );
-            })}
+            <span className="chip chip-glass">
+              <BadgeCheck className="h-3.5 w-3.5" /> {settings.placementRate}% placement record
+            </span>
+            <span className="chip chip-glass">★ {settings.averageRating}/5 rating</span>
           </div>
+
+          {activeSocials.length ? (
+            <div className="mt-6 flex flex-wrap gap-2">
+              {activeSocials.map(({ key, label }) => {
+                const Icon = SOCIAL_ICONS[key];
+                return (
+                  <a
+                    key={key}
+                    href={settings[key]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/12 bg-white/[0.05] text-white/70 transition-all hover:-translate-y-0.5 hover:border-accent-300/40 hover:bg-white/10 hover:text-white"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                );
+              })}
+            </div>
+          ) : null}
         </div>
 
         <div>
-          <h4 className="font-heading text-sm font-bold uppercase tracking-wider text-white">Popular Courses</h4>
-          <ul className="mt-4 space-y-2.5 text-sm">
+          <h4 className="font-heading text-[13px] font-bold uppercase tracking-[0.16em] text-white">Popular courses</h4>
+          <ul className="mt-5 space-y-3 text-[13.5px]">
             {FOOTER_COURSE_LINKS.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-slate-400 transition-colors hover:text-white">
+                <Link
+                  href={link.href}
+                  className="group flex items-start gap-2 text-white/60 transition-colors hover:text-white"
+                >
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-300/60 transition-all group-hover:w-3" />
                   {link.label}
                 </Link>
               </li>
@@ -79,11 +118,15 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         </div>
 
         <div>
-          <h4 className="font-heading text-sm font-bold uppercase tracking-wider text-white">Quick Links</h4>
-          <ul className="mt-4 space-y-2.5 text-sm">
+          <h4 className="font-heading text-[13px] font-bold uppercase tracking-[0.16em] text-white">Quick links</h4>
+          <ul className="mt-5 space-y-3 text-[13.5px]">
             {FOOTER_QUICK_LINKS.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-slate-400 transition-colors hover:text-white">
+                <Link
+                  href={link.href}
+                  className="group flex items-start gap-2 text-white/60 transition-colors hover:text-white"
+                >
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-300/60 transition-all group-hover:w-3" />
                   {link.label}
                 </Link>
               </li>
@@ -92,11 +135,13 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         </div>
 
         <div>
-          <h4 className="font-heading text-sm font-bold uppercase tracking-wider text-white">Visit / Contact</h4>
-          <ul className="mt-4 space-y-3.5 text-sm text-slate-400">
+          <h4 className="font-heading text-[13px] font-bold uppercase tracking-[0.16em] text-white">Visit / contact</h4>
+          <ul className="mt-5 space-y-4 text-[13.5px] text-white/65">
             <li className="flex gap-3">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
-              <span>
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.07] text-accent-300">
+                <MapPin className="h-4 w-4" />
+              </span>
+              <span className="leading-6">
                 {settings.addressLine1}
                 {settings.addressLine2 ? `, ${settings.addressLine2}` : ""}
                 <br />
@@ -104,44 +149,62 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
               </span>
             </li>
             <li className="flex gap-3">
-              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
-              <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="hover:text-white">
-                {settings.phone}
-              </a>
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.07] text-accent-300">
+                <Phone className="h-4 w-4" />
+              </span>
+              <span className="leading-6">
+                <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="font-semibold text-white hover:text-accent-300">
+                  {settings.phone}
+                </a>
+                {settings.alternatePhone ? (
+                  <>
+                    <br />
+                    <a href={`tel:${settings.alternatePhone.replace(/\s/g, "")}`} className="hover:text-white">
+                      {settings.alternatePhone}
+                    </a>
+                  </>
+                ) : null}
+              </span>
             </li>
             <li className="flex gap-3">
-              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
-              <a href={`mailto:${settings.email}`} className="hover:text-white">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.07] text-accent-300">
+                <Mail className="h-4 w-4" />
+              </span>
+              <a href={`mailto:${settings.email}`} className="leading-6 hover:text-white">
                 {settings.email}
               </a>
             </li>
             <li className="flex gap-3">
-              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
-              <span>{settings.officeHours}</span>
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/[0.07] text-accent-300">
+                <Clock className="h-4 w-4" />
+              </span>
+              <span className="leading-6">{settings.officeHours}</span>
             </li>
           </ul>
-          <Link href="/apply" className="btn btn-primary btn-sm mt-5">
-            Apply Online <ArrowUpRight className="h-4 w-4" />
+
+          <Link href="/apply" className="btn btn-accent mt-6 w-full sm:w-auto">
+            Apply online <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
       </div>
 
-      <div className="border-t border-slate-800">
-        <div className="container-x flex flex-col items-center justify-between gap-3 py-5 text-xs text-slate-500 sm:flex-row">
+      {/* ------------------------------- bottom bar ----------------------------- */}
+      <div className="relative border-t border-white/10">
+        <div className="container-x flex flex-col items-center justify-between gap-3 py-6 text-[12px] text-white/45 sm:flex-row">
           <p>
             © {year} {settings.siteName}. All rights reserved.
           </p>
-          <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-            <Link href="/privacy-policy" className="hover:text-slate-300">
+          <p className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
+            <Link href="/privacy-policy" className="transition-colors hover:text-white">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-slate-300">
-              Terms & Conditions
+            <Link href="/terms" className="transition-colors hover:text-white">
+              Terms &amp; Conditions
             </Link>
-            <Link href="/faq" className="hover:text-slate-300">
+            <Link href="/faq" className="transition-colors hover:text-white">
               FAQs
             </Link>
-            <Link href="/sitemap.xml" className="hover:text-slate-300">
+            <Link href="/sitemap.xml" className="transition-colors hover:text-white">
               Sitemap
             </Link>
           </p>

@@ -115,51 +115,61 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="animate-pop hidden max-w-[240px] rounded-2xl rounded-br-md border border-slate-200 bg-white p-3 text-left text-sm shadow-xl sm:block"
+          className="animate-pop card-glass hidden max-w-[262px] rounded-2xl rounded-br-md p-3.5 text-left shadow-[var(--shadow-lg)] sm:block"
         >
-          <span className="flex items-center gap-2 font-semibold text-ink">
-            <Sparkles className="h-4 w-4 text-brand-600" /> {botName} is here!
+          <span className="flex items-center gap-2.5">
+            <span className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--grad-brand)] text-white">
+              <Sparkles className="h-4 w-4" />
+              <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-white" />
+            </span>
+            <span className="text-[13.5px] font-bold text-ink">{botName} is online</span>
           </span>
-          <span className="mt-1 block text-xs text-slate-500">
-            Ask about courses, fees or admission — you will get an instant answer.
+          <span className="mt-2 block text-[12.5px] leading-5 text-slate-500">
+            Ask about courses, fees or admission and get an instant answer.
           </span>
         </button>
       )}
 
       {/* Chat panel */}
       {open && (
-        <div className="animate-pop flex h-[min(560px,80vh)] w-[min(380px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl">
-          <div className="flex items-center justify-between gap-3 bg-gradient-to-r from-brand-600 to-brand-800 px-4 py-3 text-white">
-            <div className="flex items-center gap-2.5">
-              <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-white/15">
-                <Bot className="h-5 w-5" />
-                <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-brand-700 bg-emerald-400" />
-              </span>
-              <span>
-                <span className="block text-sm font-semibold">{botName} · Admission Assistant</span>
-                <span className="block text-[11px] text-white/70">Online · instant replies</span>
-              </span>
+        <div className="animate-pop flex h-[min(580px,80vh)] w-[min(392px,calc(100vw-2rem))] flex-col overflow-hidden rounded-[26px] border border-white/60 bg-white shadow-[var(--shadow-xl)]">
+          <div className="relative overflow-hidden bg-[var(--grad-brand-deep)] px-4 py-3.5 text-white">
+            <div className="dot-grid pointer-events-none absolute inset-0 opacity-[0.15]" />
+            <div className="relative flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <span className="relative flex h-10 w-10 items-center justify-center rounded-2xl bg-white/12 ring-1 ring-white/20">
+                  <Bot className="h-5 w-5" />
+                  <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-brand-800 bg-emerald-400" />
+                </span>
+                <span>
+                  <span className="block text-[13.5px] font-bold">{botName} · Admission assistant</span>
+                  <span className="flex items-center gap-1.5 text-[11px] text-white/60">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    Online · instant replies
+                  </span>
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Close chat"
+                className="rounded-xl p-1.5 text-white/70 transition-colors hover:bg-white/15 hover:text-white"
+              >
+                <X className="h-4.5 w-4.5" />
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              aria-label="Close chat"
-              className="rounded-lg p-1.5 transition-colors hover:bg-white/15"
-            >
-              <X className="h-4.5 w-4.5" />
-            </button>
           </div>
 
-          <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto bg-canvas px-3.5 py-4">
+          <div ref={scrollRef} className="flex-1 space-y-3.5 overflow-y-auto bg-canvas px-3.5 py-4">
             {messages.map((message, index) => (
               <div key={index} className={cn("flex", message.role === "user" ? "justify-end" : "justify-start")}>
                 <div className="max-w-[86%] space-y-2">
                   <div
                     className={cn(
-                      "whitespace-pre-line rounded-2xl px-3.5 py-2.5 text-[13px] leading-6 shadow-sm",
+                      "whitespace-pre-line rounded-2xl px-3.5 py-2.5 text-[13px] leading-6",
                       message.role === "user"
-                        ? "rounded-br-md bg-brand-600 text-white"
-                        : "rounded-bl-md border border-slate-200 bg-white text-slate-700",
+                        ? "rounded-br-md bg-[var(--grad-brand)] font-medium text-white shadow-[var(--shadow-brand)]"
+                        : "rounded-bl-md border border-line bg-white text-slate-700 shadow-[var(--shadow-xs)]",
                     )}
                   >
                     {message.text}
@@ -175,12 +185,12 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
                                 href={link.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="chip"
+                                className="chip chip-accent"
                               >
                                 {link.label}
                               </a>
                             ) : (
-                              <Link key={link.href} href={link.href} className="chip" onClick={() => setOpen(false)}>
+                              <Link key={link.href} href={link.href} className="chip chip-accent" onClick={() => setOpen(false)}>
                                 {link.label}
                               </Link>
                             ),
@@ -194,7 +204,7 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
                               key={suggestion}
                               type="button"
                               onClick={() => send(suggestion)}
-                              className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600 transition-colors hover:border-brand-200 hover:text-brand-700"
+                              className="rounded-full border border-line bg-white px-2.5 py-1.5 text-[11px] font-semibold text-slate-600 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-700 hover:shadow-[var(--shadow-xs)]"
                             >
                               {suggestion}
                             </button>
@@ -208,7 +218,7 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
             ))}
             {loading && (
               <div className="flex justify-start">
-                <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md border border-slate-200 bg-white px-4 py-3">
+                <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md border border-line bg-white px-4 py-3 shadow-[var(--shadow-xs)]">
                   <span className="h-2 w-2 animate-bounce rounded-full bg-brand-400 [animation-delay:-0.2s]" />
                   <span className="h-2 w-2 animate-bounce rounded-full bg-brand-500 [animation-delay:-0.1s]" />
                   <span className="h-2 w-2 animate-bounce rounded-full bg-brand-600" />
@@ -217,7 +227,7 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
             )}
           </div>
 
-          <div className="border-t border-slate-200 bg-white p-3">
+          <div className="border-t border-line bg-white p-3">
             <form
               onSubmit={(event) => {
                 event.preventDefault();
@@ -236,13 +246,14 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
                 type="submit"
                 disabled={loading || !input.trim()}
                 aria-label="Send message"
-                className="btn btn-primary h-10 w-10 !p-0 disabled:opacity-50"
+                className="btn btn-primary h-10 w-10 !p-0 shadow-[var(--shadow-brand)] disabled:opacity-40"
               >
                 <Send className="h-4 w-4" />
               </button>
             </form>
-            <div className="mt-2 flex items-center justify-between text-[11px] text-slate-400">
-              <span>Rule-based assistant — answers come from live course data</span>
+            <div className="mt-2.5 flex items-center justify-between text-[10.5px] text-slate-400">
+              <span className="hidden sm:inline">Answers come from live course data</span>
+              <span className="sm:hidden">Live course data</span>
               <span className="flex items-center gap-2">
                 <a href={`tel:${phone.replace(/\s/g, "")}`} className="flex items-center gap-1 hover:text-brand-600">
                   <Phone className="h-3 w-3" /> Call
@@ -269,20 +280,29 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg transition-transform hover:scale-105"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 text-white shadow-[0_14px_30px_-8px_rgba(16,185,129,0.6)] ring-1 ring-emerald-400/40 transition-transform hover:scale-105"
           >
             <MessageCircle className="h-5.5 w-5.5" />
           </a>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-label={`Chat with ${botName}`}
-            className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-600 to-brand-800 px-4 py-3 text-sm font-semibold text-white shadow-xl transition-transform hover:scale-105"
-          >
-            <Bot className="h-5 w-5" />
-            <span className="hidden sm:inline">Ask us anything</span>
-            <span className="sm:hidden">{botName}</span>
-          </button>
+          <span className="relative inline-flex">
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0 animate-ping rounded-full bg-brand-500/30 [animation-duration:3s]"
+            />
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-label={`Chat with ${botName}`}
+              className="relative flex items-center gap-2.5 rounded-full bg-[var(--grad-brand)] py-3 pl-3.5 pr-5 text-[13.5px] font-bold text-white shadow-[var(--shadow-brand)] ring-1 ring-white/20 transition-transform hover:scale-[1.03]"
+            >
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15">
+                <Bot className="h-4 w-4" />
+              </span>
+              <span className="hidden sm:inline">Ask us anything</span>
+              <span className="sm:hidden">{botName}</span>
+              <span className="absolute right-0 top-0 h-3 w-3 translate-x-1/3 -translate-y-1/3 rounded-full bg-accent-400 ring-2 ring-white" />
+            </button>
+          </span>
         </div>
       )}
     </div>

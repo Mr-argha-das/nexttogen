@@ -80,8 +80,9 @@ export default async function ContactPage() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="Contact us"
-        title="Want to talk? We are right here."
+        title={<>Want to talk? <span className="text-gradient">We are right here.</span></>}
         description="Call, WhatsApp, email or visit the campus — whichever is easiest. Our admission team is available Monday to Saturday from 8 AM to 8 PM, and WhatsApp is the fastest way to reach us."
         crumbs={[{ label: "Contact Us" }]}
       />
@@ -94,12 +95,12 @@ export default async function ContactPage() {
                 key={label}
                 href={href}
                 {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="card card-hover flex flex-col p-5"
+                className="card card-hover card-rail group flex flex-col p-5"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--grad-brand)] text-white shadow-[var(--shadow-sm)] transition-transform duration-300 group-hover:-rotate-6">
                   <Icon className="h-5 w-5" />
                 </span>
-                <p className="mt-3 text-[11.5px] font-semibold uppercase tracking-wide text-slate-400">{label}</p>
+                <p className="mt-3.5 text-[10.5px] font-bold uppercase tracking-[0.14em] text-slate-400">{label}</p>
                 <p className="text-[14.5px] font-bold text-ink">{value}</p>
                 <p className="mt-2 text-[12.5px] leading-5 text-slate-500">{note}</p>
               </a>
@@ -108,8 +109,8 @@ export default async function ContactPage() {
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <div>
-              <h2 className="font-heading text-xl font-bold">Enquiry form</h2>
-              <p className="mt-2 text-[14px] text-slate-600">
+              <h2 className="display-3">Enquiry form</h2>
+              <p className="mt-3 text-[14px] leading-7 text-slate-600">
                 Ask about courses, fees, batch timings or anything else — we reply within 24 hours. For anything urgent,
                 WhatsApp is the quicker option.
               </p>
@@ -119,11 +120,11 @@ export default async function ContactPage() {
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 {departments.map(({ icon: Icon, title, detail, note }) => (
-                  <div key={title} className="card p-5">
+                  <div key={title} className="card card-hover p-5">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-canvas text-brand-700">
                       <Icon className="h-5 w-5" />
                     </span>
-                    <h3 className="mt-3 text-[14px] font-bold text-ink">{title}</h3>
+                    <h3 className="mt-3.5 text-[14px] font-bold text-ink">{title}</h3>
                     <a href={`mailto:${detail}`} className="text-[13px] font-medium text-brand-700 hover:underline">
                       {detail}
                     </a>
@@ -135,9 +136,12 @@ export default async function ContactPage() {
 
             {/* Visit info + map */}
             <aside className="space-y-5 lg:sticky lg:top-24">
-              <div className="card p-5">
-                <h3 className="flex items-center gap-2 font-heading text-[15px] font-bold">
-                  <MapPin className="h-4 w-4 text-brand-600" /> Campus address
+              <div className="card card-hover p-5">
+                <h3 className="flex items-center gap-2.5 font-heading text-[15px] font-bold">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+                    <MapPin className="h-4 w-4" />
+                  </span>
+                  Campus address
                 </h3>
                 <p className="mt-3 text-[13.5px] leading-6 text-slate-700">{fullAddress}</p>
                 <div className="mt-4 space-y-2.5 text-[13px] text-slate-600">

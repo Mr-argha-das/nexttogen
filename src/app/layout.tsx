@@ -30,6 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "computer classes near me",
       "best IT institute",
     ],
+    alternates: { canonical: SITE_URL },
     applicationName: settings.siteName,
     authors: [{ name: settings.siteName }],
     creator: settings.siteName,
@@ -65,12 +66,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN">
       <body className="flex min-h-screen flex-col bg-white antialiased">
+        <noscript>
+          {/* Without JavaScript the scroll-reveal animations must not leave content hidden. */}
+          <style>{".reveal{opacity:1 !important;transform:none !important}"}</style>
+        </noscript>
         <ThemeStyle settings={settings} />
         <SiteHeader
           siteName={settings.siteName}
           siteShortName={settings.siteShortName}
           phone={settings.phone}
           tagline={settings.siteTagline}
+          whatsapp={settings.whatsapp}
+          rating={settings.averageRating}
         />
         <main className="flex-1">{children}</main>
         <SiteFooter settings={settings} />

@@ -101,7 +101,7 @@ export default function AdminCoursesPage() {
                     <p className="font-heading text-base font-bold">No courses yet</p>
                     <p className="mt-1 text-[13px] text-slate-500">Add your first course to get started.</p>
                     <Link href="/admin/courses/new" className="btn btn-primary mt-4">
-                      <Plus className="h-4 w-4" /> Naya course
+                      <Plus className="h-4 w-4" /> New course
                     </Link>
                   </td>
                 </tr>

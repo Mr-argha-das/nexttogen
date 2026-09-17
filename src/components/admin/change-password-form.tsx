@@ -23,7 +23,7 @@ export function ChangePasswordForm() {
         </div>
         <div>
           <label className="label" htmlFor="newPassword">
-            Naya password
+            New password
           </label>
           <input id="newPassword" name="newPassword" type="password" required minLength={6} className="field" />
         </div>

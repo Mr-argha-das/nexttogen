@@ -39,7 +39,7 @@ export function TestimonialForm({
     <form action={submit} className="space-y-4">
       <Toast state={state} />
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Student ka naam" name="name" defaultValue={testimonial?.name ?? ""} required />
+        <Field label="Student name" name="name" defaultValue={testimonial?.name ?? ""} required />
         <Field
           label="Current role / company"
           name="role"

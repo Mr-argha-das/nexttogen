@@ -7,7 +7,7 @@ import { deleteApplicationAction, updateApplicationAction } from "@/app/admin/ac
 
 const STATUSES = [
   { key: "ALL", label: "All" },
-  { key: "NEW", label: "Naye" },
+  { key: "NEW", label: "New" },
   { key: "CONTACTED", label: "Contacted" },
   { key: "ENROLLED", label: "Enrolled" },
   { key: "REJECTED", label: "Rejected" },
@@ -41,7 +41,7 @@ export default async function AdminApplicationsPage({
         <div>
           <h1 className="font-heading text-xl font-extrabold sm:text-2xl">Applications</h1>
           <p className="mt-1 text-[13.5px] text-slate-600">
-            {all.length} total · {all.filter((item) => item.status === "NEW").length} naye ·{" "}
+            {all.length} total · {all.filter((item) => item.status === "NEW").length} new ·{" "}
             {all.filter((item) => item.status === "ENROLLED").length} enrolled
           </p>
         </div>

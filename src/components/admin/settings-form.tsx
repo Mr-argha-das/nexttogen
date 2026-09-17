@@ -20,7 +20,7 @@ const GROUPS: Group[] = [
     icon: Building2,
     description: "Name, tagline and legal details — used in the header, footer and SEO metadata.",
     fields: [
-      { key: "siteName", label: "Institute ka poora naam" },
+      { key: "siteName", label: "Institute full name" },
       { key: "siteShortName", label: "Short name (header/logo)" },
       { key: "siteTagline", label: "Tagline / motto" },
       { key: "legalName", label: "Legal / registered name" },
@@ -43,7 +43,7 @@ const GROUPS: Group[] = [
       { key: "city", label: "City" },
       { key: "state", label: "State" },
       { key: "pincode", label: "Pincode" },
-      { key: "mapEmbedUrl", label: "Map embed URL", hint: "OpenStreetMap/Google Maps ka embed link", full: true },
+      { key: "mapEmbedUrl", label: "Map embed URL", hint: "OpenStreetMap or Google Maps embed link", full: true },
     ],
   },
   {
@@ -72,7 +72,7 @@ const GROUPS: Group[] = [
     description: "A rule-based assistant that answers live from your course, fee and FAQ data.",
     fields: [
       { key: "chatbotEnabled", label: "Chatbot on/off", hint: "Enter true or false" },
-      { key: "chatbotName", label: "Chatbot ka naam" },
+      { key: "chatbotName", label: "Chatbot name" },
       { key: "chatbotWelcome", label: "Welcome message", full: true },
     ],
   },

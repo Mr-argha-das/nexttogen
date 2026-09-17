@@ -87,15 +87,16 @@ export default async function AboutPage() {
     <>
       <PageHero
         eyebrow="About us"
-        title={`Building careers with real skills since ${settings.foundedYear}`}
+        tone="dark"
+        title={<>Building careers with <span className="text-gradient">real skills</span> since {settings.foundedYear}</>}
         description={`${settings.legalName} began in a single small classroom with six computers and twelve students. Today more than ${Number(
           settings.studentsTrained,
         ).toLocaleString("en-IN")} students have studied with us, and our alumni work across the IT, banking, retail and startup ecosystem in ${settings.city} and beyond.`}
         crumbs={[{ label: "About Us" }]}
       />
 
-      <section className="pt-8">
-        <div className="container-x grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+      <section className="relative z-10 -mt-8">
+        <div className="container-x grid grid-cols-2 gap-4 lg:grid-cols-4">
           {stats.map((stat) => (
             <StatCard key={stat.label} icon={stat.icon} value={stat.value} label={stat.label} />
           ))}
@@ -103,11 +104,11 @@ export default async function AboutPage() {
       </section>
 
       {/* Story */}
-      <section className="section">
-        <div className="container-x grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <section className="section pt-16">
+        <div className="container-x grid gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
           <div>
             <p className="eyebrow">Our story</p>
-            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
+            <h2 className="display-2 mt-3">
               From one small classroom to one of {settings.city}&apos;s most trusted institutes
             </h2>
             <div className="mt-5 space-y-4 text-[15px] leading-7 text-slate-600">
@@ -140,11 +141,11 @@ export default async function AboutPage() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             {values.map(({ icon: Icon, title, text }) => (
-              <div key={title} className="card p-5">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+              <div key={title} className="card card-hover card-rail p-5">
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--grad-brand)] text-white shadow-[var(--shadow-sm)]">
                   <Icon className="h-5 w-5" />
                 </span>
-                <h3 className="mt-3 text-[14px] font-bold text-ink">{title}</h3>
+                <h3 className="mt-4 text-[14.5px] font-bold text-ink">{title}</h3>
                 <p className="mt-2 text-[12.5px] leading-6 text-slate-600">{text}</p>
               </div>
             ))}
@@ -200,8 +201,8 @@ export default async function AboutPage() {
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {SITE_CONTENT.faculty.map((member) => (
-              <div key={member.name} className="card card-hover p-5">
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 font-heading text-lg font-bold text-white">
+              <div key={member.name} className="card card-hover group p-5">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--grad-brand)] font-heading text-lg font-extrabold text-white shadow-[var(--shadow-brand)] transition-transform duration-300 group-hover:-rotate-6">
                   {member.initials}
                 </span>
                 <h3 className="mt-4 font-heading text-base font-bold text-ink">{member.name}</h3>
@@ -214,7 +215,7 @@ export default async function AboutPage() {
             ))}
           </div>
 
-          <div className="mt-6 rounded-2xl border border-dashed border-slate-300 p-5 text-center text-[13px] text-slate-500">
+          <div className="mt-6 rounded-2xl border border-dashed border-line-strong bg-canvas p-5 text-center text-[13px] text-slate-500">
             Note: these are sample faculty profiles. Replace them with your real team from the admin panel or in code.
           </div>
         </div>

@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Search } from "lucide-react";
+import { ArrowLeft, ArrowRight, BarChart3, CalendarDays, Clock, Search, Sparkles } from "lucide-react";
 import { countPosts, getSettings, listPostCategories, listPosts, listPostTags } from "@/lib/data";
 import { buildMetadata } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { cn, formatDate, initials } from "@/lib/utils";
 import { PageHero } from "@/components/site/page-hero";
-import { BlogCard, CtaBand } from "@/components/site/cards";
+import { Orbs } from "@/components/site/decor";
+import { BlogCard, CATEGORY_ICONS, CtaBand } from "@/components/site/cards";
 import { NewsletterForm } from "@/components/site/newsletter-form";
+import { CourseArt } from "@/components/site/decor";
 
 export const revalidate = 120;
 
@@ -70,7 +72,8 @@ export default async function BlogPage({
     <>
       <PageHero
         eyebrow="Blog"
-        title="Career guides, roadmaps and industry tips"
+        tone="dark"
+        title={<>Career guides, roadmaps and <span className="text-gradient">industry tips</span></>}
         description={`${countPosts()} articles written by our trainers and placement team — the same practical advice we give students in class. No jargon, just what works.`}
         crumbs={[{ label: "Blogs" }]}
       >
@@ -104,10 +107,10 @@ export default async function BlogPage({
                     key={item.category}
                     href={buildQuery({ category: item.category, page: 1 })}
                     className={cn(
-                      "rounded-full border px-3.5 py-1.5 text-[12.5px] font-semibold transition-colors",
+                      "rounded-full border px-4 py-2 text-[12.5px] font-semibold backdrop-blur transition-all",
                       active
-                        ? "border-brand-600 bg-brand-600 text-white"
-                        : "border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:text-brand-700",
+                        ? "border-transparent bg-accent-500 text-[#2a1c00] shadow-[var(--shadow-accent)]"
+                        : "border-white/15 bg-white/[0.07] text-white/75 hover:border-white/30 hover:bg-white/15 hover:text-white",
                     )}
                   >
                     {item.category === "all" ? "All" : item.category} ({item.count})
@@ -127,23 +130,44 @@ export default async function BlogPage({
 
             {/* Featured post */}
             {featured ? (
-              <article className="card card-hover mt-6 overflow-hidden">
-                <div className="grid lg:grid-cols-2">
-                  <div className="relative h-44 bg-gradient-to-br from-brand-700 via-brand-800 to-ink lg:h-full">
-                    <div className="grid-lines absolute inset-0 opacity-25" />
-                    <span className="chip chip-accent absolute left-5 top-5">Featured</span>
-                  </div>
-                  <div className="p-6">
-                    <p className="text-[12px] font-semibold uppercase tracking-wider text-brand-600">
-                      {featured.category}
-                    </p>
-                    <h2 className="mt-2 font-heading text-xl font-bold leading-snug">
-                      <Link href={`/blog/${featured.slug}`} className="hover:text-brand-700">
+              <article className="card card-hover mt-8 overflow-hidden">
+                <div className="grid lg:grid-cols-[1.05fr_1fr]">
+                  <Link
+                    href={`/blog/${featured.slug}`}
+                    className="group relative block h-52 overflow-hidden lg:h-full lg:min-h-[19rem]"
+                  >
+                    <div className="h-full w-full transition-transform duration-700 group-hover:scale-105">
+                      <CourseArt seed={featured.slug} icon={CATEGORY_ICONS[featured.category] ?? BarChart3} />
+                    </div>
+                    <span className="chip chip-glass absolute left-5 top-5">
+                      <Sparkles className="h-3.5 w-3.5" /> Editor&apos;s pick
+                    </span>
+                  </Link>
+                  <div className="p-6 sm:p-8">
+                    <p className="eyebrow">{featured.category}</p>
+                    <h2 className="mt-3 font-heading text-[1.35rem] font-bold leading-snug sm:text-[1.5rem]">
+                      <Link href={`/blog/${featured.slug}`} className="transition-colors hover:text-brand-700">
                         {featured.title}
                       </Link>
                     </h2>
-                    <p className="mt-3 text-[14px] leading-7 text-slate-600">{featured.excerpt}</p>
-                    <Link href={`/blog/${featured.slug}`} className="btn btn-primary mt-5">
+                    <p className="mt-4 text-[14px] leading-7 text-slate-600">{featured.excerpt}</p>
+
+                    <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-slate-500">
+                      <span className="flex items-center gap-1.5">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-50 text-[10px] font-bold text-brand-700">
+                          {initials(featured.author || "NextGen")}
+                        </span>
+                        {featured.author}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <CalendarDays className="h-3.5 w-3.5" /> {formatDate(featured.publishedAt)}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="h-3.5 w-3.5" /> {featured.readMinutes} min read
+                      </span>
+                    </div>
+
+                    <Link href={`/blog/${featured.slug}`} className="btn btn-primary mt-6">
                       Read the article <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
@@ -153,13 +177,13 @@ export default async function BlogPage({
 
             {/* Posts */}
             {paged.length ? (
-              <div className="mt-6 grid gap-5 sm:grid-cols-2">
+              <div className="mt-8 grid gap-6 sm:grid-cols-2">
                 {paged.map((post) => (
                   <BlogCard key={post.id} post={post} />
                 ))}
               </div>
             ) : (
-              <div className="mt-10 rounded-2xl border border-dashed border-slate-300 p-10 text-center">
+              <div className="mt-10 rounded-[1.5rem] border border-dashed border-line-strong bg-canvas p-12 text-center">
                 <p className="font-heading text-lg font-bold">No articles found</p>
                 <p className="mt-1 text-sm text-slate-500">Try another keyword, or browse every article.</p>
                 <Link href="/blog" className="btn btn-primary mt-5">
@@ -233,14 +257,15 @@ export default async function BlogPage({
               </div>
             </div>
 
-            <div className="card overflow-hidden">
-              <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
-                <p className="text-[12px] font-semibold uppercase tracking-wider text-white/70">Free counselling</p>
-                <h3 className="mt-1 font-heading text-lg font-bold">Which course suits you best?</h3>
-                <p className="mt-2 text-[13px] text-white/80">
+            <div className="card overflow-hidden border-0 shadow-[var(--shadow-lg)]">
+              <div className="relative overflow-hidden bg-[var(--grad-brand-deep)] p-5 text-white">
+                <Orbs className="opacity-40" />
+                <p className="eyebrow relative !text-accent-300">Free counselling</p>
+                <h3 className="relative mt-2 font-heading text-lg font-bold">Which course suits you best?</h3>
+                <p className="relative mt-2 text-[13px] text-white/75">
                   Share your goal and our team will recommend the right course for you.
                 </p>
-                <Link href="/apply" className="btn btn-accent mt-4 w-full">
+                <Link href="/apply" className="btn btn-accent relative mt-4 w-full">
                   Apply now
                 </Link>
               </div>

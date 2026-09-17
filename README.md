@@ -88,7 +88,9 @@ Other theme elements:
 
 | What you want to change | File |
 |---|---|
-| Colors, fonts, buttons, card styles | `src/app/globals.css` (`--brand`, `--brand-accent`, `.btn-primary`, `.card`) |
+| Colors, fonts, buttons, cards, gradients, shadows, animations | `src/app/globals.css` — design tokens (`--brand-*`, `--accent-*`, `--shadow-*`) and components (`.btn-*`, `.card*`, `.chip*`, `.display-*`, `.reveal`) |
+| Generated cover art for courses and articles | `src/components/site/decor.tsx` (`CourseArt`, `Orbs`, `Marquee`) |
+| Scroll-reveal animations and animated counters | `src/components/site/motion.tsx` (`Reveal`, `Counter`) |
 | Fonts | `globals.css` → `--font-sans`, `--font-heading` |
 | Home page sections | `src/app/page.tsx` |
 | Header / footer | `src/components/site/site-header.tsx`, `site-footer.tsx` |
@@ -102,7 +104,7 @@ Other theme elements:
 ## 🔍 SEO features (built in)
 
 - A unique title, meta description, keywords and **canonical URL** on every page
-- Open Graph and Twitter card metadata
+- Open Graph and Twitter card metadata, plus a **branded 1200×630 share image** generated at request time (`/opengraph-image`) and a web app manifest (`/manifest.webmanifest`)
 - **Structured data (JSON-LD):** `EducationalOrganization`, `Course` (with fees and batch date), `FAQPage`, `BlogPosting`, `BreadcrumbList`, `ItemList` and a `WebSite` search action
 - `sitemap.xml` — static pages plus every published course and blog post, added automatically as soon as you publish
 - `robots.txt` — disallows `admin` and `api`

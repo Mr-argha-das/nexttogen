@@ -31,7 +31,7 @@ export default async function AdminMessagesPage({
         <div>
           <h1 className="font-heading text-xl font-extrabold sm:text-2xl">Messages & enquiries</h1>
           <p className="mt-1 text-[13.5px] text-slate-600">
-            {all.length} total · {all.filter((message) => message.status === "NEW").length} naye · Support pledges{" "}
+            {all.length} total · {all.filter((message) => message.status === "NEW").length} new · Support pledges{" "}
             {formatINR(supportTotal)}
           </p>
         </div>

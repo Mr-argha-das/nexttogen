@@ -59,7 +59,7 @@ export async function changePasswordAction(_prev: ActionState, formData: FormDat
   const user = await requireAdmin();
   const current = String(formData.get("currentPassword") ?? "");
   const next = String(formData.get("newPassword") ?? "");
-  if (next.length < 6) return { ok: false, message: "Naya password kam se kam 6 character ka ho." };
+  if (next.length < 6) return { ok: false, message: "The new password must be at least 6 characters long." };
 
   const record = findUserByEmail(user.email);
   if (!record || !(await bcrypt.compare(current, record.passwordHash))) {
@@ -258,7 +258,7 @@ export async function saveSettingsAction(data: Record<string, string>): Promise<
   }
   // Poori site dobara render ho
   revalidatePath("/", "layout");
-  return { ok: true, message: "Settings save ho gayi ✅ Website turant update ho gayi." };
+  return { ok: true, message: "Settings saved. The website is updated instantly." };
 }
 
 export async function resetViewsAction() {

@@ -28,7 +28,7 @@ export default function AdminBlogsPage() {
             </button>
           </form>
           <Link href="/admin/blogs/new" className="btn btn-primary btn-sm">
-            <Plus className="h-4 w-4" /> Naya blog likhein
+            <Plus className="h-4 w-4" /> Write a new post
           </Link>
         </div>
       </div>
@@ -90,7 +90,7 @@ export default function AdminBlogsPage() {
                   <td colSpan={7} className="px-5 py-10 text-center">
                     <p className="font-heading text-base font-bold">No blog posts yet</p>
                     <Link href="/admin/blogs/new" className="btn btn-primary mt-4">
-                      <Plus className="h-4 w-4" /> Pehla blog likhein
+                      <Plus className="h-4 w-4" /> Write your first post
                     </Link>
                   </td>
                 </tr>

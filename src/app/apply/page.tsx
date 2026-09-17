@@ -6,6 +6,7 @@ import { buildMetadata } from "@/lib/seo";
 import { SITE_CONTENT } from "@/content/settings";
 import { formatINR } from "@/lib/utils";
 import { PageHero } from "@/components/site/page-hero";
+import { Orbs } from "@/components/site/decor";
 import { ApplyForm } from "@/components/site/apply-form";
 import { FaqAccordion } from "@/components/site/faq-accordion";
 import { listFaqs } from "@/lib/data";
@@ -44,32 +45,57 @@ export default async function ApplyPage({
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="Apply now"
-        title="Admission form — takes about two minutes"
+        title={<>Admission form — <span className="text-gradient">takes about two minutes</span></>}
         description={`Fill in the form and our admission team will call you to arrange a free counselling session. Fees start at ${formatINR(
           cheapest,
         )}, with EMI and scholarship options available.`}
         crumbs={[{ label: "Apply" }]}
       >
         <div className="flex flex-wrap gap-2">
-          <span className="chip chip-neutral">
-            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" /> No application fee
-          </span>
-          <span className="chip chip-neutral">
-            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" /> Details safe & private
-          </span>
-          <span className="chip chip-neutral">
-            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" /> Demo class free
-          </span>
+          {["No application fee", "Details safe & private", "Free demo class", "Reply within 24 hours"].map((item) => (
+            <span key={item} className="chip chip-glass">
+              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> {item}
+            </span>
+          ))}
         </div>
       </PageHero>
 
-      <section className="section pt-8">
-        <div className="container-x grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+      {/* ------------------------------ step rail ------------------------------ */}
+      <section className="relative z-10 -mt-8">
+        <div className="container-x">
+          <div className="card grid gap-4 p-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { step: "01", label: "Submit this form", text: "Takes about two minutes" },
+              { step: "02", label: "Counsellor call", text: "Within 24 hours" },
+              { step: "03", label: "Free demo class", text: "Attend two, then decide" },
+              { step: "04", label: "Confirm your seat", text: "Fees or 0% EMI" },
+            ].map(({ step, label, text }, index) => (
+              <div key={step} className="relative flex gap-3.5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--grad-brand)] font-heading text-[12px] font-extrabold text-white">
+                  {step}
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[13.5px] font-bold text-ink">{label}</p>
+                  <p className="text-[12px] text-slate-500">{text}</p>
+                </div>
+                {index < 3 ? (
+                  <span className="absolute -right-2 top-5 hidden h-px w-3 bg-[var(--line-strong)] lg:block" />
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section pt-12">
+        <div className="container-x grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div className="space-y-6">
             <div>
-              <h2 className="font-heading text-xl font-bold">Application form</h2>
-              <p className="mt-2 text-[14px] text-slate-600">
+              <p className="eyebrow">Application form</p>
+              <h2 className="display-3 mt-3">Tell us about yourself</h2>
+              <p className="mt-3 text-[14px] leading-7 text-slate-600">
                 Fields marked with * are required. Not sure which course to pick? That is completely fine — a
                 counsellor will help you choose during the call.
               </p>
@@ -90,8 +116,8 @@ export default async function ApplyPage({
 
             <div className="grid gap-4 sm:grid-cols-2">
               {trust.map(({ icon: Icon, title, text }) => (
-                <div key={title} className="card flex gap-3 p-4">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+                <div key={title} className="card card-hover flex gap-3.5 p-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--grad-brand)] text-white shadow-[var(--shadow-sm)]">
                     <Icon className="h-5 w-5" />
                   </span>
                   <div>
@@ -105,15 +131,18 @@ export default async function ApplyPage({
 
           {/* Sidebar */}
           <aside className="space-y-5 lg:sticky lg:top-24">
-            <div className="card p-5">
-              <h3 className="flex items-center gap-2 font-heading text-[15px] font-bold">
-                <FileText className="h-4 w-4 text-brand-600" /> Documents checklist
+            <div className="card card-hover p-5">
+              <h3 className="flex items-center gap-2.5 font-heading text-[15px] font-bold">
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+                  <FileText className="h-4 w-4" />
+                </span>
+                Documents checklist
               </h3>
               <ul className="mt-3 space-y-2.5 text-[13px] text-slate-600">
                 {[
                   "Aadhaar card (copy)",
                   "2 passport size photos",
-                  "Last qualification ki marksheet",
+                  "Last qualification marksheet",
                   "Previous course certificate (agar ho)",
                   "Bank details for EMI (optional)",
                 ].map((item) => (
@@ -128,9 +157,12 @@ export default async function ApplyPage({
               </p>
             </div>
 
-            <div className="card p-5">
-              <h3 className="flex items-center gap-2 font-heading text-[15px] font-bold">
-                <Clock className="h-4 w-4 text-brand-600" /> Admission process
+            <div className="card card-hover p-5">
+              <h3 className="flex items-center gap-2.5 font-heading text-[15px] font-bold">
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+                  <Clock className="h-4 w-4" />
+                </span>
+                Admission process
               </h3>
               <ol className="mt-3 space-y-3">
                 {SITE_CONTENT.admissionsSteps.map((step, index) => (
@@ -147,14 +179,15 @@ export default async function ApplyPage({
               </ol>
             </div>
 
-            <div className="card overflow-hidden">
-              <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
-                <Sparkles className="h-5 w-5 text-accent-100" />
-                <h3 className="mt-2 font-heading text-base font-bold">In a hurry?</h3>
-                <p className="mt-2 text-[13px] text-white/80">
+            <div className="card overflow-hidden border-0 shadow-[var(--shadow-lg)]">
+              <div className="relative overflow-hidden bg-[var(--grad-brand-deep)] p-5 text-white">
+                <Orbs className="opacity-40" />
+                <Sparkles className="relative h-5 w-5 text-accent-300" />
+                <h3 className="relative mt-2 font-heading text-base font-bold">In a hurry?</h3>
+                <p className="relative mt-2 text-[13px] text-white/75">
                   You can also reach us without filling the form — call or message us on WhatsApp.
                 </p>
-                <div className="mt-4 space-y-2">
+                <div className="relative mt-4 space-y-2">
                   <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="btn btn-accent w-full">
                     <Phone className="h-4 w-4" /> {settings.phone}
                   </a>

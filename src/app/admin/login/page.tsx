@@ -5,6 +5,7 @@ import { GraduationCap, Lock, ShieldCheck, ArrowLeft } from "lucide-react";
 import { getSessionUser } from "@/lib/auth";
 import { getSettings } from "@/lib/data";
 import { LoginForm } from "@/components/admin/login-form";
+import { Orbs } from "@/components/site/decor";
 
 export const metadata: Metadata = {
   title: "Admin Login",
@@ -19,10 +20,11 @@ export default async function AdminLoginPage() {
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
       {/* Left: form */}
-      <div className="flex flex-col justify-center px-5 py-12 sm:px-10 lg:px-16">
-        <div className="mx-auto w-full max-w-md">
-          <Link href="/" className="mb-8 inline-flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white">
+      <div className="relative flex flex-col justify-center overflow-hidden px-5 py-12 sm:px-10 lg:px-16">
+        <div className="mesh pointer-events-none absolute inset-0 opacity-50 lg:hidden" />
+        <div className="relative mx-auto w-full max-w-md">
+          <Link href="/" className="relative mb-8 inline-flex items-center gap-2.5">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--grad-brand)] text-white shadow-[var(--shadow-brand)]">
               <GraduationCap className="h-5 w-5" />
             </span>
             <span className="leading-tight">
@@ -33,7 +35,8 @@ export default async function AdminLoginPage() {
             </span>
           </Link>
 
-          <h1 className="font-heading text-2xl font-extrabold">Admin login</h1>
+          <span className="eyebrow">Secure area</span>
+          <h1 className="display-3 mt-3">Admin login</h1>
           <p className="mt-2 text-[14px] text-slate-600">
             Sign in to manage courses, blogs, applications and messages.
           </p>
@@ -42,9 +45,9 @@ export default async function AdminLoginPage() {
             <LoginForm />
           </div>
 
-          <div className="mt-6 rounded-xl bg-canvas p-4">
+          <div className="mt-6 rounded-2xl border border-line bg-canvas p-4">
             <p className="flex items-center gap-2 text-[12.5px] font-semibold text-ink">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" /> Demo login (seed se)
+              <ShieldCheck className="h-4 w-4 text-emerald-600" /> Demo login (created by the seeder)
             </p>
             <p className="mt-1.5 font-mono text-[12px] text-slate-600">admin@nexttogen.in / Admin@12345</p>
             <p className="mt-1 text-[11.5px] text-slate-500">
@@ -59,20 +62,23 @@ export default async function AdminLoginPage() {
       </div>
 
       {/* Right: visual */}
-      <div className="relative hidden overflow-hidden bg-gradient-to-br from-brand-700 via-brand-800 to-ink lg:block">
-        <div className="mesh absolute inset-0 opacity-40" />
+      <div className="relative hidden overflow-hidden bg-[var(--grad-brand-deep)] lg:block">
+        <div className="dot-grid absolute inset-0 opacity-[0.14]" />
+        <Orbs tone="mixed" className="opacity-60" />
         <div className="relative flex h-full flex-col justify-center px-14 text-white">
-          <Lock className="h-8 w-8 text-accent-100" />
-          <h2 className="mt-5 font-heading text-3xl font-extrabold leading-tight">
+          <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-accent-300 ring-1 ring-white/15">
+            <Lock className="h-6 w-6" />
+          </span>
+          <h2 className="display-2 mt-6 text-white">
             The entire website, under your control
           </h2>
-          <p className="mt-4 max-w-md text-[15px] leading-7 text-white/80">
+          <p className="mt-5 max-w-md text-[15px] leading-7 text-white/70">
             From the admin panel you can manage course fees, the syllabus, blog posts, testimonials, FAQs, contact details and brand colors —
             and the website updates instantly.
           </p>
           <ul className="mt-8 space-y-3 text-[14px] text-white/85">
             {[
-              "Applications & enquiries ek jagah",
+              "Applications and enquiries in one place",
               "Edit courses and fees live",
               "Publish blog posts with SEO fields",
               "Site settings, colors and chatbot control",

@@ -66,8 +66,9 @@ export default async function CoursesPage({
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="Our courses"
-        title="Choose the course that fits your career goal"
+        title={<>Choose the course that fits your <span className="text-gradient">career goal</span></>}
         description={`${allCourses.length} job-oriented courses, from beginner to advanced. Every course includes live projects, a portfolio you can show and placement support. Fees range from ${priceRange}, with 0% EMI and scholarship options.`}
         crumbs={[{ label: "Courses" }]}
       >
@@ -86,10 +87,10 @@ export default async function CoursesPage({
                 key={item.href + item.label}
                 href={item.href}
                 className={cn(
-                  "rounded-full border px-3.5 py-1.5 text-[12.5px] font-semibold transition-colors",
+                  "rounded-full border px-4 py-2 text-[12.5px] font-semibold backdrop-blur transition-all",
                   active
-                    ? "border-brand-600 bg-brand-600 text-white"
-                    : "border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:text-brand-700",
+                    ? "border-transparent bg-accent-500 text-[#2a1c00] shadow-[var(--shadow-accent)]"
+                    : "border-white/15 bg-white/[0.07] text-white/75 hover:border-white/30 hover:bg-white/15 hover:text-white",
                 )}
               >
                 {item.label}
@@ -101,7 +102,7 @@ export default async function CoursesPage({
 
       <section className="section pt-8">
         <div className="container-x">
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-4">
+          <div className="sticky top-[4.5rem] z-30 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-white/90 p-4 shadow-[var(--shadow-md)] backdrop-blur-xl lg:top-20">
             <p className="text-[13.5px] text-slate-600">
               <strong className="text-ink">{courses.length}</strong> course{courses.length === 1 ? "" : "s"} found
               {params.category && params.category !== "all" ? ` · ${params.category}` : ""}
@@ -113,13 +114,13 @@ export default async function CoursesPage({
                   key={mode}
                   href={buildQuery({ mode })}
                   className={cn(
-                    "rounded-lg px-2.5 py-1 font-medium",
+                    "rounded-full border px-3 py-1.5 font-semibold transition-colors",
                     (params.mode ?? "all") === mode
-                      ? "bg-brand-50 text-brand-700"
-                      : "text-slate-500 hover:text-brand-700",
+                      ? "border-brand-600 bg-brand-600 text-white"
+                      : "border-line text-slate-500 hover:border-brand-300 hover:text-brand-700",
                   )}
                 >
-                  {mode === "all" ? "All" : mode}
+                  {mode === "all" ? "All modes" : mode}
                 </Link>
               ))}
               <span className="ml-2 font-semibold text-slate-500">Sort:</span>
@@ -132,10 +133,10 @@ export default async function CoursesPage({
                   key={option.key}
                   href={buildQuery({ sort: option.key === "default" ? "" : option.key })}
                   className={cn(
-                    "rounded-lg px-2.5 py-1 font-medium",
+                    "rounded-full border px-3 py-1.5 font-semibold transition-colors",
                     (params.sort ?? "default") === option.key
-                      ? "bg-brand-50 text-brand-700"
-                      : "text-slate-500 hover:text-brand-700",
+                      ? "border-brand-600 bg-brand-600 text-white"
+                      : "border-line text-slate-500 hover:border-brand-300 hover:text-brand-700",
                   )}
                 >
                   {option.label}
@@ -151,7 +152,7 @@ export default async function CoursesPage({
               ))}
             </div>
           ) : (
-            <div className="mt-10 rounded-2xl border border-dashed border-slate-300 p-10 text-center">
+            <div className="mt-10 rounded-[1.5rem] border border-dashed border-line-strong bg-canvas p-12 text-center">
               <GraduationCap className="mx-auto h-10 w-10 text-slate-300" />
               <p className="mt-3 font-heading text-lg font-bold">No courses match this filter</p>
               <p className="mt-1 text-sm text-slate-500">
@@ -187,9 +188,11 @@ export default async function CoursesPage({
                 text: "It is not just the syllabus — check for mock interviews, resume reviews and a genuine referral system.",
               },
             ].map((item) => (
-              <div key={item.title} className="card p-5">
-                <Sparkles className="h-5 w-5 text-accent-500" />
-                <h3 className="mt-3 font-heading text-base font-bold">{item.title}</h3>
+              <div key={item.title} className="card card-hover p-6">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
+                  <Sparkles className="h-5 w-5" />
+                </span>
+                <h3 className="mt-4 font-heading text-[1.02rem] font-bold">{item.title}</h3>
                 <p className="mt-2 text-[13.5px] leading-6 text-slate-600">{item.text}</p>
               </div>
             ))}

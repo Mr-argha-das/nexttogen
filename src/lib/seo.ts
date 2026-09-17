@@ -35,7 +35,8 @@ export function buildMetadata({
   const url = absoluteUrl(path);
 
   return {
-    title: fullTitle,
+    // `absolute` bypasses the root layout's "%s | Site" template so the brand is not appended twice.
+    title: { absolute: fullTitle },
     description,
     keywords: keywords?.length ? keywords : undefined,
     alternates: { canonical: url },

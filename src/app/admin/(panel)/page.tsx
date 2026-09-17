@@ -22,8 +22,8 @@ export default async function AdminDashboardPage() {
   const maxMonthly = Math.max(1, ...stats.monthlyApplications.map((item) => item.count));
 
   const cards = [
-    { label: "Nayi applications", value: stats.newApplications, total: stats.applications, icon: CalendarCheck, href: "/admin/applications", tone: "text-brand-700 bg-brand-50" },
-    { label: "Naye messages", value: stats.newMessages, total: stats.messages, icon: Inbox, href: "/admin/messages", tone: "text-emerald-700 bg-emerald-50" },
+    { label: "New applications", value: stats.newApplications, total: stats.applications, icon: CalendarCheck, href: "/admin/applications", tone: "text-brand-700 bg-brand-50" },
+    { label: "New messages", value: stats.newMessages, total: stats.messages, icon: Inbox, href: "/admin/messages", tone: "text-emerald-700 bg-emerald-50" },
     { label: "Courses", value: stats.publishedCourses, total: stats.courses, icon: BookOpen, href: "/admin/courses", tone: "text-blue-700 bg-blue-50" },
     { label: "Blog posts", value: stats.posts, total: stats.totalViews, icon: Newspaper, href: "/admin/blogs", tone: "text-amber-700 bg-amber-50" },
   ];
@@ -39,10 +39,10 @@ export default async function AdminDashboardPage() {
         </div>
         <div className="flex flex-wrap gap-2">
           <Link href="/admin/courses/new" className="btn btn-primary btn-sm">
-            <Plus className="h-4 w-4" /> Naya course
+            <Plus className="h-4 w-4" /> New course
           </Link>
           <Link href="/admin/blogs/new" className="btn btn-outline btn-sm">
-            <Plus className="h-4 w-4" /> Naya blog
+            <Plus className="h-4 w-4" /> New blog
           </Link>
         </div>
       </div>

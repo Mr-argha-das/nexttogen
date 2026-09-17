@@ -21,6 +21,7 @@ import { buildMetadata } from "@/lib/seo";
 import { SITE_CONTENT } from "@/content/settings";
 import { formatINR } from "@/lib/utils";
 import { PageHero } from "@/components/site/page-hero";
+import { Orbs } from "@/components/site/decor";
 import { ContactForm } from "@/components/site/contact-form";
 import { CtaBand } from "@/components/site/cards";
 
@@ -51,7 +52,8 @@ export default async function SupportPage() {
     <>
       <PageHero
         eyebrow="Support us"
-        title="One donation can change an entire life"
+        tone="dark"
+        title={<>One donation can change an <span className="text-gradient">entire life</span></>}
         description={`At ${settings.siteName} we believe skill training should be affordable for everyone. With your help we train students every year whose families simply cannot afford the fees.`}
         crumbs={[{ label: "Support Us" }]}
       >
@@ -94,37 +96,64 @@ export default async function SupportPage() {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 lg:grid-cols-3 lg:items-start">
             {SITE_CONTENT.supportTiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`card relative flex flex-col p-6 ${
-                  tier.highlight ? "border-brand-300 shadow-[0_24px_50px_-32px_rgb(79_70_229/0.6)]" : ""
+                className={`card relative flex flex-col p-6 transition-all duration-300 hover:-translate-y-1.5 sm:p-7 ${
+                  tier.highlight
+                    ? "border-transparent bg-[var(--grad-brand-deep)] text-white shadow-[var(--shadow-xl)] lg:-mt-4 lg:pb-9"
+                    : "hover:border-brand-200 hover:shadow-[var(--shadow-lg)]"
                 }`}
               >
+                {tier.highlight ? <Orbs className="opacity-40" /> : null}
                 {tier.highlight ? (
-                  <span className="absolute -top-3 left-6 rounded-full bg-brand-600 px-3 py-1 text-[11px] font-bold text-white">
+                  <span className="absolute -top-3 left-6 rounded-full bg-accent-500 px-3 py-1 text-[11px] font-extrabold text-[#2a1c00] shadow-[var(--shadow-accent)]">
                     Most popular
                   </span>
                 ) : null}
-                <HandHeart className={`h-6 w-6 ${tier.highlight ? "text-brand-600" : "text-slate-400"}`} />
-                <h3 className="mt-3 font-heading text-lg font-bold">{tier.name}</h3>
-                <p className="mt-2 text-[13px] leading-6 text-slate-600">{tier.description}</p>
-                <p className="mt-4 flex items-end gap-1.5">
-                  <span className="font-heading text-3xl font-extrabold text-ink">{formatINR(tier.amount)}</span>
-                  <span className="pb-1 text-[12.5px] text-slate-500">{tier.period}</span>
-                </p>
-                <ul className="mt-4 space-y-2.5 text-[13px] text-slate-600">
-                  {tier.perks.map((perk) => (
-                    <li key={perk} className="flex items-start gap-2">
-                      <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500" />
-                      {perk}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="#donate" className={`btn mt-6 ${tier.highlight ? "btn-primary" : "btn-outline"}`}>
-                  Choose {tier.name} <ArrowRight className="h-4 w-4" />
-                </Link>
+
+                <div className="relative">
+                  <span
+                    className={`flex h-12 w-12 items-center justify-center rounded-2xl ${
+                      tier.highlight
+                        ? "bg-white/12 text-accent-300 ring-1 ring-white/15"
+                        : "bg-brand-50 text-brand-700"
+                    }`}
+                  >
+                    <HandHeart className="h-6 w-6" />
+                  </span>
+                  <h3 className={`mt-4 font-heading text-lg font-bold ${tier.highlight ? "text-white" : ""}`}>
+                    {tier.name}
+                  </h3>
+                  <p className={`mt-2 text-[13px] leading-6 ${tier.highlight ? "text-white/70" : "text-slate-600"}`}>
+                    {tier.description}
+                  </p>
+                  <p className="mt-5 flex items-end gap-1.5">
+                    <span className={`font-heading text-[2.1rem] font-extrabold leading-none ${tier.highlight ? "text-white" : "text-ink"}`}>
+                      {formatINR(tier.amount)}
+                    </span>
+                    <span className={`pb-1 text-[12.5px] ${tier.highlight ? "text-white/55" : "text-slate-500"}`}>
+                      {tier.period}
+                    </span>
+                  </p>
+                  <ul className={`mt-5 space-y-2.5 text-[13px] ${tier.highlight ? "text-white/75" : "text-slate-600"}`}>
+                    {tier.perks.map((perk) => (
+                      <li key={perk} className="flex items-start gap-2">
+                        <CheckCircle2
+                          className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${tier.highlight ? "text-emerald-400" : "text-emerald-500"}`}
+                        />
+                        {perk}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href="#donate"
+                    className={`btn mt-7 w-full ${tier.highlight ? "btn-accent" : "btn-outline"}`}
+                  >
+                    Choose {tier.name} <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -213,15 +242,16 @@ export default async function SupportPage() {
                 ))}
               </ul>
             </div>
-            <div className="card overflow-hidden">
-              <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
-                <Banknote className="h-5 w-5 text-accent-100" />
-                <h3 className="mt-2 font-heading text-base font-bold">For CSR partnerships</h3>
-                <p className="mt-2 text-[13px] text-white/80">
+            <div className="card overflow-hidden border-0 shadow-[var(--shadow-lg)]">
+              <div className="relative overflow-hidden bg-[var(--grad-brand-deep)] p-5 text-white">
+                <Orbs className="opacity-40" />
+                <Banknote className="relative h-5 w-5 text-accent-300" />
+                <h3 className="relative mt-2 font-heading text-base font-bold">For CSR partnerships</h3>
+                <p className="relative mt-2 text-[13px] text-white/75">
                   Companies can sponsor a lab, a batch or a scholarship from their CSR budget. We provide an annual
                   report, photographs and a utilisation certificate.
                 </p>
-                <a href={`mailto:${settings.admissionsEmail}`} className="btn btn-accent mt-4 w-full">
+                <a href={`mailto:${settings.admissionsEmail}`} className="btn btn-accent relative mt-4 w-full">
                   Email us about CSR
                 </a>
               </div>
