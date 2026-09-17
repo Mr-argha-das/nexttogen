@@ -18,7 +18,7 @@ export default function AdminCoursesPage() {
           </p>
         </div>
         <Link href="/admin/courses/new" className="btn btn-primary btn-sm">
-          <Plus className="h-4 w-4" /> Naya course add karein
+          <Plus className="h-4 w-4" /> Add a new course
         </Link>
       </div>
 
@@ -62,7 +62,7 @@ export default function AdminCoursesPage() {
                       <span className="block text-[11.5px] text-slate-400">{course.duration}</span>
                     </td>
                     <td className="px-5 py-3 text-slate-600">
-                      {course.startDate ? formatDate(course.startDate) : "Har mahine"}
+                      {course.startDate ? formatDate(course.startDate) : "Every month"}
                       <span className="flex items-center gap-1 text-[11.5px] text-slate-400">
                         <Users className="h-3 w-3" /> {course.seats} seats
                       </span>
@@ -88,7 +88,7 @@ export default function AdminCoursesPage() {
                           action={deleteCourseAction}
                           id={course.id}
                           label=""
-                          confirmText={`"${course.title}" ko delete karna hai?`}
+                          confirmText={`Delete "${course.title}"?`}
                         />
                       </div>
                     </td>
@@ -98,8 +98,8 @@ export default function AdminCoursesPage() {
               {!courses.length ? (
                 <tr>
                   <td colSpan={6} className="px-5 py-10 text-center">
-                    <p className="font-heading text-base font-bold">Abhi koi course nahi hai</p>
-                    <p className="mt-1 text-[13px] text-slate-500">Pehla course add karke shuruat karein.</p>
+                    <p className="font-heading text-base font-bold">No courses yet</p>
+                    <p className="mt-1 text-[13px] text-slate-500">Add your first course to get started.</p>
                     <Link href="/admin/courses/new" className="btn btn-primary mt-4">
                       <Plus className="h-4 w-4" /> Naya course
                     </Link>

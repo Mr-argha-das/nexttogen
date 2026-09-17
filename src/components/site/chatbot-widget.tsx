@@ -17,6 +17,13 @@ type Props = {
 
 const STORAGE_KEY = "ntg-chat-history";
 
+const STARTER_PROMPTS = [
+  "What are the course fees?",
+  "How does admission work?",
+  "What are the batch timings?",
+  "Do you provide placement support?",
+];
+
 export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -25,7 +32,7 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
   const [teaser, setTeaser] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Pehli visit par greeting
+  // Greet on the first visit; restore the conversation on later visits.
   useEffect(() => {
     const saved = typeof window !== "undefined" ? window.localStorage.getItem(STORAGE_KEY) : null;
     if (saved) {
@@ -36,12 +43,10 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
           return;
         }
       } catch {
-        /* ignore */
+        /* ignore malformed history */
       }
     }
-    setMessages([
-      { role: "bot", text: welcome, suggestions: ["Courses ki fees kitni hai?", "Admission process kya hai?", "Batch timing bataiye", "Placement milti hai?"] },
-    ]);
+    setMessages([{ role: "bot", text: welcome, suggestions: STARTER_PROMPTS }]);
   }, [welcome]);
 
   useEffect(() => {
@@ -61,31 +66,42 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
     const value = text.trim();
     if (!value || loading) return;
     setInput("");
-    setMessages((prev) => [...prev, { role: "user", text: value }]);
+    setMessages((previous) => [...previous, { role: "user", text: value }]);
     setLoading(true);
     try {
-      const res = await fetch("/api/chatbot", {
+      const response = await fetch("/api/chatbot", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: value,
-          history: messages.slice(-6).map((m) => ({ role: m.role, text: m.text })),
+          history: messages.slice(-6).map((message) => ({ role: message.role, text: message.text })),
         }),
       });
-      const data = (await res.json()) as { text?: string; suggestions?: string[]; links?: BotLink[]; error?: string };
-      setMessages((prev) => [
-        ...prev,
+      const data = (await response.json()) as {
+        text?: string;
+        suggestions?: string[];
+        links?: BotLink[];
+        error?: string;
+      };
+      setMessages((previous) => [
+        ...previous,
         {
           role: "bot",
-          text: data.text || data.error || "Sorry, kuch technical dikkat aa gayi. Aap humein call kar lijiye.",
+          text:
+            data.text ||
+            data.error ||
+            "Sorry, something went wrong on our side. Please call the admission desk and we will help you right away.",
           suggestions: data.suggestions,
           links: data.links,
         },
       ]);
     } catch {
-      setMessages((prev) => [
-        ...prev,
-        { role: "bot", text: "Network issue lag raha hai. Aap direct call kar lijiye — hum turant madad karenge." },
+      setMessages((previous) => [
+        ...previous,
+        {
+          role: "bot",
+          text: "It looks like there is a network issue. You can call us directly and we will assist you immediately.",
+        },
       ]);
     } finally {
       setLoading(false);
@@ -102,10 +118,10 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
           className="animate-pop hidden max-w-[240px] rounded-2xl rounded-br-md border border-slate-200 bg-white p-3 text-left text-sm shadow-xl sm:block"
         >
           <span className="flex items-center gap-2 font-semibold text-ink">
-            <Sparkles className="h-4 w-4 text-brand-600" /> {botName} yahan hai!
+            <Sparkles className="h-4 w-4 text-brand-600" /> {botName} is here!
           </span>
           <span className="mt-1 block text-xs text-slate-500">
-            Courses, fees ya admission ke baare me poochhiye — turant jawab milega.
+            Ask about courses, fees or admission — you will get an instant answer.
           </span>
         </button>
       )}
@@ -121,13 +137,13 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
               </span>
               <span>
                 <span className="block text-sm font-semibold">{botName} · Admission Assistant</span>
-                <span className="block text-[11px] text-white/70">Online · turant jawab</span>
+                <span className="block text-[11px] text-white/70">Online · instant replies</span>
               </span>
             </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              aria-label="Chat band karein"
+              aria-label="Close chat"
               className="rounded-lg p-1.5 transition-colors hover:bg-white/15"
             >
               <X className="h-4.5 w-4.5" />
@@ -154,7 +170,13 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
                         <div className="flex flex-wrap gap-1.5">
                           {message.links.map((link) =>
                             link.href.startsWith("http") || link.href.startsWith("tel:") ? (
-                              <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="chip">
+                              <a
+                                key={link.href}
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="chip"
+                              >
                                 {link.label}
                               </a>
                             ) : (
@@ -197,30 +219,30 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
 
           <div className="border-t border-slate-200 bg-white p-3">
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
+              onSubmit={(event) => {
+                event.preventDefault();
                 send(input);
               }}
               className="flex items-center gap-2"
             >
               <input
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Apna sawaal likhiye…"
+                onChange={(event) => setInput(event.target.value)}
+                placeholder="Type your question…"
                 className="field flex-1"
                 aria-label="Message"
               />
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
-                aria-label="Bhejein"
+                aria-label="Send message"
                 className="btn btn-primary h-10 w-10 !p-0 disabled:opacity-50"
               >
                 <Send className="h-4 w-4" />
               </button>
             </form>
             <div className="mt-2 flex items-center justify-between text-[11px] text-slate-400">
-              <span>Rule-based assistant — fees/courses DB se live</span>
+              <span>Rule-based assistant — answers come from live course data</span>
               <span className="flex items-center gap-2">
                 <a href={`tel:${phone.replace(/\s/g, "")}`} className="flex items-center gap-1 hover:text-brand-600">
                   <Phone className="h-3 w-3" /> Call
@@ -239,14 +261,14 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
         </div>
       )}
 
-      {/* FAB */}
+      {/* Floating buttons */}
       {!open && (
         <div className="flex items-center gap-2">
           <a
             href={`https://wa.me/${whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="WhatsApp par baat karein"
+            aria-label="Chat on WhatsApp"
             className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg transition-transform hover:scale-105"
           >
             <MessageCircle className="h-5.5 w-5.5" />
@@ -254,11 +276,11 @@ export function ChatbotWidget({ botName, welcome, phone, whatsapp }: Props) {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            aria-label={`${botName} se baat karein`}
+            aria-label={`Chat with ${botName}`}
             className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-600 to-brand-800 px-4 py-3 text-sm font-semibold text-white shadow-xl transition-transform hover:scale-105"
           >
             <Bot className="h-5 w-5" />
-            <span className="hidden sm:inline">Poochhiye kuch bhi</span>
+            <span className="hidden sm:inline">Ask us anything</span>
             <span className="sm:hidden">{botName}</span>
           </button>
         </div>

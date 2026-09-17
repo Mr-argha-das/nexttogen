@@ -18,23 +18,23 @@ const GROUPS: Group[] = [
   {
     title: "Institute details",
     icon: Building2,
-    description: "Naam, tagline aur legal details — header, footer aur SEO me use hote hain.",
+    description: "Name, tagline and legal details — used in the header, footer and SEO metadata.",
     fields: [
       { key: "siteName", label: "Institute ka poora naam" },
       { key: "siteShortName", label: "Short name (header/logo)" },
       { key: "siteTagline", label: "Tagline / motto" },
       { key: "legalName", label: "Legal / registered name" },
-      { key: "foundedYear", label: "Stablished year", hint: "Experience calculate karne ke liye" },
+      { key: "foundedYear", label: "Established year", hint: "Used to calculate years of experience" },
     ],
   },
   {
     title: "Contact & address",
     icon: Phone,
-    description: "Contact page, footer aur chatbot inhi details se jawab deta hai.",
+    description: "The contact page, footer and chatbot all use these details.",
     fields: [
       { key: "phone", label: "Primary phone" },
       { key: "alternatePhone", label: "Alternate phone" },
-      { key: "whatsapp", label: "WhatsApp number", hint: "Country code ke saath, jaise 919000012345" },
+      { key: "whatsapp", label: "WhatsApp number", hint: "Include the country code, for example 919000012345" },
       { key: "email", label: "Email" },
       { key: "admissionsEmail", label: "Admissions email" },
       { key: "officeHours", label: "Office hours" },
@@ -49,7 +49,7 @@ const GROUPS: Group[] = [
   {
     title: "Brand colours",
     icon: Palette,
-    description: "Colors badalte hi poori website (buttons, badges, gradients) update ho jaati hai.",
+    description: "Changing the colors instantly updates the whole website — buttons, badges and gradients.",
     fields: [
       { key: "brandPrimary", label: "Primary colour", type: "color" },
       { key: "brandAccent", label: "Accent colour", type: "color" },
@@ -58,20 +58,20 @@ const GROUPS: Group[] = [
   {
     title: "Website numbers",
     icon: Share2,
-    description: "Home page ke stats aur ratings yahan se update hote hain.",
+    description: "The home page statistics and ratings are updated from here.",
     fields: [
       { key: "studentsTrained", label: "Students trained (number)" },
       { key: "placementRate", label: "Placement rate (%)" },
       { key: "averageRating", label: "Google rating" },
-      { key: "googleAnalyticsId", label: "Google Analytics ID", hint: "G-XXXXXXX (khali chhodein to analytics off)" },
+      { key: "googleAnalyticsId", label: "Google Analytics ID", hint: "G-XXXXXXX (leave empty to disable analytics)" },
     ],
   },
   {
     title: "Chatbot",
     icon: MessageSquare,
-    description: "Rule-based assistant — courses, fees aur FAQ data se live jawab deta hai.",
+    description: "A rule-based assistant that answers live from your course, fee and FAQ data.",
     fields: [
-      { key: "chatbotEnabled", label: "Chatbot on/off", hint: "true ya false likhein" },
+      { key: "chatbotEnabled", label: "Chatbot on/off", hint: "Enter true or false" },
       { key: "chatbotName", label: "Chatbot ka naam" },
       { key: "chatbotWelcome", label: "Welcome message", full: true },
     ],
@@ -79,7 +79,7 @@ const GROUPS: Group[] = [
   {
     title: "Support / donation",
     icon: HeartHandshake,
-    description: "Support Us page aur chatbot me ye payment details dikhti hain.",
+    description: "These payment details appear on the Support Us page and in the chatbot.",
     fields: [
       { key: "supportUpiId", label: "UPI ID" },
       { key: "supportBankName", label: "Bank name" },
@@ -91,7 +91,7 @@ const GROUPS: Group[] = [
   {
     title: "Social links",
     icon: Share2,
-    description: "Footer me icons ke saath dikhte hain. Khali chhodein to icon hide ho jaayega.",
+    description: "Shown as icons in the footer. Leave a field empty to hide that icon.",
     fields: [
       { key: "facebook", label: "Facebook URL" },
       { key: "instagram", label: "Instagram URL" },
@@ -165,14 +165,14 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         <button type="submit" disabled={pending} className="btn btn-primary btn-lg">
           {pending ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" /> Save ho raha hai…
+              <Loader2 className="h-4 w-4 animate-spin" /> Saving…
             </>
           ) : (
-            "Settings save karein"
+            "Save settings"
           )}
         </button>
         <p className="text-[12.5px] text-slate-500">
-          Save karte hi poori website (header, footer, colors, chatbot) update ho jaati hai.
+          Saving updates the entire website instantly — header, footer, colors and chatbot.
         </p>
       </div>
     </form>

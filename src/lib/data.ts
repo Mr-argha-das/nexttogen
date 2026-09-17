@@ -1,6 +1,6 @@
 /**
- * Data access layer — saare DB queries yahin centralised hain.
- * Frontend (server components) aur API routes dono isi ko use karte hain.
+ * Data access layer — all database queries are centralised here.
+ * Both the frontend (server components) and the API routes use these helpers.
  */
 import { execute, newId, nowIso, query, queryOne } from "./db";
 import { DEFAULT_SETTINGS } from "@/content/settings";

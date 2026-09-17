@@ -1,7 +1,7 @@
 /**
  * Chhota, dependency-free markdown renderer.
  * Support: h2/h3, paragraphs, bold, italic, inline code, links, bullet & number lists,
- * blockquote, hr. Content admin panel se aata hai (trusted), isliye raw HTML inject nahi karte.
+ * blockquote and hr. Content comes from the trusted admin panel, so we still never inject raw HTML.
  */
 import React from "react";
 

@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       });
     }
   } catch {
-    // DB available na ho to sirf static routes
+    // If the database is unavailable, we still return the static routes
   }
 
   return entries;

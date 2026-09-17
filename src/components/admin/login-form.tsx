@@ -49,8 +49,8 @@ export function LoginForm() {
         </div>
       </div>
 
-      <SubmitButton className="btn btn-primary btn-lg w-full" pendingText="Login ho raha hai…">
-        <LogIn className="h-4 w-4" /> Login karein
+      <SubmitButton className="btn btn-primary btn-lg w-full" pendingText="Signing in…">
+        <LogIn className="h-4 w-4" /> Sign in
       </SubmitButton>
     </form>
   );

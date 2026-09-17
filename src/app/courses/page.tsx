@@ -15,8 +15,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const courses = listCourses();
   return buildMetadata({
     settings,
-    title: `Courses — ${courses.length} job-oriented programs`,
-    description: `Web development, data science, digital marketing, design, Tally-GST, cyber security aur DCA courses ki poori list — fees, duration, mode aur syllabus ke saath. EMI aur scholarship available.`,
+    title: `Courses — ${courses.length} job-oriented programmes`,
+    description:
+      "Browse every course we offer: web development, data science and AI, digital marketing, design, Tally with GST, cyber security and DCA — with fees, duration, mode and full syllabus. EMI and scholarships available.",
     path: "/courses",
     keywords: [
       "computer courses list",
@@ -50,8 +51,8 @@ export default async function CoursesPage({
 
   const allCourses = listCourses();
   const priceRange = allCourses.length
-    ? `${formatINR(Math.min(...allCourses.map((c) => c.discountFee ?? c.fee)))} – ${formatINR(
-        Math.max(...allCourses.map((c) => c.fee)),
+    ? `${formatINR(Math.min(...allCourses.map((course) => course.discountFee ?? course.fee)))} – ${formatINR(
+        Math.max(...allCourses.map((course) => course.fee)),
       )}`
     : "—";
 
@@ -66,8 +67,8 @@ export default async function CoursesPage({
     <>
       <PageHero
         eyebrow="Our courses"
-        title="Apne career ke liye sahi course chuniye"
-        description={`${allCourses.length} job-oriented courses — beginner se advanced tak. Har course me live projects, portfolio banwana aur placement support shaamil hai. Fees range ${priceRange}, 0% EMI aur scholarship options ke saath.`}
+        title="Choose the course that fits your career goal"
+        description={`${allCourses.length} job-oriented courses, from beginner to advanced. Every course includes live projects, a portfolio you can show and placement support. Fees range from ${priceRange}, with 0% EMI and scholarship options.`}
         crumbs={[{ label: "Courses" }]}
       >
         <div className="flex flex-wrap gap-2">
@@ -79,9 +80,7 @@ export default async function CoursesPage({
             })),
           ].map((item, index) => {
             const active =
-              index === 0
-                ? !params.category || params.category === "all"
-                : params.category === item.label.split(" (")[0];
+              index === 0 ? !params.category || params.category === "all" : params.category === item.label.split(" (")[0];
             return (
               <Link
                 key={item.href + item.label}
@@ -104,8 +103,7 @@ export default async function CoursesPage({
         <div className="container-x">
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-4">
             <p className="text-[13.5px] text-slate-600">
-              <strong className="text-ink">{courses.length}</strong> course{courses.length === 1 ? "" : "s"} mil
-              {courses.length === 1 ? "a" : "e"}
+              <strong className="text-ink">{courses.length}</strong> course{courses.length === 1 ? "" : "s"} found
               {params.category && params.category !== "all" ? ` · ${params.category}` : ""}
             </p>
             <div className="flex flex-wrap items-center gap-2 text-[12.5px]">
@@ -116,10 +114,12 @@ export default async function CoursesPage({
                   href={buildQuery({ mode })}
                   className={cn(
                     "rounded-lg px-2.5 py-1 font-medium",
-                    (params.mode ?? "all") === mode ? "bg-brand-50 text-brand-700" : "text-slate-500 hover:text-brand-700",
+                    (params.mode ?? "all") === mode
+                      ? "bg-brand-50 text-brand-700"
+                      : "text-slate-500 hover:text-brand-700",
                   )}
                 >
-                  {mode === "all" ? "Sab" : mode}
+                  {mode === "all" ? "All" : mode}
                 </Link>
               ))}
               <span className="ml-2 font-semibold text-slate-500">Sort:</span>
@@ -153,10 +153,12 @@ export default async function CoursesPage({
           ) : (
             <div className="mt-10 rounded-2xl border border-dashed border-slate-300 p-10 text-center">
               <GraduationCap className="mx-auto h-10 w-10 text-slate-300" />
-              <p className="mt-3 font-heading text-lg font-bold">Is filter me koi course nahi mila</p>
-              <p className="mt-1 text-sm text-slate-500">Filter hata kar saare courses dekhein ya humein call karein.</p>
+              <p className="mt-3 font-heading text-lg font-bold">No courses match this filter</p>
+              <p className="mt-1 text-sm text-slate-500">
+                Clear the filters to see everything, or call us and we will suggest the right course.
+              </p>
               <Link href="/courses" className="btn btn-primary mt-5">
-                Saare courses dekhein
+                View all courses
               </Link>
             </div>
           )}
@@ -166,23 +168,23 @@ export default async function CoursesPage({
       <section className="section bg-canvas pt-0">
         <div className="container-x">
           <SectionHeading
-            eyebrow="Kaise chunein?"
-            title="Course select karne me confusion? Ye 3 baat dekhein"
+            eyebrow="How to choose"
+            title="Confused about which course to pick? Start with these three questions"
             align="center"
           />
           <div className="mt-8 grid gap-5 sm:grid-cols-3">
             {[
               {
-                title: "1. Apna goal likhiye",
-                text: "Job chahiye, freelancing karni hai, ya business ke liye skill — teeno ka course alag hota hai.",
+                title: "1. Write down your goal",
+                text: "A job, freelancing or a skill for your own business — each path is best served by a different course.",
               },
               {
-                title: "2. Time & mode dekhein",
-                text: "Working ho to shaam/weekend ya online-hybrid batch best rehti hai. Students ke liye morning batch.",
+                title: "2. Check your time and mode",
+                text: "If you are working, an evening, weekend or online-hybrid batch works best. Students usually prefer morning batches.",
               },
               {
-                title: "3. Placement support check karein",
-                text: "Sirf syllabus nahi — mock interviews, resume review aur referrals ka system dekhna zaroori hai.",
+                title: "3. Look at placement support",
+                text: "It is not just the syllabus — check for mock interviews, resume reviews and a genuine referral system.",
               },
             ].map((item) => (
               <div key={item.title} className="card p-5">
@@ -194,7 +196,7 @@ export default async function CoursesPage({
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link href="/apply" className="btn btn-primary">
-              Free counselling book karein <ArrowRight className="h-4 w-4" />
+              Book a free counselling session <ArrowRight className="h-4 w-4" />
             </Link>
             <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="btn btn-outline">
               <Phone className="h-4 w-4" /> {settings.phone}
@@ -206,13 +208,13 @@ export default async function CoursesPage({
       <section className="section pt-0">
         <div className="container-x grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="eyebrow">Common sawaal</p>
-            <h2 className="mt-2 text-2xl font-bold">Admission & fees se judi FAQs</h2>
+            <p className="eyebrow">Common questions</p>
+            <h2 className="mt-2 text-2xl font-bold">FAQs about admission and fees</h2>
             <p className="mt-3 text-[15px] leading-7 text-slate-600">
-              Aur kuch poochhna hai to chatbot se poochhiye — ye fees aur batch ki live information deta hai.
+              Anything else you would like to know? Ask our chatbot — it answers using the live course and fee data.
             </p>
             <Link href="/faq" className="btn btn-outline mt-5">
-              Saare FAQs padhein
+              Read all FAQs
             </Link>
           </div>
           <FaqAccordion faqs={listFaqs().slice(0, 5)} defaultOpen={-1} />
@@ -220,10 +222,10 @@ export default async function CoursesPage({
       </section>
 
       <CtaBand
-        title="Demo class free hai — pehle dekh lijiye, phir decide kijiye"
-        description="Apply form bharein, hum aapko 2 free demo classes ka slot de denge. Fees, timing, mode — sab counselling me clear kar denge."
-        primary={{ href: "/apply", label: "Demo class book karein" }}
-        secondary={{ href: "/contact", label: "Campus visit" }}
+        title="Demo classes are free — try one before you decide"
+        description="Fill in the application form and we will arrange two free demo classes. We will also explain fees, timings and modes during counselling."
+        primary={{ href: "/apply", label: "Book a demo class" }}
+        secondary={{ href: "/contact", label: "Visit the campus" }}
       />
 
       <script

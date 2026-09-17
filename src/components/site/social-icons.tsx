@@ -1,4 +1,4 @@
-/** Brand icons (lucide core me brand logos nahi hote) — simple inline SVG. */
+/** Brand icons (the lucide core set does not ship brand logos) — simple inline SVGs. */
 type Props = { className?: string };
 
 export function FacebookIcon({ className }: Props) {

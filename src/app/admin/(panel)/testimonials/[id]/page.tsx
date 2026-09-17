@@ -13,7 +13,7 @@ export default async function EditTestimonialPage({ params }: { params: Promise<
     <div className="space-y-5">
       <div>
         <Link href="/admin/testimonials" className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-brand-700">
-          <ArrowLeft className="h-3.5 w-3.5" /> Testimonials par wapas
+          <ArrowLeft className="h-3.5 w-3.5" /> Back to testimonials
         </Link>
         <h1 className="mt-2 font-heading text-xl font-extrabold sm:text-2xl">{testimonial.name} ka review</h1>
       </div>

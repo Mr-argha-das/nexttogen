@@ -72,9 +72,9 @@ export function CourseForm({ course }: { course?: Course }) {
             name="slug"
             defaultValue={slug}
             placeholder="full-stack-web-development"
-            hint="Khali chhodein to naam se apne aap ban jayega"
+            hint="Leave empty to generate it automatically from the title"
           />
-          <Field label="Tagline" name="tagline" defaultValue={course?.tagline ?? ""} placeholder="6 mahine, 12 projects" />
+          <Field label="Tagline" name="tagline" defaultValue={course?.tagline ?? ""} placeholder="6 months, 12 projects" />
           <Field label="Category" name="category" defaultValue={course?.category ?? "Web Development"} required />
           <Field label="Duration" name="duration" defaultValue={course?.duration ?? "6 Months"} required />
           <div>
@@ -108,7 +108,7 @@ export function CourseForm({ course }: { course?: Course }) {
             required
             rows={2}
             className="sm:col-span-2"
-            hint="Card aur search results me dikhta hai (max 300 characters)"
+            hint="Shown on the card and in search results (max 300 characters)"
           />
         </div>
       </div>
@@ -123,7 +123,7 @@ export function CourseForm({ course }: { course?: Course }) {
             type="number"
             defaultValue={course?.discountFee ?? ""}
             min={0}
-            hint="Khali chhodein to koi discount nahi dikhega"
+            hint="Leave empty to show no discount"
           />
           <Field label="Seats" name="seats" type="number" defaultValue={course?.seats ?? 30} min={1} />
           <Field
@@ -141,7 +141,7 @@ export function CourseForm({ course }: { course?: Course }) {
       <div className="card p-5">
         <h2 className="font-heading text-[15px] font-bold">Description (markdown)</h2>
         <p className="mt-1 text-[12px] text-slate-500">
-          ## heading, **bold**, - list aur [link](url) support karta hai.
+          Supports ## headings, **bold**, - lists and [link](url).
         </p>
         <div className="mt-3">
           <textarea name="description" rows={10} defaultValue={course?.description ?? ""} required className="field font-mono text-[12.5px]" />
@@ -153,7 +153,7 @@ export function CourseForm({ course }: { course?: Course }) {
         <div className="flex items-center justify-between">
           <div>
             <h2 className="font-heading text-[15px] font-bold">Syllabus modules</h2>
-            <p className="mt-1 text-[12px] text-slate-500">Har module ke topics comma (,) se separate karein.</p>
+            <p className="mt-1 text-[12px] text-slate-500">Separate each module&apos;s topics with commas.</p>
           </div>
           <button
             type="button"
@@ -178,14 +178,14 @@ export function CourseForm({ course }: { course?: Course }) {
                     next[index] = { ...module, title: e.target.value };
                     setModules(next);
                   }}
-                  placeholder="Module ka title (jaise: Module 1 — Web Foundations)"
+                  placeholder="Module title (for example: Module 1 — Web Foundations)"
                   className="field"
                 />
                 <button
                   type="button"
                   onClick={() => setModules(modules.filter((_, i) => i !== index))}
                   className="btn btn-sm border border-rose-200 text-rose-600"
-                  aria-label="Module delete karein"
+                  aria-label="Delete module"
                 >
                   <X className="h-3.5 w-3.5" />
                 </button>
@@ -241,7 +241,7 @@ export function CourseForm({ course }: { course?: Course }) {
                   type="button"
                   onClick={() => setHighlights(highlights.filter((_, i) => i !== index))}
                   className="btn btn-sm border border-rose-200 text-rose-600"
-                  aria-label="Highlight delete karein"
+                  aria-label="Delete highlight"
                 >
                   <Trash2 className="h-3.5 w-3.5" />
                 </button>
@@ -274,7 +274,7 @@ export function CourseForm({ course }: { course?: Course }) {
                   type="button"
                   onClick={() => setTools(tools.filter((_, i) => i !== index))}
                   className="btn btn-sm border border-rose-200 text-rose-600"
-                  aria-label="Tool delete karein"
+                  aria-label="Delete tool"
                 >
                   <Trash2 className="h-3.5 w-3.5" />
                 </button>
@@ -292,7 +292,7 @@ export function CourseForm({ course }: { course?: Course }) {
           <Field label="SEO description" name="seoDescription" defaultValue={course?.seoDescription ?? ""} />
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
-          <Toggle name="published" label="Website par publish karein" defaultChecked={course?.published ?? true} />
+          <Toggle name="published" label="Publish on the website" defaultChecked={course?.published ?? true} />
           <Toggle name="featured" label="Featured course" defaultChecked={course?.featured ?? false} hint="Home page par dikhega" />
           <Toggle
             name="placementSupport"
@@ -307,12 +307,12 @@ export function CourseForm({ course }: { course?: Course }) {
         <button type="submit" disabled={pending} className="btn btn-primary btn-lg">
           {pending ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" /> Save ho raha hai…
+              <Loader2 className="h-4 w-4 animate-spin" /> Saving…
             </>
           ) : course ? (
-            "Changes save karein"
+            "Save changes"
           ) : (
-            "Course publish karein"
+            "Publish course"
           )}
         </button>
         <Link href="/admin/courses" className="btn btn-outline">
@@ -320,7 +320,7 @@ export function CourseForm({ course }: { course?: Course }) {
         </Link>
         {course ? (
           <Link href={`/courses/${course.slug}`} target="_blank" className="btn btn-ghost">
-            Website par dekhein →
+            View on the website →
           </Link>
         ) : null}
       </div>

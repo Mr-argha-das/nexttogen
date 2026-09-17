@@ -32,9 +32,9 @@ export default async function AdminDashboardPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="font-heading text-xl font-extrabold sm:text-2xl">Namaste! 👋</h1>
+          <h1 className="font-heading text-xl font-extrabold sm:text-2xl">Welcome back! 👋</h1>
           <p className="mt-1 text-[13.5px] text-slate-600">
-            {settings.siteName} ke admin panel me aapka swagat. Yahan se poori website manage hoti hai.
+            Welcome to the {settings.siteName} admin panel. Everything on the website is managed from here.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -69,10 +69,10 @@ export default async function AdminDashboardPage() {
         <div className="card p-5">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="flex items-center gap-2 font-heading text-[15px] font-bold">
-              <TrendingUp className="h-4 w-4 text-brand-600" /> Applications (pichhle 12 mahine)
+              <TrendingUp className="h-4 w-4 text-brand-600" /> Applications (last 12 months)
             </h2>
             <Link href="/admin/applications" className="text-[12.5px] font-semibold text-brand-700">
-              Sabhi dekhein →
+              View all →
             </Link>
           </div>
 
@@ -92,7 +92,7 @@ export default async function AdminDashboardPage() {
             </div>
           ) : (
             <p className="mt-6 rounded-xl bg-canvas p-4 text-[13px] text-slate-500">
-              Abhi koi application nahi aayi. Jab student apply form bharenge, yahan graph dikhega.
+              No applications yet. Once students submit the apply form, the graph will appear here.
             </p>
           )}
 
@@ -135,7 +135,7 @@ export default async function AdminDashboardPage() {
             <div className="flex items-center justify-between">
               <h2 className="font-heading text-[15px] font-bold">Recent messages</h2>
               <Link href="/admin/messages" className="text-[12.5px] font-semibold text-brand-700">
-                Sabhi →
+                View all →
               </Link>
             </div>
             <ul className="mt-3 divide-y divide-slate-100">
@@ -152,7 +152,7 @@ export default async function AdminDashboardPage() {
                 </li>
               ))}
               {!stats.recentMessages.length ? (
-                <li className="py-3 text-[13px] text-slate-500">Abhi koi message nahi aaya.</li>
+                <li className="py-3 text-[13px] text-slate-500">No messages yet.</li>
               ) : null}
             </ul>
           </div>
@@ -164,7 +164,7 @@ export default async function AdminDashboardPage() {
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-5 py-4">
           <h2 className="font-heading text-[15px] font-bold">Recent applications</h2>
           <Link href="/admin/applications" className="text-[12.5px] font-semibold text-brand-700">
-            Sabhi applications →
+            All applications →
           </Link>
         </div>
         <div className="overflow-x-auto">
@@ -205,7 +205,7 @@ export default async function AdminDashboardPage() {
               {!stats.recentApplications.length ? (
                 <tr>
                   <td colSpan={5} className="px-5 py-6 text-center text-slate-500">
-                    Abhi koi application nahi aayi.
+                    No applications yet.
                   </td>
                 </tr>
               ) : null}

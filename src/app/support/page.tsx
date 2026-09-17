@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
     settings,
     title: "Support Us — Sponsor a student's education",
-    description: `Donate ya sponsor karein — ek student ki fees, lab equipment ya batch sponsorship. 80G tax exemption receipt, UPI/bank transfer aur CSR partnership options.`,
+    description: `Donate or sponsor — fund a student's fees, lab equipment or a full batch. 80G tax exemption receipts, UPI and bank transfer options, plus CSR partnerships.`,
     path: "/support",
     keywords: ["donate education", "sponsor student", "CSR training partner", "NGO computer education", "80G donation"],
   });
@@ -42,17 +42,17 @@ export default async function SupportPage() {
   const tiers = SITE_CONTENT.supportTiers.map((tier) => ({ name: tier.name, amount: tier.amount }));
 
   const impact = [
-    { icon: Users, value: "620+", label: "Students ko scholarship mili (pichhle 3 saal)" },
-    { icon: Laptop, value: "85", label: "Refurbished laptops rural students ko diye" },
-    { icon: Target, value: "3", label: "Free batches har saal (SC/ST/OBC & girl students)" },
+    { icon: Users, value: "620+", label: "Students received scholarships in the last three years" },
+    { icon: Laptop, value: "85", label: "Refurbished laptops donated to rural students" },
+    { icon: Target, value: "3", label: "Free batches every year for SC/ST/OBC and girl students" },
   ];
 
   return (
     <>
       <PageHero
         eyebrow="Support us"
-        title="Ek donation, ek poori zindagi badal sakti hai"
-        description={`${settings.siteName} me hum maan-te hain ki skill training sabke liye affordable honi chahiye. Aapki madad se hum har saal aise students ko training dete hain jinke ghar me fees ka kharcha uthane ki capacity nahi hai.`}
+        title="One donation can change an entire life"
+        description={`At ${settings.siteName} we believe skill training should be affordable for everyone. With your help we train students every year whose families simply cannot afford the fees.`}
         crumbs={[{ label: "Support Us" }]}
       >
         <div className="flex flex-wrap gap-2">
@@ -60,7 +60,7 @@ export default async function SupportPage() {
             <Receipt className="h-3.5 w-3.5 text-emerald-500" /> 80G tax exemption receipt
           </span>
           <span className="chip chip-neutral">
-            <BadgeCheck className="h-3.5 w-3.5 text-emerald-500" /> Har rupye ka hisaab, annual report me
+            <BadgeCheck className="h-3.5 w-3.5 text-emerald-500" /> Every rupee accounted for in our annual report
           </span>
         </div>
       </PageHero>
@@ -87,10 +87,10 @@ export default async function SupportPage() {
         <div className="container-x">
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Support options</p>
-            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Apni capacity ke hisaab se madad karein</h2>
+            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Help in whatever way works for you</h2>
             <p className="mt-3 text-[15px] leading-7 text-slate-600">
-              Koi amount chhota nahi hota — ₹1,000 se ek student ke lab aur internet ka kharcha nikalta hai. Bade
-              sponsors ke liye lab aur batch sponsorship bhi available hai.
+              No amount is too small — ₹1,000 covers a student's lab and internet costs for a month. For larger
+              supporters, lab and batch sponsorships are also available.
             </p>
           </div>
 
@@ -104,7 +104,7 @@ export default async function SupportPage() {
               >
                 {tier.highlight ? (
                   <span className="absolute -top-3 left-6 rounded-full bg-brand-600 px-3 py-1 text-[11px] font-bold text-white">
-                    Sabse popular
+                    Most popular
                   </span>
                 ) : null}
                 <HandHeart className={`h-6 w-6 ${tier.highlight ? "text-brand-600" : "text-slate-400"}`} />
@@ -123,7 +123,7 @@ export default async function SupportPage() {
                   ))}
                 </ul>
                 <Link href="#donate" className={`btn mt-6 ${tier.highlight ? "btn-primary" : "btn-outline"}`}>
-                  {tier.name} chunein <ArrowRight className="h-4 w-4" />
+                  Choose {tier.name} <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             ))}
@@ -136,10 +136,10 @@ export default async function SupportPage() {
         <div className="container-x grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <div>
             <p className="eyebrow">Donation process</p>
-            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Payment kaise bhejein?</h2>
+            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">How to send your contribution</h2>
             <p className="mt-4 text-[15px] leading-7 text-slate-600">
-              Aap UPI, bank transfer ya cheque se contribute kar sakte hain. Transfer ke baad screenshot WhatsApp par
-              bhej dijiye — hum 48 ghante me 80G receipt aur thank-you certificate issue kar dete hain.
+              You can contribute by UPI, bank transfer or cheque. After the transfer, send us the screenshot on WhatsApp
+              and we will issue your 80G receipt and a thank-you certificate within 48 hours.
             </p>
 
             <div className="mt-6 space-y-4">
@@ -151,7 +151,7 @@ export default async function SupportPage() {
                   {settings.supportUpiId}
                 </p>
                 <p className="mt-2 text-[12.5px] text-slate-500">
-                  UPI app me ye ID daal kar transfer karein — note me apna naam likh dijiye.
+                  Transfer using this ID in any UPI app, and please add your name in the note.
                 </p>
               </div>
 
@@ -173,13 +173,13 @@ export default async function SupportPage() {
                   ))}
                 </dl>
                 <p className="mt-3 text-[12.5px] text-slate-500">
-                  Cheque/DD: {settings.legalName}, {settings.addressLine1}, {settings.city} – {settings.pincode}
+                  By cheque or demand draft: {settings.legalName}, {settings.addressLine1}, {settings.city} – {settings.pincode}
                 </p>
               </div>
 
               <div className="card p-5">
                 <h3 className="flex items-center gap-2 text-[14px] font-bold text-ink">
-                  <Gift className="h-4 w-4 text-brand-600" /> Cash ya kind me don't karna chahte hain?
+                  <Gift className="h-4 w-4 text-brand-600" /> Prefer to help without money?
                 </h3>
                 <ul className="mt-3 space-y-2 text-[13px] text-slate-600">
                   {SITE_CONTENT.supportOtherWays.map((way) => (
@@ -197,14 +197,14 @@ export default async function SupportPage() {
             <ContactForm variant="support" tiers={tiers} />
             <div className="card p-5">
               <h3 className="flex items-center gap-2 font-heading text-[15px] font-bold">
-                <Receipt className="h-4 w-4 text-brand-600" /> Transparency promise
+                <Receipt className="h-4 w-4 text-brand-600" /> Our transparency promise
               </h3>
               <ul className="mt-3 space-y-2.5 text-[13px] text-slate-600">
                 {[
-                  "Har donation ka receipt aur 80G certificate 48 ghante me",
-                  "Annual impact report (students trained, laptops diye gaye, fees sponsored)",
-                  "Scholarship donors ko student ka progress report (name ke bina)",
-                  "Kabhi bhi campus aakar records dekh sakte hain",
+                  "A receipt and 80G certificate for every donation within 48 hours",
+                  "An annual impact report covering students trained, laptops donated and fees sponsored",
+                  "Progress reports for scholarship donors, with the student's identity protected",
+                  "Visit the campus any time to review our records",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <BadgeCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500" />
@@ -216,13 +216,13 @@ export default async function SupportPage() {
             <div className="card overflow-hidden">
               <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
                 <Banknote className="h-5 w-5 text-accent-100" />
-                <h3 className="mt-2 font-heading text-base font-bold">CSR partnership ke liye</h3>
+                <h3 className="mt-2 font-heading text-base font-bold">For CSR partnerships</h3>
                 <p className="mt-2 text-[13px] text-white/80">
-                  Company CSR budget se lab, batch ya scholarship sponsor kar sakti hai. Hum annual report, photos aur
-                  utilisation certificate bhi provide karte hain.
+                  Companies can sponsor a lab, a batch or a scholarship from their CSR budget. We provide an annual
+                  report, photographs and a utilisation certificate.
                 </p>
                 <a href={`mailto:${settings.admissionsEmail}`} className="btn btn-accent mt-4 w-full">
-                  CSR ke liye email karein
+                  Email us about CSR
                 </a>
               </div>
             </div>
@@ -235,18 +235,18 @@ export default async function SupportPage() {
         <div className="container-x grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div className="card p-6">
             <Mic className="h-6 w-6 text-brand-600" />
-            <h2 className="mt-3 font-heading text-xl font-bold">Paisa nahi hai? Time dijiye 🙌</h2>
+            <h2 className="mt-3 font-heading text-xl font-bold">No budget? Give your time instead 🙌</h2>
             <p className="mt-3 text-[14px] leading-7 text-slate-600">
-              Har mahine humare students industry professionals se milte hain — unki journey, mistakes aur practical tips
-              sunkar unka confidence badhta hai. Aap 1 ghante ka guest session le lijiye, ya online mock interview panel
-              me aa jaiye. Ye donation se kam nahi.
+              Every month our students meet industry professionals, and hearing about real journeys, real mistakes and
+              practical tips builds their confidence. You could take a one-hour guest session or join an online mock
+              interview panel. That contribution is worth as much as a donation.
             </p>
             <ul className="mt-4 space-y-2 text-[13.5px] text-slate-600">
               {[
-                "Guest lecture (offline ya online, 60 min)",
-                "Mock interview panelist (2 ghante/mahina)",
-                "Resume review volunteer",
-                "Internship / hiring pipeline banana",
+                "Deliver a guest lecture (online or on campus, 60 minutes)",
+                "Join a mock interview panel (two hours a month)",
+                "Volunteer to review resumes",
+                "Build an internship or hiring pipeline",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500" />
@@ -255,12 +255,12 @@ export default async function SupportPage() {
               ))}
             </ul>
             <Link href="/contact" className="btn btn-primary mt-5">
-              Volunteer / guest session ke liye contact karein
+              Contact us to volunteer or take a session
             </Link>
           </div>
 
           <div className="rounded-3xl border border-brand-100 bg-brand-50 p-7">
-            <p className="eyebrow">Kaha jaata hai aapka paisa?</p>
+            <p className="eyebrow">Where your money goes</p>
             <h3 className="mt-2 font-heading text-xl font-bold">Fund utilisation (last financial year)</h3>
             <div className="mt-5 space-y-3">
               {[
@@ -284,18 +284,17 @@ export default async function SupportPage() {
               ))}
             </div>
             <p className="mt-5 text-[12.5px] leading-6 text-slate-600">
-              Note: ye demo data hai — actual numbers admin panel/accounts se update karke apni annual report ke hisaab se
-              bhar lijiye.
+              Note: this is sample data. Replace it with your actual annual report figures from your accounts.
             </p>
           </div>
         </div>
       </section>
 
       <CtaBand
-        title="Aaj ek student ka future sponsor karein"
-        description="₹25,000 me ek student ki poori course fees sponsor ho jaati hai — uske paas skill, certificate aur job ka raasta aa jaata hai."
-        primary={{ href: "#donate", label: "Support pledge bhejein" }}
-        secondary={{ href: "/contact", label: "Baath karein" }}
+        title="Sponsor a student's future today"
+        description="₹25,000 covers one student's entire course fee — and gives them a skill, a certificate and a route into a job."
+        primary={{ href: "#donate", label: "Send a support pledge" }}
+        secondary={{ href: "/contact", label: "Talk to us" }}
       />
     </>
   );

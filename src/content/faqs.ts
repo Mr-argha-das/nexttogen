@@ -2,86 +2,86 @@ export type SeedFaq = { question: string; answer: string; category: string; sort
 
 export const SEED_FAQS: SeedFaq[] = [
   {
-    question: "Admission ke liye kya documents chahiye?",
+    question: "What documents are required for admission?",
     answer:
-      "Aadhaar card, 2 passport size photos, last qualification ki marksheet ki copy, aur (agar ho) previous course ka certificate. Sab documents online upload kar sakte hain ya campus par le aaiye.",
+      "Your Aadhaar card, two passport-size photographs, a copy of your last qualification marksheet and, if available, any previous course certificate. You can upload everything online or bring the documents to the campus.",
     category: "Admission",
     sortOrder: 1,
   },
   {
-    question: "Fees ek saath dena zaroori hai? Kya EMI ka option hai?",
+    question: "Do I have to pay the full fees at once? Is an EMI option available?",
     answer:
-      "Nahi. Aap 0% interest EMI me monthly fees de sakte hain (3, 6 ya 9 instalments). Registration ke time sirf 20% amount lagta hai, baaki course ke dauraan.",
+      "No. You can pay in 0% interest instalments spread over 3, 6 or 9 months. Only 20% is due at registration and the rest is paid during the course.",
     category: "Fees",
     sortOrder: 2,
   },
   {
-    question: "Kya demo class milti hai?",
+    question: "Can I attend a demo class before paying?",
     answer:
-      "Bilkul. Admission se pehle 2 free demo classes hoti hain — jisme aap trainer, batch aur teaching style dekh sakte hain. Demo ke liye website ke Apply form me 'Demo class' likh dijiye.",
+      "Absolutely. Every prospective student gets two free demo classes so you can meet the trainer, sit in a live batch and judge the teaching style. Simply mention 'demo class' in the application form.",
     category: "Admission",
     sortOrder: 3,
   },
   {
-    question: "Course complete hone par placement guaranteed hai?",
+    question: "Is placement guaranteed after completing the course?",
     answer:
-      "Hum 100% placement assistance dete hain — resume banwana, mock interviews, aur 120+ partner companies me referral. Guarantee legal terms ke hisaab se nahi di jaati, lekin hamara placement record 92% hai aur aap interview-ready banti/banta hai.",
+      "We provide full placement assistance — resume building, mock interviews and referrals to 120+ partner companies. We do not use the word guarantee because the final hiring decision rests with the employer, but our placement record is 92% and every student leaves interview-ready.",
     category: "Placement",
     sortOrder: 4,
   },
   {
-    question: "Kya class chhoot jaaye to recording milti hai?",
+    question: "What if I miss a class? Do I get the recording?",
     answer:
-      "Haan. Har live class ki recording student portal me 12 mahine tak available rehti hai. Online students ko lifetime access milta hai.",
+      "Yes. Every live class is recorded and available in the student portal for twelve months. Students on the online plan get lifetime access.",
     category: "Classes",
     sortOrder: 5,
   },
   {
-    question: "Batch timings kya hain? Main job karta/karti hoon.",
+    question: "What are the batch timings? I have a job.",
     answer:
-      "Roz 3 batch chalti hain — subah 8:00–10:00, dopahar 12:00–2:00 aur shaam 5:00–7:00. Working professionals ke liye shaam aur weekend (Saturday/Sunday) batch best rehti hai.",
+      "Three batches run every day — 8:00–10:00 AM, 12:00–2:00 PM and 5:00–7:00 PM. Working professionals usually prefer the evening or the weekend (Saturday and Sunday) batch.",
     category: "Classes",
     sortOrder: 6,
   },
   {
-    question: "Kaun kaun scholarship le sakta hai?",
+    question: "Who is eligible for a scholarship?",
     answer:
-      "12th me 75%+ marks ya graduation me 70%+ marks par 15% scholarship. SC/ST/OBC aur girl students ke liye alag concession. Har saal 50 seats par scholarship test bhi hota hai — next date admission office se poochh lijiye.",
+      "Students with 75% or above in 12th, or 70% or above in graduation, receive a 15% scholarship. Separate concessions are available for SC/ST/OBC candidates and girl students. We also run a scholarship test for 50 seats every year — ask the admission office for the next date.",
     category: "Fees",
     sortOrder: 7,
   },
   {
-    question: "Course ke baad certificate milta hai?",
+    question: "Will I receive a certificate after the course?",
     answer:
-      "Haan. Har course ka certificate milta hai jisme aapki attendance, project list aur assessment marks likhe hote hain. Ye certificate job applications aur higher study dono me kaam aata hai.",
+      "Yes. Every course ends with a certificate that records your attendance, project list and assessment marks. It is useful for both job applications and higher studies.",
     category: "Certification",
     sortOrder: 8,
   },
   {
-    question: "NextToGen ko support kaise kar sakte hain?",
+    question: "How can I support NextGen Institute?",
     answer:
-      "Aap Support Us page se donation de sakte hain (UPI, bank transfer ya cheque), purana laptop/monitor donate kar sakte hain, ya guest lecture de sakte hain. 80G tax exemption receipt di jaati hai.",
+      "You can donate through the Support Us page using UPI, bank transfer or cheque, donate an old laptop or monitor, or deliver a guest lecture. 80G tax exemption receipts are issued for all donations.",
     category: "Support",
     sortOrder: 9,
   },
   {
-    question: "Online aur offline course me farq kya hai?",
+    question: "What is the difference between the online and offline courses?",
     answer:
-      "Content same hai. Offline batch me daily lab practice, doubt session aur campus placement drives milte hain. Online me live class + recording aur WhatsApp doubt support. Fees me thoda farq hota hai.",
+      "The curriculum is identical. Offline batches include daily lab practice, in-person doubt sessions and on-campus placement drives. Online batches offer live classes, recordings and WhatsApp doubt support, with slightly different fees.",
     category: "Classes",
     sortOrder: 10,
   },
   {
-    question: "Course ke baad dobara padhne ka mauka milta hai?",
+    question: "Can I repeat the course after finishing it?",
     answer:
-      "Haan — ek baar fees dene ke baad aap same course dobara attend kar sakte hain (repeat batch), sirf lab charges ke saath. Bahut students interview se pehle revision ke liye iska use karte hain.",
+      "Yes. Once you have paid the fees, you may attend the same course again by paying only the lab charges. Many students use this revision batch before interviews.",
     category: "Classes",
     sortOrder: 11,
   },
   {
-    question: "Campus visit ka time kya hai?",
+    question: "When can I visit the campus?",
     answer:
-      "Mon–Sat 8:00 AM se 8:00 PM, Sunday 10:00 AM–2:00 PM. Bina appointment bhi aa sakte hain, par form bharke aayein to counsellor free milta hai — website ke Contact page se slot book kar lijiye.",
+      "Monday to Saturday from 8:00 AM to 8:00 PM, and Sunday from 10:00 AM to 2:00 PM. Walk-ins are welcome, but booking through the contact page ensures a counsellor is free when you arrive.",
     category: "General",
     sortOrder: 12,
   },

@@ -167,7 +167,7 @@ export function BlogCard({ post, compact = false }: { post: BlogPost; compact?: 
             href={`/blog/${post.slug}`}
             className="inline-flex items-center gap-1 text-[12px] font-semibold text-brand-700 hover:text-brand-900"
           >
-            Padhein <ArrowRight className="h-3.5 w-3.5" />
+            Read more <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
       </div>

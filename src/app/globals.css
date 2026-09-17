@@ -2,12 +2,12 @@
 
 /* ------------------------------------------------------------------
    Theme tokens
-   --brand / --brand-accent runtime par DB settings se set hote hain
-   (admin → Settings → Brand colors). Baaki shades unse derive hote hain.
+   --brand / --brand-accent are set at runtime from the database settings
+   (admin → Settings → Brand colors). Every other shade is derived from those two.
 ------------------------------------------------------------------- */
 :root {
-  --brand: #4f46e5;
-  --brand-accent: #f59e0b;
+  --brand: #0b2a5b;
+  --brand-accent: #f5a623;
 
   --brand-50: color-mix(in srgb, var(--brand) 6%, white);
   --brand-100: color-mix(in srgb, var(--brand) 12%, white);

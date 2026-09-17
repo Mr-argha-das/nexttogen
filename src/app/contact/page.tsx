@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
     settings,
     title: "Contact Us — Campus address, phone & enquiry form",
-    description: `${settings.siteName} se baat karein — ${settings.addressLine1}, ${settings.city}. Phone ${settings.phone}, WhatsApp aur enquiry form. Campus visit Mon–Sat available.`,
+    description: `Get in touch with ${settings.siteName} — ${settings.addressLine1}, ${settings.city}. Call ${settings.phone}, message us on WhatsApp or send an enquiry. Campus visits are welcome Monday to Saturday.`,
     path: "/contact",
     keywords: ["contact institute", `${settings.city} institute address`, "admission enquiry", "campus visit"],
   });
@@ -52,7 +52,7 @@ export default async function ContactPage() {
       label: "WhatsApp",
       value: `+${settings.whatsapp}`,
       href: `https://wa.me/${settings.whatsapp}`,
-      note: "Sabse fast reply — course details, fees, timing",
+      note: "Fastest replies — course details, fees, timings",
     },
     {
       icon: Mail,
@@ -81,8 +81,8 @@ export default async function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact us"
-        title="Baat karni hai? Hum yahan hain."
-        description="Call, WhatsApp, email ya campus visit — jo aapko aasaan lage. Admission team Mon–Sat 8 AM se 8 PM tak available rehti hai, aur WhatsApp par sabse fast reply milta hai."
+        title="Want to talk? We are right here."
+        description="Call, WhatsApp, email or visit the campus — whichever is easiest. Our admission team is available Monday to Saturday from 8 AM to 8 PM, and WhatsApp is the fastest way to reach us."
         crumbs={[{ label: "Contact Us" }]}
       />
 
@@ -110,8 +110,8 @@ export default async function ContactPage() {
             <div>
               <h2 className="font-heading text-xl font-bold">Enquiry form</h2>
               <p className="mt-2 text-[14px] text-slate-600">
-                Course, fees, batch timing ya kuch bhi — message bhejein, hum 24 ghante ke andar reply karenge. Urgent
-                ho to WhatsApp better hai.
+                Ask about courses, fees, batch timings or anything else — we reply within 24 hours. For anything urgent,
+                WhatsApp is the quicker option.
               </p>
               <div className="mt-5">
                 <ContactForm variant="contact" />
@@ -160,7 +160,7 @@ export default async function ContactPage() {
                     rel="noopener noreferrer"
                     className="btn btn-primary btn-sm"
                   >
-                    Google Maps par kholein
+                    Open in Google Maps
                   </a>
                   <Link href="/apply" className="btn btn-outline btn-sm">
                     Apply online
@@ -177,17 +177,17 @@ export default async function ContactPage() {
                   referrerPolicy="no-referrer-when-downgrade"
                 />
                 <div className="border-t border-slate-100 px-4 py-3 text-[12.5px] text-slate-500">
-                  Landmark: {settings.addressLine2 || settings.city} · Nearest bus stand / metro se auto available
+                  Landmark: {settings.addressLine2 || settings.city} · Autos are easily available from the nearest bus stand
                 </div>
               </div>
 
               <div className="card p-5">
-                <h3 className="font-heading text-[15px] font-bold">Campus visit tips</h3>
+                <h3 className="font-heading text-[15px] font-bold">Tips for your campus visit</h3>
                 <ul className="mt-3 space-y-2 text-[13px] text-slate-600">
-                  <li>• Aane se pehle call kar lein — counsellor free milega</li>
-                  <li>• Yaad se batayein konsa course dekhna hai</li>
-                  <li>• Demo class ka slot wahi fix ho jaayega</li>
-                  <li>• Fees ka written breakdown maang lijiye</li>
+                  <li>• Call before you arrive so a counsellor is free to meet you</li>
+                  <li>• Mention which course you want to explore</li>
+                  <li>• You can lock a demo class slot during the visit</li>
+                  <li>• Ask for a written breakdown of the fees</li>
                 </ul>
               </div>
             </aside>
@@ -200,12 +200,12 @@ export default async function ContactPage() {
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="eyebrow">FAQs</p>
-              <h2 className="mt-2 text-2xl font-bold">Contact se pehle ye padh lijiye</h2>
+              <h2 className="mt-2 text-2xl font-bold">Worth reading before you contact us</h2>
               <p className="mt-3 text-[15px] leading-7 text-slate-600">
-                Zyada tar sawaal (fees, EMI, timing, documents) ke jawab yahan mil jaate hain.
+                Most questions about fees, EMI, timings and documents are already answered here.
               </p>
               <Link href="/faq" className="btn btn-outline mt-5">
-                Poori FAQ list
+                See the full FAQ list
               </Link>
             </div>
             <FaqAccordion faqs={faqs} defaultOpen={-1} />
@@ -214,10 +214,10 @@ export default async function ContactPage() {
       </section>
 
       <CtaBand
-        title="Seat book karani hai? Apply form 2 minute ka hai"
-        description="Online form bharein ya seedha campus aaiye — demo class free hai, counselling free hai, aur fees me EMI option hai."
-        primary={{ href: "/apply", label: "Apply Online" }}
-        secondary={{ href: `/support`, label: "Support Us" }}
+        title="Ready to reserve a seat? The form takes two minutes"
+        description="Apply online or simply walk into the campus — demo classes are free, counselling is free and EMI options are available."
+        primary={{ href: "/apply", label: "Apply online" }}
+        secondary={{ href: `/support`, label: "Support us" }}
       />
     </>
   );

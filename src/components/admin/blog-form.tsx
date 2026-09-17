@@ -64,7 +64,7 @@ export function BlogForm({ post }: { post?: BlogPost }) {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="field"
-              placeholder="2026 me Web Development Career Kaise Banaye"
+              placeholder="How to Build a Career in Web Development in 2026"
             />
           </div>
           <Field label="URL slug" name="slug" defaultValue={post?.slug ?? ""} placeholder="web-development-career-2026" />
@@ -81,7 +81,7 @@ export function BlogForm({ post }: { post?: BlogPost }) {
             </select>
           </div>
           <TextArea
-            label="Excerpt (listing me dikhta hai)"
+            label="Excerpt (shown in the listing)"
             name="excerpt"
             defaultValue={post?.excerpt ?? ""}
             required
@@ -127,7 +127,7 @@ export function BlogForm({ post }: { post?: BlogPost }) {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           className="field mt-3 font-mono text-[12.5px]"
-          placeholder={"## Introduction\nYahan se shuru karein…\n\n- Point 1\n- Point 2"}
+          placeholder={"## Introduction\nStart writing here…\n\n- Point 1\n- Point 2"}
         />
       </div>
 
@@ -136,7 +136,7 @@ export function BlogForm({ post }: { post?: BlogPost }) {
           <Sparkles className="h-4 w-4 text-brand-600" /> SEO & publishing
         </h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <Field label="SEO title" name="seoTitle" defaultValue={post?.seoTitle ?? ""} hint="Khali chhodein to title use hoga" />
+          <Field label="SEO title" name="seoTitle" defaultValue={post?.seoTitle ?? ""} hint="Leave empty to use the title" />
           <Field label="SEO description" name="seoDescription" defaultValue={post?.seoDescription ?? ""} />
           <Field
             label="Publish date"
@@ -147,7 +147,7 @@ export function BlogForm({ post }: { post?: BlogPost }) {
           <Field label="Read minutes" name="readMinutes" type="number" defaultValue={post?.readMinutes ?? 4} min={1} />
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          <Toggle name="published" label="Publish karein" defaultChecked={post?.published ?? true} hint="Off karne par draft rahega" />
+          <Toggle name="published" label="Publish" defaultChecked={post?.published ?? true} hint="Turn off to keep it as a draft" />
           <Toggle name="featured" label="Featured post" defaultChecked={post?.featured ?? false} hint="Blog page ke top par bada card" />
         </div>
       </div>
@@ -156,12 +156,12 @@ export function BlogForm({ post }: { post?: BlogPost }) {
         <button type="submit" disabled={pending} className="btn btn-primary btn-lg">
           {pending ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" /> Save ho raha hai…
+              <Loader2 className="h-4 w-4 animate-spin" /> Saving…
             </>
           ) : post ? (
-            "Changes save karein"
+            "Save changes"
           ) : (
-            "Blog publish karein"
+            "Publish post"
           )}
         </button>
         <Link href="/admin/blogs" className="btn btn-outline">
@@ -169,7 +169,7 @@ export function BlogForm({ post }: { post?: BlogPost }) {
         </Link>
         {post ? (
           <Link href={`/blog/${post.slug}`} target="_blank" className="btn btn-ghost">
-            Website par dekhein →
+            View on the website →
           </Link>
         ) : null}
       </div>

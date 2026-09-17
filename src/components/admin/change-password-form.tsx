@@ -27,8 +27,8 @@ export function ChangePasswordForm() {
           </label>
           <input id="newPassword" name="newPassword" type="password" required minLength={6} className="field" />
         </div>
-        <SubmitButton className="btn btn-primary w-full" pendingText="Update ho raha hai…">
-          Password update karein
+        <SubmitButton className="btn btn-primary w-full" pendingText="Updating…">
+          Update password
         </SubmitButton>
       </form>
     </div>

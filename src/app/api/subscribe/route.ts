@@ -13,10 +13,10 @@ export async function POST(request: Request) {
     const isNew = subscribe(parsed.data.email);
     return NextResponse.json({
       ok: true,
-      message: isNew ? "Subscribe ho gaya! Batch updates aapko milte rahenge." : "Aap pehle se subscribed hain 😊",
+      message: isNew ? "You are subscribed! Batch updates will now reach your inbox." : "You are already subscribed 😊",
     });
   } catch (error) {
     console.error("[api/subscribe]", error);
-    return NextResponse.json({ error: "Subscribe nahi ho paya. Dobara try karein." }, { status: 500 });
+    return NextResponse.json({ error: "Subscription failed. Please try again." }, { status: 500 });
   }
 }

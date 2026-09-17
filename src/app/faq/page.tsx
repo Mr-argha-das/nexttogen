@@ -14,9 +14,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = getSettings();
   return buildMetadata({
     settings,
-    title: "FAQs — Admission, fees, EMI aur batch timing",
+    title: "FAQs — Admission, fees, EMI and batch timings",
     description:
-      "Admission process, documents, fees aur EMI, scholarship, batch timing, placement aur certificate se judi sabhi common sawaalon ke jawab ek jagah.",
+      "Everything about the admission process, documents, fees and EMI, scholarships, batch timings, placement support and certificates, answered in one place.",
     path: "/faq",
     keywords: ["admission FAQ", "fees EMI question", "batch timing", "scholarship process", "placement support FAQ"],
   });
@@ -36,8 +36,8 @@ export default async function FaqPage() {
     <>
       <PageHero
         eyebrow="Help center"
-        title="Aapke sawaal, seedhe jawab"
-        description="Admission se lekar certificate tak — sabse zyada poochhe jaane wale sawaal yahan hain. Jawab nahi mila? Chatbot se poochhiye, ya humein call/WhatsApp kar lijiye."
+        title="Your questions, answered properly"
+        description="From admission to certification — these are the questions we are asked most often. Not found your answer? Ask our chatbot, or simply call or WhatsApp us."
         crumbs={[{ label: "FAQs" }]}
       >
         <div className="flex flex-wrap gap-2">
@@ -70,10 +70,9 @@ export default async function FaqPage() {
 
           <aside className="space-y-5 lg:sticky lg:top-24">
             <div className="card p-5">
-              <h3 className="font-heading text-[15px] font-bold">Jawab nahi mila?</h3>
+              <h3 className="font-heading text-[15px] font-bold">Not found your answer?</h3>
               <p className="mt-2 text-[13px] leading-6 text-slate-600">
-                Chatbot 24×7 available hai — fees, batch timing, syllabus sab live data se batata hai. Ya seedha call kar
-                lijiye.
+                Our chatbot is available 24×7 and answers from live data on fees, batch timings and the syllabus. You can also call us directly.
               </p>
               <div className="mt-4 space-y-2">
                 <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="btn btn-primary w-full">
@@ -88,7 +87,7 @@ export default async function FaqPage() {
                   <MessageCircle className="h-4 w-4" /> WhatsApp
                 </a>
                 <Link href="/apply" className="btn btn-ghost w-full">
-                  Apply form bharein →
+                  Fill the application form →
                 </Link>
               </div>
             </div>
@@ -101,17 +100,17 @@ export default async function FaqPage() {
                 <li>• Last marksheet</li>
                 <li>• Previous certificate (optional)</li>
               </ul>
-              <p className="mt-3 text-[12px] text-slate-500">Sab online bhi bhej sakte hain.</p>
+              <p className="mt-3 text-[12px] text-slate-500">All of these can also be sent online.</p>
             </div>
 
             <div className="card overflow-hidden">
               <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
-                <h3 className="font-heading text-base font-bold">Demo class free hai</h3>
+                <h3 className="font-heading text-base font-bold">Demo classes are free</h3>
                 <p className="mt-2 text-[13px] text-white/80">
-                  Pehle class attend kijiye, phir admission ka decision lijiye.
+                  Attend a class first, then decide about admission.
                 </p>
                 <Link href="/apply" className="btn btn-accent mt-4 w-full">
-                  Demo book karein
+                  Book a demo class
                 </Link>
               </div>
             </div>
@@ -120,10 +119,10 @@ export default async function FaqPage() {
       </section>
 
       <CtaBand
-        title="Koi bhi doubt ho — humein poochhiye"
-        description="Counsellor se baat kijiye, apne goal bataiye, aur hum aapko honest plan denge — fees, time aur placement ka realistic picture ke saath."
-        primary={{ href: "/contact", label: "Contact karein" }}
-        secondary={{ href: "/courses", label: "Courses dekhein" }}
+        title="Any doubt at all — just ask us"
+        description="Speak with a counsellor, share your goal and we will give you an honest plan — a realistic picture of the fees, the time involved and placement prospects."
+        primary={{ href: "/contact", label: "Contact us" }}
+        secondary={{ href: "/courses", label: "Browse courses" }}
       />
 
       <script

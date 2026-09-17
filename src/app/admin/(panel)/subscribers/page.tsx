@@ -12,8 +12,8 @@ export default function AdminSubscribersPage() {
       <div>
         <h1 className="font-heading text-xl font-extrabold sm:text-2xl">Subscribers</h1>
         <p className="mt-1 text-[13.5px] text-slate-600">
-          {subscribers.length} log newsletter ke liye subscribe kar chuke hain. Batch updates aur career tips bhejne ke liye
-          in emails ka use karein.
+          {subscribers.length} people have subscribed to the newsletter. Use these email addresses to send batch updates
+          and career tips.
         </p>
       </div>
 
@@ -36,7 +36,7 @@ export default function AdminSubscribersPage() {
                   <td className="px-5 py-3 text-slate-500">{formatDate(subscriber.createdAt)}</td>
                   <td className="px-5 py-3 text-right">
                     <div className="flex justify-end">
-                      <DeleteButton action={deleteSubscriberAction} id={subscriber.id} label="" confirmText="Unsubscribe kar dein?" />
+                      <DeleteButton action={deleteSubscriberAction} id={subscriber.id} label="" confirmText="Remove this subscriber?" />
                     </div>
                   </td>
                 </tr>
@@ -45,7 +45,7 @@ export default function AdminSubscribersPage() {
                 <tr>
                   <td colSpan={4} className="px-5 py-10 text-center text-slate-500">
                     <Users className="mx-auto h-8 w-8 text-slate-300" />
-                    <p className="mt-3 text-[13.5px]">Abhi koi subscriber nahi hai.</p>
+                    <p className="mt-3 text-[13.5px]">No subscribers yet.</p>
                   </td>
                 </tr>
               ) : null}
@@ -54,9 +54,9 @@ export default function AdminSubscribersPage() {
         </div>
 
         <div className="card p-5">
-          <h2 className="font-heading text-[15px] font-bold">Manually add karein</h2>
+          <h2 className="font-heading text-[15px] font-bold">Add manually</h2>
           <p className="mt-2 text-[12.5px] text-slate-600">
-            Offline counselling me aaye students ko newsletter list me add kar sakte hain.
+            You can add students who attended offline counselling to the newsletter list.
           </p>
           <form action={addSubscriberAction} className="mt-3 space-y-3">
             <input name="email" type="email" required placeholder="student@email.com" className="field" />

@@ -5,7 +5,7 @@ import { contactSchema, firstError } from "@/lib/validation";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    if (body.website) return NextResponse.json({ ok: true, message: "Dhanyavaad!" });
+    if (body.website) return NextResponse.json({ ok: true, message: "Thank you!" });
 
     const parsed = contactSchema.safeParse(body);
     if (!parsed.success) {
@@ -24,14 +24,14 @@ export async function POST(request: Request) {
     });
 
     const messages: Record<string, string> = {
-      CONTACT: "Message mil gaya! Hamari team 24 ghante ke andar aapko contact karegi.",
-      SUPPORT: "Support pledge ke liye dhanyavaad! Hum aapko payment details aur receipt ke liye contact karenge.",
-      PARTNER: "Partnership request mil gayi. Hamari team aapse jaldi baat karegi.",
+      CONTACT: "Message received! Our team will contact you within 24 hours.",
+      SUPPORT: "Thank you for your support pledge! We will contact you with payment details and your receipt.",
+      PARTNER: "Your partnership request has reached us. Our team will be in touch shortly.",
     };
 
     return NextResponse.json({ ok: true, message: messages[data.type ?? "CONTACT"] }, { status: 201 });
   } catch (error) {
     console.error("[api/contact]", error);
-    return NextResponse.json({ error: "Message bhej nahi paye. Thodi der baad try karein." }, { status: 500 });
+    return NextResponse.json({ error: "We could not send your message. Please try again in a moment." }, { status: 500 });
   }
 }

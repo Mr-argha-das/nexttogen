@@ -1,17 +1,17 @@
-# Institute Website + Admin Panel (Next.js 16)
+# NextGen Institute — Website + Admin Panel (Next.js 16)
 
-Ek complete, SEO-friendly institute website — courses, blogs, testimonials, apply form, contact, support/donation, chatbot aur **full admin panel** ke saath. Sab kuch ek hi jagah se manage hota hai: SQLite database + admin panel.
+A complete, SEO-friendly institute website with courses, blog, testimonials, an apply form, contact and support pages, a chatbot, and a **full admin panel**. Everything is managed from one place: a SQLite database plus the admin panel.
 
 ---
 
-## ⚡ Quick start (2 minute)
+## ⚡ Quick start (2 minutes)
 
 ```bash
-npm install          # dependencies (Node 22.5+ chahiye — node:sqlite built-in hai)
+npm install          # dependencies (requires Node 22.5+ — node:sqlite is built in)
 npm run dev          # http://localhost:3000
 ```
 
-Pehli baar chalane par database **khud ban jaati hai** (`data/institute.db`) aur demo content se seed ho jaati hai — 8 courses, 6 blogs, 9 testimonials, 12 FAQs, demo applications aur messages.
+On the first run the database is **created automatically** (`data/institute.db`) and seeded with demo content: 8 courses, 6 blog posts, 9 testimonials, 12 FAQs, plus sample applications and messages.
 
 ### Admin panel
 
@@ -21,37 +21,37 @@ Pehli baar chalane par database **khud ban jaati hai** (`data/institute.db`) aur
 | Email | `admin@nexttogen.in` |
 | Password | `Admin@12345` |
 
-> Production me `.env` me `ADMIN_EMAIL` / `ADMIN_PASSWORD` / `AUTH_SECRET` badal kar `npm run db:reset` chala dijiye.
+> For production, change `ADMIN_EMAIL`, `ADMIN_PASSWORD` and `AUTH_SECRET` in `.env`, then run `npm run db:reset`.
 
 ### Commands
 
-| Command | Kaam |
+| Command | What it does |
 |---|---|
 | `npm run dev` | Development server |
 | `npm run build` | Production build |
 | `npm start` | Production server |
-| `npm run db:seed` | Database banana + demo content bharna |
-| `npm run db:reset` | DB delete karke fresh seed (sab demo data hat jaata hai) |
-| `npm run setup` | install + seed ek saath |
+| `npm run db:seed` | Create the database and insert demo content |
+| `npm run db:reset` | Delete the DB and seed it fresh (removes all demo data) |
+| `npm run setup` | install + seed in one step |
 
 ---
 
 ## 🗂️ Website pages
 
-| Page | Route | Kya hai |
+| Page | Route | What it contains |
 |---|---|---|
 | Home | `/` | Hero, stats, featured courses, why-us, placement, testimonials, admission steps, blog preview, FAQ, CTA |
-| Courses | `/courses` | Category/mode filter + sorting, saare courses |
-| Course details | `/courses/[slug]` | Syllabus (expandable), fees + EMI, eligibility, certification, tools, apply form, related courses |
-| Apply form | `/apply` | Full admission form (`?course=slug` se course preselected), documents checklist, process steps |
-| Blogs | `/blog` | Search, category filter, tags, featured post, pagination |
-| Blog detail | `/blog/[slug]` | Article (markdown), views counter, share buttons, author box, related posts |
-| Testimonials | `/testimonials` | Placement stories, sabhi reviews, video/trust section |
+| Courses | `/courses` | Category and mode filters plus sorting, all courses |
+| Course details | `/courses/[slug]` | Expandable syllabus, fees and EMI, eligibility, certification, tools, apply form, related courses |
+| Apply form | `/apply` | Full admission form (`?course=slug` preselects a course), documents checklist, process steps |
+| Blog | `/blog` | Search, category filter, tags, featured post, pagination |
+| Blog detail | `/blog/[slug]` | Article (markdown), view counter, share buttons, author box, related posts |
+| Testimonials | `/testimonials` | Placement stories, all reviews, video/trust section |
 | Contact us | `/contact` | Contact channels, enquiry form, departments, map embed, visit tips |
 | Support us | `/support` | Donation tiers, UPI/bank details, support pledge form, CSR, fund utilisation |
-| About us | `/about` | Story, mission/vision, faculty, infrastructure, campus info |
-| FAQ | `/faq` | Category-wise accordion (FAQ schema ke saath) |
-| Chatbot | floating widget (har page par) | Rule-based assistant — courses/fees/FAQ ka live jawab |
+| About us | `/about` | Story, mission and vision, faculty, infrastructure, campus information |
+| FAQ | `/faq` | Category-wise accordion with FAQ schema |
+| Chatbot | floating widget on every page | Rule-based assistant answering from live course, fee and FAQ data |
 | Legal | `/privacy-policy`, `/terms` | Policy pages |
 | 404 | `not-found.tsx` | Custom error page |
 
@@ -59,56 +59,56 @@ Pehli baar chalane par database **khud ban jaati hai** (`data/institute.db`) aur
 
 ## 🛠️ Admin panel (`/admin`)
 
-- **Dashboard** — nayi applications, messages, content counts, 12-mahine ka application graph, status breakdown, recent activity
-- **Applications** — status filter (Naya / Contacted / Enrolled / Rejected), search, internal notes, one-click Call + WhatsApp, delete
-- **Messages** — contact / support-donation / CSR-partner enquiries alag-alag, status update, reply links
-- **Courses** — full CRUD: fees, discount, seats, batch date, syllabus modules (add/remove), highlights, tools, SEO fields, publish/featured toggle
-- **Blogs** — markdown editor, tags, category, author, publish date, SEO title/description, featured toggle, view counts
+- **Dashboard** — new applications, messages, content counts, a 12-month application graph, status breakdown and recent activity
+- **Applications** — status filter (New / Contacted / Enrolled / Rejected), search, internal notes, one-click Call and WhatsApp, delete
+- **Messages** — contact, support/donation and CSR-partner enquiries separated, status updates, reply links
+- **Courses** — full CRUD: fees, discount, seats, batch date, syllabus modules (add/remove), highlights, tools, SEO fields, publish and featured toggles
+- **Blog** — markdown editor, tags, category, author, publish date, SEO title/description, featured toggle, view counts
 - **Testimonials** — rating, course, company/role, city, featured toggle
-- **FAQs** — category-wise; **chatbot inhi FAQs ke jawab deta hai**
+- **FAQs** — grouped by category; **the chatbot answers using these FAQs**
 - **Subscribers** — newsletter list, manual add, delete
-- **Settings** — institute naam/tagline, contact & address, **brand colors (theme)**, stats numbers, chatbot naam/welcome, donation details, social links, Google Analytics ID
-- **Password change** — apna admin password badalne ke liye
+- **Settings** — institute name and tagline, contact and address, **brand colors (theme)**, statistics, chatbot name and welcome message, donation details, social links, Google Analytics ID
+- **Password change** — update your own admin password
 
-Login session signed JWT cookie (jose) + bcrypt password hash se secure hai. Saare admin routes server-side par protect hain.
+Login sessions are secured with a signed JWT cookie (jose) and bcrypt password hashes. Every admin route is protected on the server side.
 
 ---
 
-## 🎨 Theme / PDF ke hisaab se customize karna
+## 🎨 Customising the theme / branding
 
-Aapne jo theme PDF diya hai, uske colors aur branding **2 jagah** se match kar sakte hain:
+The theme colors and branding can be matched in **two places**:
 
-1. **Admin panel → Settings → Brand colours** (recommended, code chhune ki zaroorat nahi)
-   - `brandPrimary` → buttons, links, badges, gradients ka main color
-   - `brandAccent` → highlight buttons, chips, CTA ka color
+1. **Admin panel → Settings → Brand colors** (recommended, no code changes needed)
+   - `brandPrimary` → the main color for buttons, links, badges and gradients
+   - `brandAccent` → highlight buttons, chips and CTAs
 
-2. **Code se default set karna:** `src/content/settings.ts` → `DEFAULT_SETTINGS` me `brandPrimary`, `brandAccent`, `siteName`, `siteTagline` badal dijiye.
+2. **Defaults in code:** open `src/content/settings.ts` → `DEFAULT_SETTINGS` and change `brandPrimary`, `brandAccent`, `siteName` and `siteTagline`.
 
-Theme ke baaki elements:
+Other theme elements:
 
-| Kya badalna hai | File |
+| What you want to change | File |
 |---|---|
 | Colors, fonts, buttons, card styles | `src/app/globals.css` (`--brand`, `--brand-accent`, `.btn-primary`, `.card`) |
 | Fonts | `globals.css` → `--font-sans`, `--font-heading` |
 | Home page sections | `src/app/page.tsx` |
-| Header / Footer | `src/components/site/site-header.tsx`, `site-footer.tsx` |
+| Header / footer | `src/components/site/site-header.tsx`, `site-footer.tsx` |
 | Marketing content (features, faculty, donation tiers, partners) | `src/content/settings.ts` → `SITE_CONTENT` |
-| Demo courses / blogs / testimonials / FAQs | `src/content/*.ts` (ya admin panel se edit karein) |
+| Demo courses / blog posts / testimonials / FAQs | `src/content/*.ts` (or edit them from the admin panel) |
 
-> PDF milte hi: colors Settings me daal dijiye, naam/details update kar dijiye — baaki layout usi hisaab se adjust kar diya jayega.
+> Current brand values are placeholders (navy `#0b2a5b` with amber `#f5a623`). Drop the final values into Settings and everything — buttons, badges, gradients and chips — updates instantly.
 
 ---
 
-## 🔍 SEO features (built-in)
+## 🔍 SEO features (built in)
 
-- Har page par unique title, meta description, keywords aur **canonical URL**
-- Open Graph + Twitter card metadata
-- **Structured data (JSON-LD):** `EducationalOrganization`, `Course` (fees + batch ke saath), `FAQPage`, `BlogPosting`, `BreadcrumbList`, `ItemList`, `WebSite` search action
-- `sitemap.xml` — static pages + saare published courses/blogs automatically (naya content publish karte hi add ho jaata hai)
-- `robots.txt` — `admin` aur `api` disallow
-- Semantic HTML, breadcrumbs, alt text, mobile-first responsive design
-- Course/Blog URLs slug-based aur clean
-- Google Analytics support (Settings me `G-XXXXXXX` daal dijiye)
+- A unique title, meta description, keywords and **canonical URL** on every page
+- Open Graph and Twitter card metadata
+- **Structured data (JSON-LD):** `EducationalOrganization`, `Course` (with fees and batch date), `FAQPage`, `BlogPosting`, `BreadcrumbList`, `ItemList` and a `WebSite` search action
+- `sitemap.xml` — static pages plus every published course and blog post, added automatically as soon as you publish
+- `robots.txt` — disallows `admin` and `api`
+- Semantic HTML, breadcrumbs, alt text and a mobile-first responsive design
+- Clean, slug-based course and blog URLs
+- Google Analytics support (add your `G-XXXXXXX` ID in Settings)
 
 ---
 
@@ -118,13 +118,13 @@ Theme ke baaki elements:
 |---|---|
 | Framework | Next.js 16 (App Router, Turbopack) + React 19 + TypeScript |
 | Styling | Tailwind CSS v4 (CSS-first theme tokens) |
-| Database | SQLite via Node 22 ka built-in `node:sqlite` — **koi native dependency nahi** |
+| Database | SQLite through Node 22's built-in `node:sqlite` — **no native dependency** |
 | Auth | jose (JWT cookie) + bcryptjs |
 | Validation | zod |
-| Icons | lucide-react + custom brand SVGs |
-| Markdown | chhota custom renderer (koi heavy dependency nahi) |
+| Icons | lucide-react plus custom brand SVGs |
+| Markdown | a small custom renderer (no heavy dependency) |
 
-> `prisma/schema.prisma` reference ke liye rakha hai — agar aapko future me Postgres/Prisma par shift hona ho to model wahi hai.
+> `prisma/schema.prisma` is kept as a reference — the same models can be used if you later move to Postgres/Prisma.
 
 ### Folder structure
 
@@ -136,41 +136,41 @@ src/
 ├── components/
 │   ├── site/             # public UI (header, footer, cards, forms, chatbot)
 │   └── admin/            # admin UI (shell, forms, tables)
-├── content/              # demo content + default settings + site content
+├── content/              # demo content, default settings and site content
 └── lib/                  # db, data queries, auth, validation, chatbot, seo, utils
-prisma/schema.prisma      # reference schema (future migration ke liye)
+prisma/schema.prisma      # reference schema (for a future migration)
 scripts/seed.ts           # CLI seeding
 ```
 
 ---
 
-## 🌐 Deploy karne se pehle
+## 🌐 Before you deploy
 
-1. `.env` set karein:
+1. Set up `.env`:
    ```env
    DATABASE_URL="file:./data/institute.db"
-   ADMIN_EMAIL="aapka@email.com"
+   ADMIN_EMAIL="you@yourdomain.com"
    ADMIN_PASSWORD="strong-password"
    AUTH_SECRET="32+ random characters"
-   NEXT_PUBLIC_SITE_URL="https://aapkadomain.com"
+   NEXT_PUBLIC_SITE_URL="https://yourdomain.com"
    ```
-2. `npm run db:reset` (fresh DB + aapka admin account)
-3. `npm run build && npm start`
+2. Run `npm run db:reset` (fresh database plus your admin account)
+3. Run `npm run build && npm start`
 
-**Note (serverless deploy):** `node:sqlite` ephemeral filesystem wale platforms (Vercel) par data persist nahi karega. Options:
-- Railway / Render / VPS jaise platforms use karein (persistent disk ke saath) — sabse simple
-- Ya `src/lib/data.ts` ko Prisma/Postgres ya Supabase par port karein (`prisma/schema.prisma` ready hai; saari queries ek hi file me hain)
+**Note on serverless deploys:** `node:sqlite` will not persist data on platforms with an ephemeral filesystem such as Vercel. Options:
+- Use a platform with a persistent disk — Railway, Render or a VPS — which is the simplest route
+- Or port `src/lib/data.ts` to Prisma/Postgres or Supabase (`prisma/schema.prisma` is ready; every query lives in that one file)
 
 ---
 
-## 📋 Content checklist (launch se pehle)
+## 📋 Content checklist (before launch)
 
-- [ ] Institute ka asli naam, tagline, contact details (Settings)
-- [ ] Brand colors PDF ke hisaab se (Settings → Brand colours)
-- [ ] Courses ki asli fees, syllabus, batch dates
-- [ ] Faculty profiles (`src/content/settings.ts`) aur real testimonials
-- [ ] Placement partners list
-- [ ] Donation UPI/bank details + 80G info
-- [ ] Privacy policy & terms legal review
+- [ ] Real institute name, tagline and contact details (Settings)
+- [ ] Brand colors matching the official visiting card / brand guide (Settings → Brand colors)
+- [ ] Real course fees, syllabus and batch dates
+- [ ] Faculty profiles (`src/content/settings.ts`) and genuine testimonials
+- [ ] Placement partner list
+- [ ] Donation UPI/bank details and 80G information
+- [ ] Legal review of the privacy policy and terms
 - [ ] Google Analytics ID
-- [ ] Real campus map embed URL (Settings → `mapEmbedUrl`)
+- [ ] The real campus map embed URL (Settings → `mapEmbedUrl`)

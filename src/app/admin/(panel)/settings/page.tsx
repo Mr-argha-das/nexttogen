@@ -13,19 +13,19 @@ export default function AdminSettingsPage() {
         <div>
           <h1 className="font-heading text-xl font-extrabold sm:text-2xl">Site settings</h1>
           <p className="mt-1 text-[13.5px] text-slate-600">
-            Institute ki details, contact info, brand colors, chatbot aur donation settings.
+            Institute details, contact information, brand colors, the chatbot and donation settings.
           </p>
         </div>
         <Link href="/" target="_blank" className="btn btn-outline btn-sm">
-          <ExternalLink className="h-3.5 w-3.5" /> Website dekhein
+          <ExternalLink className="h-3.5 w-3.5" /> View the website
         </Link>
       </div>
 
       <div className="flex items-start gap-3 rounded-xl bg-brand-50 px-4 py-3 text-[13px] text-brand-900">
         <Info className="mt-0.5 h-4 w-4 shrink-0" />
         <p>
-          Yahan se theme colors badalne par poori site ka look-change ho jaata hai. Institute ka naam, fees, courses,
-          blogs, testimonials aur FAQs bhi admin panel se hi manage hote hain.
+          Changing the theme colors here instantly restyles the whole site. The institute name, fees, courses, blog
+          posts, testimonials and FAQs are all managed from the admin panel too.
         </p>
       </div>
 
@@ -36,11 +36,11 @@ export default function AdminSettingsPage() {
           <div className="card p-5">
             <h2 className="font-heading text-[15px] font-bold">Data & backup</h2>
             <p className="mt-2 text-[12.5px] leading-6 text-slate-600">
-              Poora data ek SQLite file me hai: <code className="rounded bg-slate-100 px-1">data/institute.db</code>.
-              Isko copy karke backup rakhiye. Restore karna ho to file wapas rakh dijiye.
+              All data lives in a single SQLite file: <code className="rounded bg-slate-100 px-1">data/institute.db</code>.
+              Keep a regular copy of it as a backup, and restore by putting the file back in place.
             </p>
             <p className="mt-3 text-[12.5px] leading-6 text-slate-600">
-              Fresh start ke liye (sab demo data delete): terminal me{" "}
+              For a fresh start (deletes all demo data), run in the terminal:{" "}
               <code className="rounded bg-slate-100 px-1">npm run db:reset</code>.
             </p>
           </div>

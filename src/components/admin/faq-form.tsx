@@ -31,24 +31,24 @@ export function FaqForm({ faq, onDone }: { faq?: Faq; onDone?: () => void }) {
   return (
     <form action={submit} className="space-y-4">
       <Toast state={state} />
-      <Field label="Sawaal" name="question" defaultValue={faq?.question ?? ""} required placeholder="Fees ki EMI kaise hoti hai?" />
-      <TextArea label="Jawab" name="answer" defaultValue={faq?.answer ?? ""} required rows={3} />
+      <Field label="Question" name="question" defaultValue={faq?.question ?? ""} required placeholder="How does the EMI for fees work?" />
+      <TextArea label="Answer" name="answer" defaultValue={faq?.answer ?? ""} required rows={3} />
       <div className="grid gap-4 sm:grid-cols-3">
         <Field label="Category" name="category" defaultValue={faq?.category ?? "General"} hint="Admission, Fees, Classes, Placement..." />
         <Field label="Sort order" name="sortOrder" type="number" defaultValue={faq?.sortOrder ?? 0} />
         <div className="flex items-end">
-          <Toggle name="published" label="Website par dikhayein" defaultChecked={faq?.published ?? true} />
+          <Toggle name="published" label="Show on the website" defaultChecked={faq?.published ?? true} />
         </div>
       </div>
       <button type="submit" disabled={pending} className="btn btn-primary">
         {pending ? (
           <>
-            <Loader2 className="h-4 w-4 animate-spin" /> Save ho raha hai…
+            <Loader2 className="h-4 w-4 animate-spin" /> Saving…
           </>
         ) : faq ? (
-          "Changes save karein"
+          "Save changes"
         ) : (
-          "FAQ add karein"
+          "Add FAQ"
         )}
       </button>
     </form>

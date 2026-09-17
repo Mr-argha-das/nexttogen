@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
     settings,
     title: "Terms & Conditions",
-    description: `Admission, fees, refund aur certificate ke niyam — ${settings.siteName} ke terms and conditions.`,
+    description: `Rules covering admission, fees, refunds and certificates — the terms and conditions of ${settings.siteName}.`,
     path: "/terms",
   });
 }
@@ -17,42 +17,42 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function TermsPage() {
   const settings = getSettings();
   const content = `## 1. Admission
-Admission counselling aur form bharne ke baad, fees jama hone par confirm hota hai. Institute kisi bhi application ko bina reason reject karne ka adhikaar rakhta hai (jaise galat documents ya seat full hona).
+Admission is confirmed once counselling and the application form are complete and the fees have been paid. The institute reserves the right to reject any application without stating a reason — for example where documents are invalid or the batch is full.
 
-## 2. Fees aur installments
-- Registration ke time minimum 20% fees dena zaroori hai
-- Baaki fees course ke dauraan decided schedule ke hisaab se (EMI/lump sum)
-- Fees late hone par batch se temporary rok lag sakti hai
-- Fees ke badle humare official receipt hi valid hain — cash ke liye office se receipt zaroor lein
+## 2. Fees and instalments
+- At least 20% of the fees is payable at the time of registration
+- The balance is paid during the course according to the agreed schedule (EMI or lump sum)
+- If fees are overdue, attendance at the batch may be temporarily suspended
+- Only our official receipt is valid proof of payment — always collect a receipt from the office for cash payments
 
 ## 3. Refund policy
-- Registration/processing charges non-refundable hote hain
-- Batch shuru hone se 7 din pehle tak cancellation par baaki fees refund ho jaati hai
-- 7 din ke baad refund nahi hota, lekin hum chain change (batch badalna) ya course swap ka option dete hain
-- Institute band hone ki sthiti me (agar kabhi ho) remaining fees refund ki jaati hai
+- Registration and processing charges are non-refundable
+- If you cancel up to 7 days before the batch begins, the remaining fees are refunded
+- After 7 days no refund is issued, but we do offer a batch change or a course swap
+- If the institute ever closes, the remaining fees are refunded
 
-## 4. Classes & attendance
-- Batch timings website/notice board par announce hoti hain
-- Minimum 75% attendance certificate ke liye zaroori hai
-- Chhooti hui class ki recording (available courses me) student portal par mil jaati hai
+## 4. Classes and attendance
+- Batch timings are announced on the website and on the notice board
+- A minimum of 75% attendance is required to receive the certificate
+- Recordings of missed classes (where available for the course) are provided in the student portal
 
 ## 5. Placement support
-Hum 100% placement **assistance** dete hain — resume building, mock interviews, placement drives aur referrals. Job ka final decision company ka hota hai, isliye koi legal "placement guarantee" nahi di jaati. Students ko placement drives attend karna zaroori hai.
+We provide 100% placement **assistance** — resume building, mock interviews, placement drives and referrals. The final hiring decision always belongs to the company, so no legal "placement guarantee" is offered. Students are expected to attend placement drives.
 
 ## 6. Student behaviour
-Class ke dauraan mobile, galat bhasha, ya kisi bhi tarah ki ragging allowed nahi hai. Is tarah ke case me admission bina refund cancel ho sakta hai. Raging ki complaint hamesha anonymously di ja sakti hai.
+Mobile phones during class, abusive language and any form of ragging are not permitted. Such cases may lead to cancellation of admission without a refund. Complaints of ragging may always be made anonymously.
 
 ## 7. Certificate
-Course complete hone par, fees clear hone aur assessment pass hone ke baad certificate milta hai. Certificate duplicate lene par nominal fee lagti hai.
+A certificate is issued after you complete the course, clear all fees and pass the assessment. A nominal fee applies for a duplicate certificate.
 
-## 8. Content & copyright
-Website ka saara content, study material aur class recordings ${settings.legalName} ki property hain. Bina permission share, copy ya bechna allowed nahi hai.
+## 8. Content and copyright
+All website content, study material and class recordings are the property of ${settings.legalName}. Sharing, copying or selling them without permission is not allowed.
 
 ## 9. Website use
-Website par di gayi information (fees, batch, syllabus) change ho sakti hai. Final aur current information ke liye admission office se confirm karna better hai.
+Information on the website (fees, batches, syllabus) may change. For the final and current details, please confirm with the admission office.
 
 ## 10. Contact
-In niyamon se juda koi bhi sawaal ho to likhiye: ${settings.email}.`;
+If you have any question about these terms, write to ${settings.email}.`;
   return (
     <>
       <PageHero
@@ -65,8 +65,8 @@ In niyamon se juda koi bhi sawaal ho to likhiye: ${settings.email}.`;
         <div className="container-x max-w-3xl">
           <Markdown content={content} />
           <p className="mt-8 rounded-xl bg-amber-50 px-4 py-3 text-[13px] text-amber-900">
-            Ye draft terms hain — launch se pehle apne legal advisor se verify karke institute ki actual policy ke hisaab se
-            update kar lijiye.
+            These terms are a draft. Before launch, have them verified by your legal advisor and update them to match
+            your institute&apos;s actual policy.
           </p>
         </div>
       </section>

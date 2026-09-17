@@ -1,17 +1,17 @@
 /**
- * Default site settings — admin panel (Settings page) se sab editable hai.
- * Colors yahin se aate hain: brandPrimary + brandAccent → globals.css variables.
+ * Default site settings — everything here is editable from the admin panel (Settings page).
+ * Brand colors flow into globals.css variables, so changing them re-themes the whole site.
  */
 export const DEFAULT_SETTINGS: Record<string, string> = {
-  siteName: "NextToGen Institute",
-  siteShortName: "NextToGen",
-  siteTagline: "Skills jo aapko job-ready banayein",
-  legalName: "NextToGen Institute of Technology & Skill Development",
+  siteName: "NextGen Institute",
+  siteShortName: "NextGen",
+  siteTagline: "Skills that build industry-ready careers",
+  legalName: "NextGen Institute of Technology & Skill Development",
   phone: "+91 90000 12345",
   alternatePhone: "+91 90000 12346",
   whatsapp: "919000012345",
-  email: "info@nexttogen.in",
-  admissionsEmail: "admissions@nexttogen.in",
+  email: "info@nextgeninstitute.in",
+  admissionsEmail: "admissions@nextgeninstitute.in",
   addressLine1: "3rd Floor, Shreeji Tower, Tonk Road",
   addressLine2: "Near Gandhi Nagar Railway Station",
   city: "Jaipur",
@@ -26,68 +26,67 @@ export const DEFAULT_SETTINGS: Record<string, string> = {
   linkedin: "https://linkedin.com/",
   twitter: "https://x.com/",
   telegram: "https://t.me/",
-  // Theme tokens (PDF aane par yahan exact hex daal dena)
-  brandPrimary: "#4f46e5",
-  brandAccent: "#f59e0b",
+  // Theme tokens — set these to the exact colors from the visiting card.
+  brandPrimary: "#0b2a5b",
+  brandAccent: "#f5a623",
   chatbotEnabled: "true",
-  chatbotName: "Nexti",
+  chatbotName: "Nova",
   chatbotWelcome:
-    "Namaste! Main Nexti hoon — NextToGen Institute ka admission assistant. Courses, fees, batch timing ya admission process ke baare me kuch bhi poochhiye.",
+    "Hello! I am Nova, the admission assistant at NextGen Institute. Ask me anything about our courses, fees, batch timings or the admission process.",
   foundedYear: "2014",
   studentsTrained: "12500",
   placementRate: "92",
   averageRating: "4.8",
   googleAnalyticsId: "",
-  supportUpiId: "nexttogen@upi",
+  supportUpiId: "nextgeninstitute@upi",
   supportBankName: "State Bank of India",
-  supportAccountName: "NextToGen Institute",
+  supportAccountName: "NextGen Institute",
   supportAccountNumber: "3912 4567 8890",
   supportIfsc: "SBIN0031234",
 };
 
-/** Site-wide marketing content (admin se nahi badalta, code me simple rakha hai). */
+/** Site-wide marketing content (edit in code; courses/blogs/FAQs are managed from the admin panel). */
 export const SITE_CONTENT = {
   stats: [
     { label: "Students trained", valueKey: "studentsTrained", suffix: "+" },
     { label: "Placement rate", valueKey: "placementRate", suffix: "%" },
     { label: "Years of training", valueSinceKey: "foundedYear", suffix: "+" },
-    { label: "Google rating", valueKey: "averageRating", suffix: "/5" },
+    { label: "Average rating", valueKey: "averageRating", suffix: "/5" },
   ],
   features: [
     {
-      title: "Live classroom + recorded backup",
+      title: "Live classes with lifetime recordings",
       description:
-        "Offline batches me daily classes, aur online students ke liye har class ka recording — chhut gayi class? Kabhi bhi dekh lijiye.",
+        "Daily classroom sessions, and every class is recorded for online students. Missed a class? Watch it any time.",
       icon: "presentation",
     },
     {
-      title: "Industry mentors",
+      title: "Trainers from the industry",
       description:
-        "Trainers jo khud 8+ saal se industry me kaam kar rahe hain — Infosys, TCS, Zomato, freelancing aur startups ka real experience.",
+        "Our faculty have 8+ years of real experience at companies like Infosys, TCS and fast-growing startups.",
       icon: "users",
     },
     {
       title: "Project-first learning",
       description:
-        "Har course me portfolio projects. Sirf certificate nahi — aapke paas dikhane ke liye kaam hota hai.",
+        "Every course includes portfolio projects. You leave with work you can show, not just a certificate.",
       icon: "hammer",
     },
     {
       title: "Placement & interview cell",
       description:
-        "Resume building, mock interviews, HR round practice aur 120+ partner companies me referral.",
+        "Resume building, mock interviews, HR rounds and referrals across 120+ hiring partner companies.",
       icon: "briefcase",
     },
     {
-      title: "Small batches",
+      title: "Small batches, personal attention",
       description:
-        "Maximum 30 students per batch — har student par personal attention, aur weekly doubt-clearing sessions.",
+        "Maximum 30 students per batch, with weekly doubt-clearing sessions and one-to-one mentoring.",
       icon: "target",
     },
     {
-      title: "Affordable with EMI",
-      description:
-        "0% interest instalments, scholarship test aur SC/ST/OBC & girl student concession ke saath.",
+      title: "Affordable with EMI options",
+      description: "0% interest instalments, merit scholarships and concessions for SC/ST/OBC and girl students.",
       icon: "wallet",
     },
   ],
@@ -110,56 +109,56 @@ export const SITE_CONTENT = {
       name: "Rahul Sharma",
       role: "Lead Trainer — Web & App Development",
       experience: "12 years",
-      bio: "Ex-Senior Engineer (product startup). MERN, Next.js aur cloud par 60+ batches train kar chuke hain.",
+      bio: "Former senior engineer at a product startup. Has trained 60+ batches in MERN, Next.js and cloud deployment.",
       initials: "RS",
     },
     {
       name: "Dr. Anjali Mehta",
       role: "Head — Data Science & AI",
       experience: "14 years",
-      bio: "PhD (Statistics). Banking analytics aur machine learning projects par industry consulting karti hain.",
+      bio: "PhD in Statistics. Consults on banking analytics and machine learning projects across India.",
       initials: "AM",
     },
     {
       name: "Vikram Singh Rathore",
       role: "Faculty — Cyber Security",
       experience: "10 years",
-      bio: "CEH certified, SOC analyst background. Bug bounty platforms par active security researcher.",
+      bio: "CEH certified with a SOC analyst background. Active security researcher on bug bounty platforms.",
       initials: "VR",
     },
     {
       name: "Priya Agarwal",
       role: "Faculty — Digital Marketing & Design",
       experience: "9 years",
-      bio: "D2C brands ke saath performance marketing aur UI/UX projects handle karti hain.",
+      bio: "Handles performance marketing and UI/UX projects for direct-to-consumer brands.",
       initials: "PA",
     },
   ],
   admissionsSteps: [
-    { step: "01", title: "Free counselling", text: "Career goal samajhte hain aur sahi course suggest karte hain." },
-    { step: "02", title: "Course & batch selection", text: "Demo class attend kijiye, timing aur mode chuniye." },
-    { step: "03", title: "Apply form + documents", text: "Online form bharein, ID aur marksheet ki copy jama karein." },
-    { step: "04", title: "Fees & enrolment", text: "Full payment ya 0% EMI option, phir class shuru." },
+    { step: "01", title: "Free counselling", text: "We understand your goal and recommend the right course." },
+    { step: "02", title: "Course & batch selection", text: "Attend a demo class, then choose your timing and mode." },
+    { step: "03", title: "Application & documents", text: "Fill the online form and submit your ID and marksheets." },
+    { step: "04", title: "Fees & enrolment", text: "Pay in full or use 0% EMI, and your classes begin." },
   ],
   supportTiers: [
     {
       name: "Supporter",
       amount: 1000,
       period: "one-time",
-      description: "Ek student ki ek mahine ki lab & internet cost sponsor karein.",
-      perks: ["Digital thank-you certificate", "Donor wall par naam", "Quarterly impact newsletter"],
+      description: "Sponsor one student's lab and internet access for a month.",
+      perks: ["Digital thank-you certificate", "Your name on the donor wall", "Quarterly impact newsletter"],
       highlight: false,
     },
     {
       name: "Scholarship Patron",
       amount: 25000,
       period: "per student",
-      description: "Ek underprivileged student ki poori course fees sponsor karein.",
+      description: "Fund the complete course fee for one underprivileged student.",
       perks: [
-        "Student ka progress report (name ke bina)",
-        "Annual function me invitation",
+        "Progress report for your sponsored student (anonymous)",
+        "Invitation to the annual function",
         "80G tax exemption receipt",
-        "Website par patron listing",
+        "Patron listing on the website",
       ],
       highlight: true,
     },
@@ -167,20 +166,20 @@ export const SITE_CONTENT = {
       name: "Lab / Batch Sponsor",
       amount: 150000,
       period: "per year",
-      description: "Ek computer lab (10 systems) ya poore batch ka sponsorship.",
+      description: "Sponsor a full computer lab (10 systems) or an entire batch.",
       perks: [
-        "Lab par aapke naam ki plaque",
-        "CSR report & social media feature",
-        "Annual impact report with photos",
+        "Plaque with your name at the lab",
+        "CSR report and social media feature",
+        "Annual impact report with photographs",
         "Quarterly campus visit invitation",
       ],
       highlight: false,
     },
   ],
   supportOtherWays: [
-    "Old laptop, monitor ya printer donate karein — hum refurbish karke rural students ko dete hain.",
-    "Guest lecture dein — apni industry journey students ke saath share karein.",
-    "Company ke liye internship / hiring pipeline banwaiye.",
-    "Apne area me 5 students ko humare course ke liye refer karein.",
+    "Donate old laptops, monitors or printers — we refurbish them for rural students.",
+    "Deliver a guest lecture and share your industry journey with our students.",
+    "Build an internship and hiring pipeline for your company.",
+    "Refer five students from your area to our courses.",
   ],
 };

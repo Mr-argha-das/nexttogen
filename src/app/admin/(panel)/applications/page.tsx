@@ -6,9 +6,9 @@ import { DeleteButton, StatusPill } from "@/components/admin/ui";
 import { deleteApplicationAction, updateApplicationAction } from "@/app/admin/actions";
 
 const STATUSES = [
-  { key: "ALL", label: "Sabhi" },
+  { key: "ALL", label: "All" },
   { key: "NEW", label: "Naye" },
-  { key: "CONTACTED", label: "Contact kiya" },
+  { key: "CONTACTED", label: "Contacted" },
   { key: "ENROLLED", label: "Enrolled" },
   { key: "REJECTED", label: "Rejected" },
 ];
@@ -51,7 +51,7 @@ export default async function AdminApplicationsPage({
             <input
               name="q"
               defaultValue={params.q ?? ""}
-              placeholder="Naam, phone ya email search karein"
+              placeholder="Search by name, phone or email"
               className="field pl-9 sm:w-72"
             />
           </div>
@@ -81,7 +81,7 @@ export default async function AdminApplicationsPage({
       <div className="space-y-4">
         {applications.map((application) => {
           const waText = encodeURIComponent(
-            `Namaste ${application.fullName} ji! ${application.courseName ?? "course"} ke baare me aapki enquiry mili hai — ${new Date().toLocaleDateString("en-IN")} ko humari team ne contact kiya tha. Aap kab call kar sakte hain?`,
+            `Hello ${application.fullName}, thank you for your enquiry about ${application.courseName ?? "our course"} — our team tried to reach you on ${new Date().toLocaleDateString("en-IN")}. When would be a good time to call you?`,
           );
           return (
             <div key={application.id} className="card p-5">
@@ -94,7 +94,7 @@ export default async function AdminApplicationsPage({
                       {relativeTime(application.createdAt)} · {formatDate(application.createdAt)}
                     </span>
                   </div>
-                  <p className="mt-1 text-[13px] font-medium text-brand-700">{application.courseName ?? "Course select nahi kiya"}</p>
+                  <p className="mt-1 text-[13px] font-medium text-brand-700">{application.courseName ?? "No course selected"}</p>
                   <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2 text-[12.5px] text-slate-600">
                     <a href={`tel:${application.phone}`} className="flex items-center gap-1.5 hover:text-brand-700">
                       <Phone className="h-3.5 w-3.5" /> {application.phone}
@@ -153,13 +153,13 @@ export default async function AdminApplicationsPage({
                 </div>
                 <div className="min-w-[220px] flex-1">
                   <label className="label" htmlFor={`notes-${application.id}`}>
-                    Internal notes (student ko nahi dikhta)
+                    Internal notes (not visible to the student)
                   </label>
                   <input
                     id={`notes-${application.id}`}
                     name="notes"
                     defaultValue={application.notes ?? ""}
-                    placeholder="Jaise: 2 baar call kiya, shaam ka batch chahiye"
+                    placeholder="For example: called twice, prefers the evening batch"
                     className="field"
                   />
                 </div>
@@ -170,7 +170,7 @@ export default async function AdminApplicationsPage({
                   action={deleteApplicationAction}
                   id={application.id}
                   label=""
-                  confirmText={`${application.fullName} ki application delete karni hai?`}
+                  confirmText={`Delete the application from ${application.fullName}?`}
                 />
               </form>
             </div>
@@ -180,13 +180,13 @@ export default async function AdminApplicationsPage({
         {!applications.length ? (
           <div className="card p-10 text-center">
             <CalendarCheck className="mx-auto h-10 w-10 text-slate-300" />
-            <p className="mt-3 font-heading text-base font-bold">Koi application nahi mili</p>
+            <p className="mt-3 font-heading text-base font-bold">No applications found</p>
             <p className="mt-1 text-[13px] text-slate-500">
-              {query ? "Search clear karke dekhein." : "Jab student apply form bharenge, applications yahan dikhengi."}
+              {query ? "Try clearing your search." : "Applications will appear here once students submit the apply form."}
             </p>
             {status !== "ALL" ? (
               <Link href="/admin/applications" className="btn btn-outline mt-4">
-                Saare applications dekhein
+                View all applications
               </Link>
             ) : null}
           </div>

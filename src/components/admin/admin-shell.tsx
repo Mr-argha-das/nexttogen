@@ -89,7 +89,7 @@ export function AdminShell({
 
           <div className="flex items-center gap-2">
             <Link href="/" target="_blank" className="btn btn-outline btn-sm hidden sm:inline-flex">
-              <ExternalLink className="h-3.5 w-3.5" /> Website dekhein
+              <ExternalLink className="h-3.5 w-3.5" /> View website
             </Link>
             <div className="hidden text-right sm:block">
               <p className="text-[13px] font-semibold text-ink">{user.name}</p>
@@ -146,7 +146,7 @@ export function AdminShell({
 
           <div className="mt-4 rounded-xl bg-gradient-to-br from-brand-600 to-brand-800 p-4 text-white">
             <Star className="h-4 w-4 text-accent-100" />
-            <p className="mt-2 text-[13px] font-semibold">Website SEO-ready hai</p>
+            <p className="mt-2 text-[13px] font-semibold">Your website is SEO-ready</p>
             <p className="mt-1 text-[11.5px] text-white/75">
               Sitemap: /sitemap.xml · Robots: /robots.txt · Har page par meta + schema.
             </p>
@@ -169,7 +169,7 @@ export function AdminShell({
         {open ? (
           <button
             type="button"
-            aria-label="Menu band karein"
+            aria-label="Close menu"
             onClick={() => setOpen(false)}
             className="fixed inset-0 z-20 bg-ink/30 lg:hidden"
           />

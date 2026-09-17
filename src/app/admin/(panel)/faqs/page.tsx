@@ -18,14 +18,14 @@ export default function AdminFaqsPage() {
       <div>
         <h1 className="font-heading text-xl font-extrabold sm:text-2xl">FAQs</h1>
         <p className="mt-1 text-[13.5px] text-slate-600">
-          {faqs.length} sawaal · {Object.keys(groups).length} categories. Ye FAQs website par aur chatbot me bhi use hote
-          hain — chatbot inke jawab de deta hai.
+          {faqs.length} questions across {Object.keys(groups).length} categories. These FAQs appear on the website and are
+          also used by the chatbot, which answers using them directly.
         </p>
       </div>
 
       <details className="card overflow-hidden">
         <summary className="flex cursor-pointer items-center gap-2 px-5 py-4 font-heading text-[15px] font-bold">
-          <Plus className="h-4 w-4 text-brand-600" /> Nayi FAQ add karein
+          <Plus className="h-4 w-4 text-brand-600" /> Add a new FAQ
         </summary>
         <div className="border-t border-slate-100 p-5">
           <FaqForm />
@@ -58,7 +58,7 @@ export default function AdminFaqsPage() {
                       <Link href={`/admin/faqs/${faq.id}`} className="btn btn-outline btn-sm">
                         <Pencil className="h-3.5 w-3.5" /> Edit
                       </Link>
-                      <DeleteButton action={deleteFaqAction} id={faq.id} label="" confirmText="Ye FAQ delete karni hai?" />
+                      <DeleteButton action={deleteFaqAction} id={faq.id} label="" confirmText="Delete this FAQ?" />
                     </div>
                   </div>
                 </li>
@@ -67,7 +67,7 @@ export default function AdminFaqsPage() {
           </div>
         ))}
         {!faqs.length ? (
-          <p className="card p-6 text-center text-[13.5px] text-slate-500">Abhi koi FAQ nahi hai — upar se add karein.</p>
+          <p className="card p-6 text-center text-[13.5px] text-slate-500">No FAQs yet — add one using the button above.</p>
         ) : null}
       </div>
     </div>

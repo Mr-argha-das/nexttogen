@@ -6,7 +6,7 @@ import { DeleteButton, StatusPill } from "@/components/admin/ui";
 import { deleteMessageAction, updateMessageAction } from "@/app/admin/actions";
 
 const TYPES = [
-  { key: "ALL", label: "Sabhi" },
+  { key: "ALL", label: "All" },
   { key: "CONTACT", label: "Contact" },
   { key: "SUPPORT", label: "Support / Donation" },
   { key: "PARTNER", label: "Partner / CSR" },
@@ -94,7 +94,7 @@ export default async function AdminMessagesPage({
                   href={`mailto:${message.email}?subject=${encodeURIComponent("Re: " + (message.subject ?? "Aapki enquiry"))}`}
                   className="btn btn-primary btn-sm"
                 >
-                  Reply karein
+                  Reply
                 </a>
                 {message.phone ? (
                   <a
@@ -131,7 +131,7 @@ export default async function AdminMessagesPage({
                   action={deleteMessageAction}
                   id={message.id}
                   label=""
-                  confirmText={`${message.name} ka message delete karna hai?`}
+                  confirmText={`Delete the message from ${message.name}?`}
                 />
               </div>
             </form>
@@ -141,8 +141,8 @@ export default async function AdminMessagesPage({
         {!messages.length ? (
           <div className="card p-10 text-center">
             <Inbox className="mx-auto h-10 w-10 text-slate-300" />
-            <p className="mt-3 font-heading text-base font-bold">Koi message nahi hai</p>
-            <p className="mt-1 text-[13px] text-slate-500">Contact form se aane wale messages yahan dikhte hain.</p>
+            <p className="mt-3 font-heading text-base font-bold">No messages yet</p>
+            <p className="mt-1 text-[13px] text-slate-500">Messages submitted through the contact form appear here.</p>
           </div>
         ) : null}
       </div>

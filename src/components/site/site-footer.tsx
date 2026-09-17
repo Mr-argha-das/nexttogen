@@ -24,10 +24,10 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         <div className="container-x grid gap-6 py-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
           <div>
             <h3 className="font-heading text-xl font-bold text-white sm:text-2xl">
-              Free career counselling + batch alerts
+              Free career counselling and batch alerts
             </h3>
             <p className="mt-2 max-w-xl text-sm text-slate-400">
-              Har mahine naye batch, scholarship updates aur industry ke career guides — seedha aapke inbox me.
+              New batches, scholarship announcements and career guides from our trainers — delivered to your inbox.
             </p>
           </div>
           <NewsletterForm />
@@ -43,23 +43,23 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
             <span className="font-heading text-lg font-extrabold text-white">{settings.siteShortName}</span>
           </div>
           <p className="mt-4 text-sm leading-6 text-slate-400">
-            {settings.legalName}. Estd. {settings.foundedYear} — practical skill training, small batches aur real
-            placement support ke saath.
+            {settings.legalName}. Established {settings.foundedYear} — practical skill training, small batches and
+            genuine placement support.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
-            {SOCIALS.filter((s) => settings[s.key]).map(({ key, label }) => {
+            {SOCIALS.filter((social) => settings[social.key]).map(({ key, label }) => {
               const Icon = SOCIAL_ICONS[key];
               return (
-              <a
-                key={key}
-                href={settings[key]}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-700 text-slate-400 transition-colors hover:border-brand-500 hover:bg-brand-500/10 hover:text-white"
-              >
-                <Icon className="h-4 w-4" />
-              </a>
+                <a
+                  key={key}
+                  href={settings[key]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-700 text-slate-400 transition-colors hover:border-brand-500 hover:bg-brand-500/10 hover:text-white"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
               );
             })}
           </div>
@@ -129,7 +129,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
       <div className="border-t border-slate-800">
         <div className="container-x flex flex-col items-center justify-between gap-3 py-5 text-xs text-slate-500 sm:flex-row">
           <p>
-            © {year} {settings.siteName}. Sabhi adhikar surakshit.
+            © {year} {settings.siteName}. All rights reserved.
           </p>
           <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             <Link href="/privacy-policy" className="hover:text-slate-300">

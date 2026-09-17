@@ -35,7 +35,7 @@ export default async function AdminLoginPage() {
 
           <h1 className="font-heading text-2xl font-extrabold">Admin login</h1>
           <p className="mt-2 text-[14px] text-slate-600">
-            Courses, blogs, applications aur messages manage karne ke liye login kijiye.
+            Sign in to manage courses, blogs, applications and messages.
           </p>
 
           <div className="mt-7">
@@ -48,12 +48,12 @@ export default async function AdminLoginPage() {
             </p>
             <p className="mt-1.5 font-mono text-[12px] text-slate-600">admin@nexttogen.in / Admin@12345</p>
             <p className="mt-1 text-[11.5px] text-slate-500">
-              Production me .env se ADMIN_EMAIL/ADMIN_PASSWORD badal kar `npm run db:reset` chala dijiye.
+              For production, change ADMIN_EMAIL and ADMIN_PASSWORD in .env and run `npm run db:reset`.
             </p>
           </div>
 
           <Link href="/" className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-semibold text-brand-700">
-            <ArrowLeft className="h-3.5 w-3.5" /> Website par wapas jaiye
+            <ArrowLeft className="h-3.5 w-3.5" /> Back to the website
           </Link>
         </div>
       </div>
@@ -64,18 +64,18 @@ export default async function AdminLoginPage() {
         <div className="relative flex h-full flex-col justify-center px-14 text-white">
           <Lock className="h-8 w-8 text-accent-100" />
           <h2 className="mt-5 font-heading text-3xl font-extrabold leading-tight">
-            Poori website aapke control me
+            The entire website, under your control
           </h2>
           <p className="mt-4 max-w-md text-[15px] leading-7 text-white/80">
-            Admin panel se course fees, syllabus, blog posts, testimonials, FAQs, contact details aur brand colors sab
-            change kar sakte hain — website turant update ho jaati hai.
+            From the admin panel you can manage course fees, the syllabus, blog posts, testimonials, FAQs, contact details and brand colors —
+            and the website updates instantly.
           </p>
           <ul className="mt-8 space-y-3 text-[14px] text-white/85">
             {[
               "Applications & enquiries ek jagah",
-              "Courses aur fees live edit karein",
-              "Blog publish karein (SEO fields ke saath)",
-              "Site settings, colors aur chatbot control",
+              "Edit courses and fees live",
+              "Publish blog posts with SEO fields",
+              "Site settings, colors and chatbot control",
             ].map((item) => (
               <li key={item} className="flex items-center gap-3">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-500" />

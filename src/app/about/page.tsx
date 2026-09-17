@@ -31,10 +31,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = getSettings();
   return buildMetadata({
     settings,
-    title: "About Us — Institute, faculty aur infrastructure",
-    description: `${settings.siteName} (est. ${settings.foundedYear}) — practical skill training institute. ${Number(
+    title: "About Us — Institute, faculty and infrastructure",
+    description: `${settings.siteName}, established in ${settings.foundedYear}, is a practical skill-training institute. More than ${Number(
       settings.studentsTrained,
-    ).toLocaleString("en-IN")}+ students trained, ${settings.placementRate}% placement record, industry-expert faculty aur modern computer labs.`,
+    ).toLocaleString("en-IN")} students trained, a ${settings.placementRate}% placement record, industry-expert faculty and modern computer labs.`,
     path: "/about",
     keywords: [`about ${settings.siteName}`, "institute faculty", "computer lab", "training institute history"],
   });
@@ -50,47 +50,47 @@ export default async function AboutPage() {
     { icon: Users, value: `${Number(settings.studentsTrained).toLocaleString("en-IN")}+`, label: "Students trained" },
     { icon: Award, value: `${settings.placementRate}%`, label: "Placement record" },
     { icon: Laptop, value: `${courses.length}`, label: "Job-oriented courses" },
-    { icon: HeartHandshake, value: `${years} saal`, label: "Community training" },
+    { icon: HeartHandshake, value: `${years} years`, label: "Of community training" },
   ];
 
   const values = [
     {
       icon: Target,
-      title: "Skill pehle, certificate baad me",
-      text: "Humara pura focus hai ki student kuch BANA sake. Projects, assignments aur lab work — yahi humari teaching ka base hai.",
+      title: "Skills first, certificate second",
+      text: "Our focus is that every student can actually BUILD something. Projects, assignments and lab work are the foundation of how we teach.",
     },
     {
       icon: HeartHandshake,
       title: "Honest counselling",
-      text: "Hum kabhi jhoothi placement guarantee nahi dete. Students ko saaf batate hain kitna kaam lagega, kitna time lagega.",
+      text: "We never make false placement promises. Students are told plainly how much work is involved and how long it takes.",
     },
     {
       icon: Lightbulb,
-      title: "Affordable & accessible",
-      text: "Scholarship, EMI aur reduced-fee batches — taaki paisa kisi ke seekhne ke raaste me na aaye.",
+      title: "Affordable and accessible",
+      text: "Scholarships, EMI and reduced-fee batches, so that money never becomes a barrier to learning.",
     },
     {
       icon: Building2,
       title: "Industry connection",
-      text: "Trainers jo khud industry me kaam karte hain, aur 120+ companies ke saath hiring tie-ups.",
+      text: "Trainers who work in the industry themselves, plus hiring tie-ups with 120+ companies.",
     },
   ];
 
   const infrastructure = [
-    { icon: Monitor, label: "3 computer labs", note: "60+ systems, 1:1 lab access" },
-    { icon: Wifi, label: "High-speed internet", note: "Live projects aur cloud tools ke liye" },
-    { icon: BookOpen, label: "Digital library", note: "Recorded lectures + study material" },
-    { icon: Laptop, label: "Project studio", note: "Group projects ke liye separate room" },
+    { icon: Monitor, label: "3 computer labs", note: "60+ systems with one-to-one lab access" },
+    { icon: Wifi, label: "High-speed internet", note: "For live projects and cloud tools" },
+    { icon: BookOpen, label: "Digital library", note: "Recorded lectures and study material" },
+    { icon: Laptop, label: "Project studio", note: "A dedicated room for group projects" },
   ];
 
   return (
     <>
       <PageHero
         eyebrow="About us"
-        title={`${settings.foundedYear} se skills, sirf skills`}
-        description={`${settings.legalName} ki shuruat ek chhote se classroom se hui thi — 6 computers aur 12 students ke saath. Aaj ${Number(
+        title={`Building careers with real skills since ${settings.foundedYear}`}
+        description={`${settings.legalName} began in a single small classroom with six computers and twelve students. Today more than ${Number(
           settings.studentsTrained,
-        ).toLocaleString("en-IN")}+ students humare saath padh chuke hain aur ${settings.city} ke IT, banking, retail aur startup ecosystem me kaam kar rahe hain.`}
+        ).toLocaleString("en-IN")} students have studied with us, and our alumni work across the IT, banking, retail and startup ecosystem in ${settings.city} and beyond.`}
         crumbs={[{ label: "About Us" }]}
       />
 
@@ -106,30 +106,31 @@ export default async function AboutPage() {
       <section className="section">
         <div className="container-x grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
-            <p className="eyebrow">Humari kahani</p>
+            <p className="eyebrow">Our story</p>
             <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
-              Ek chhote classroom se {settings.city} ke bharose-wale institute tak
+              From one small classroom to one of {settings.city}&apos;s most trusted institutes
             </h2>
             <div className="mt-5 space-y-4 text-[15px] leading-7 text-slate-600">
               <p>
-                {settings.foundedYear} me humne sirf ek soch ke saath shuru kiya tha — college degree ke saath-saath
-                <strong> kaam karne layak skill</strong> milni chahiye. Tab humare paas 6 computers the aur ek hi course
-                (DCA). Students ne bharosa kiya, aur unhone hi humein aage badhaya.
+                We started in {settings.foundedYear} with a single belief: along with a degree, students deserve{" "}
+                <strong>skills they can actually work with</strong>. Back then we had six computers and one course
+                (DCA). Our students trusted us, and that trust is what moved us forward.
               </p>
               <p>
-                Aaj hum 8 se zyada courses chalate hain — web development se lekar data science, cyber security aur digital
-                marketing tak. Har saal naye trainers, naye labs aur nayi industry partnerships judti hain, lekin ek cheez
-                kabhi nahi badli: batches chhote rehte hain, aur har student par personal attention.
+                Today we run more than eight courses, from web development and data science to cyber security and digital
+                marketing. Every year brings new trainers, new labs and new industry partnerships, but one thing has not
+                changed: batches stay small, and every student gets personal attention.
               </p>
               <p>
-                Humara placement cell sirf referral nahi deta — resume se lekar mock interview tak sab karata hai. Yahi
-                wajah hai ki hamara placement record {settings.placementRate}% hai aur students humein referral dete hain.
+                Our placement cell does not just pass on referrals — it works on everything from your resume to mock
+                interviews. That is why our placement record stands at {settings.placementRate}%, and why students keep
+                referring their friends to us.
               </p>
             </div>
 
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/courses" className="btn btn-primary">
-                Courses dekhein <ArrowRight className="h-4 w-4" />
+                Browse courses <ArrowRight className="h-4 w-4" />
               </Link>
               <Link href="/testimonials" className="btn btn-outline">
                 Student stories
@@ -158,27 +159,28 @@ export default async function AboutPage() {
             <Compass className="h-6 w-6 text-brand-600" />
             <h2 className="mt-3 font-heading text-lg font-bold">Mission</h2>
             <p className="mt-2 text-[14px] leading-7 text-slate-600">
-              {settings.city} aur aas-paas ke areas ke youth ko industry-ready skills dena — affordable fees, practical
-              training aur honest guidance ke saath, taaki wo apne parivaar aur samaj ko aage badha sakein.
+              To equip the youth of {settings.city} and nearby areas with industry-ready skills — through affordable
+              fees, practical training and honest guidance, so they can build a better future for their families and
+              their communities.
             </p>
           </div>
           <div className="card p-6">
             <Eye className="h-6 w-6 text-brand-600" />
             <h2 className="mt-3 font-heading text-lg font-bold">Vision</h2>
             <p className="mt-2 text-[14px] leading-7 text-slate-600">
-              Rajasthan ka sabse bharosemand skill-training institute banna, jahan se nikalne wala har student apne field
-              me kaam kar raha ho — aur wapas aakar naye students ko raasta dikhaye.
+              To be the most trusted skill-training institute in the region — where every graduate is working in their
+              chosen field and comes back to guide the next generation of students.
             </p>
           </div>
           <div className="card p-6">
             <HeartHandshake className="h-6 w-6 text-brand-600" />
             <h2 className="mt-3 font-heading text-lg font-bold">Social responsibility</h2>
             <p className="mt-2 text-[14px] leading-7 text-slate-600">
-              Har saal free aur heavily-discounted batches girl students, SC/ST/OBC candidates aur rural students ke liye.
-              Purane laptops refurbish karke zarooratmand students ko diye jaate hain.
+              Free and heavily discounted batches every year for girl students, SC/ST/OBC candidates and rural
+              learners. Old laptops are refurbished and given to students who need them.
             </p>
             <Link href="/support" className="mt-4 inline-flex items-center gap-1 text-[13.5px] font-semibold text-brand-700">
-              Support Us <ArrowRight className="h-4 w-4" />
+              Support us <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
@@ -189,10 +191,10 @@ export default async function AboutPage() {
         <div className="container-x">
           <div className="max-w-2xl">
             <p className="eyebrow">Faculty</p>
-            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Jo padhate hain, wo industry se aate hain</h2>
+            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Our trainers come from the industry</h2>
             <p className="mt-3 text-[15px] leading-7 text-slate-600">
-              Humare trainers sirf theory wale nahi hain — sabhi ne 9 se 14 saal tak companies me kaam kiya hai. Isliye
-              class me real projects, real deadlines aur real interview questions discuss hote hain.
+              Our faculty are not purely academic — each of them has spent 9 to 14 years working in companies. That is
+              why classes discuss real projects, real deadlines and real interview questions.
             </p>
           </div>
 
@@ -213,7 +215,7 @@ export default async function AboutPage() {
           </div>
 
           <div className="mt-6 rounded-2xl border border-dashed border-slate-300 p-5 text-center text-[13px] text-slate-500">
-            Note: ye demo faculty profiles hain — admin panel se (ya code me) real faculty details update kar lijiye.
+            Note: these are sample faculty profiles. Replace them with your real team from the admin panel or in code.
           </div>
         </div>
       </section>
@@ -224,7 +226,7 @@ export default async function AboutPage() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
               <p className="eyebrow">Infrastructure</p>
-              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Campus & labs</h2>
+              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Campus and labs</h2>
               <p className="mt-3 text-[15px] leading-7 text-slate-600">
                 {settings.addressLine1}
                 {settings.addressLine2 ? `, ${settings.addressLine2}` : ""}, {settings.city}, {settings.state} –{" "}
@@ -252,12 +254,12 @@ export default async function AboutPage() {
 
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              "Air-conditioned classrooms with projector",
-              "Power backup — classes kabhi nahi rukti",
-              "CCTV monitored campus & safe environment",
-              "Girls ke liye separate washroom & common room",
-              "RO drinking water & waiting area",
-              "Library me exam preparation material",
+              "Air-conditioned classrooms with projectors",
+              "Power backup, so classes are never interrupted",
+              "CCTV-monitored campus with a safe environment",
+              "Separate washroom and common room for girls",
+              "RO drinking water and a comfortable waiting area",
+              "Library with exam preparation material",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2 text-[13.5px] text-slate-700">
                 <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
@@ -273,11 +275,11 @@ export default async function AboutPage() {
         <div className="container-x">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="eyebrow">Students ki zubaani</p>
-              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Humare baare me students kya kehte hain</h2>
+              <p className="eyebrow">In our students&apos; words</p>
+              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">What students say about us</h2>
             </div>
             <Link href="/testimonials" className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
-              Sabhi reviews <ArrowRight className="h-4 w-4" />
+              All reviews <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="mt-6 grid gap-5 lg:grid-cols-3">
@@ -289,9 +291,9 @@ export default async function AboutPage() {
       </section>
 
       <CtaBand
-        title="Campus aaiye, khud dekh lijiye"
-        description="Ek baar aa kar class attend kijiye, lab dekhiye aur trainers se baat kijiye. Uske baad decide kijiye — humein koi jaldi nahi."
-        primary={{ href: "/contact", label: "Campus visit schedule" }}
+        title="Visit the campus and see for yourself"
+        description="Sit in a class, look at the labs and talk to our trainers. Then decide — there is no pressure from our side."
+        primary={{ href: "/contact", label: "Schedule a campus visit" }}
         secondary={{ href: `tel:${settings.phone.replace(/\s/g, "")}`, label: `Call ${settings.phone}` }}
       />
     </>

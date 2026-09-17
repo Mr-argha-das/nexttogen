@@ -69,26 +69,26 @@ export function TestimonialForm({
         defaultValue={testimonial?.message ?? ""}
         required
         rows={4}
-        hint="Student ki apni bhasha me — jitna real lagega utna achha lagega"
+        hint="Keep the student&apos;s own words — the more natural it sounds, the more convincing it is"
       />
       <div className="grid gap-3 sm:grid-cols-2">
-        <Toggle name="published" label="Website par dikhayein" defaultChecked={testimonial?.published ?? true} />
+        <Toggle name="published" label="Show on the website" defaultChecked={testimonial?.published ?? true} />
         <Toggle
           name="featured"
           label="Featured review"
           defaultChecked={testimonial?.featured ?? false}
-          hint="Home page aur testimonials ke top par"
+          hint="Shown on the home page and at the top of the testimonials page"
         />
       </div>
       <button type="submit" disabled={pending} className="btn btn-primary">
         {pending ? (
           <>
-            <Loader2 className="h-4 w-4 animate-spin" /> Save ho raha hai…
+            <Loader2 className="h-4 w-4 animate-spin" /> Saving…
           </>
         ) : testimonial ? (
-          "Changes save karein"
+          "Save changes"
         ) : (
-          "Testimonial add karein"
+          "Add testimonial"
         )}
       </button>
     </form>

@@ -17,9 +17,9 @@ export type SeedPost = {
 export const SEED_POSTS: SeedPost[] = [
   {
     slug: "web-development-career-roadmap-2026",
-    title: "2026 me Web Development Career Kaise Banaye: Step-by-Step Roadmap",
+    title: "How to Build a Web Development Career in 2026: A Step-by-Step Roadmap",
     excerpt:
-      "HTML se lekar deployment tak — ek fresher ko 6 mahine me job-ready banane wala realistic roadmap, free resources ke saath.",
+      "A realistic six-month roadmap that takes you from HTML to deployment — with the projects and habits that actually get freshers hired.",
     category: "Career",
     tags: ["Web Development", "Roadmap", "Fresher Jobs", "MERN"],
     readMinutes: 7,
@@ -29,34 +29,34 @@ export const SEED_POSTS: SeedPost[] = [
     daysAgo: 3,
     coverImage: "/images/blog-web-roadmap.jpg",
     views: 1840,
-    content: `Har saal hazaaron students poochhte hain — "sir, web development me career kaise start karein?" Answer simple hai, par uspar consistency chahiye. Ye roadmap hamare 2000+ students par test kiya gaya hai.
+    content: `Thousands of students ask us the same question every year: "How do I start a career in web development?" The answer is simple, but it demands consistency. This roadmap has been tested on more than 2,000 of our students.
 
-## Step 1 — Foundation (Week 1–4)
-HTML aur CSS se shuru karein. Sirf video dekhna kaafi nahi — **roz 1 chhota page banayein**. Ek personal profile page, ek restaurant menu page, ek pricing table. Yahi habit aapko baaki students se aage rakhegi.
+## Step 1 — Foundations (Week 1–4)
+Start with HTML and CSS. Watching videos is not enough: build **one small page every day**. A personal profile page, a restaurant menu page, a pricing table. That habit alone will put you ahead of most beginners.
 
 ## Step 2 — JavaScript (Week 5–12)
-Yahan 60% students ruk jaate hain. Isliye DOM manipulation aur events par extra time dein. Chhote projects banayein: to-do list, calculator, weather app (API ke saath). Har project ko GitHub par push karein — 12 commit se zyada kuch nahi lagta.
+This is where nearly 60% of learners stop. Give DOM manipulation and events extra time. Build small projects: a to-do list, a calculator, a weather app that calls an API. Push every project to GitHub — it takes a minute and becomes your proof of work.
 
-## Step 3 — Framework: React (Week 13–18)
-React ka ek hi rule hai — **state aur props clear ho jayein to sab clear hai**. Router, forms, API calls aur custom hooks seekhne ke baad ek multi-page project banayein.
+## Step 3 — A framework: React (Week 13–18)
+React becomes easy once **state and props are clear in your head**. Learn routing, forms, API calls and custom hooks, then build one multi-page project from scratch.
 
 ## Step 4 — Backend (Week 19–24)
-Node.js + Express + MongoDB. Authentication (JWT), CRUD APIs, file upload aur validation — ye 4 cheezein 90% job interviews me poochhi jaati hain.
+Node.js, Express and MongoDB. Authentication with JWT, CRUD APIs, file uploads and validation — these four topics appear in 90% of entry-level interviews.
 
-## Step 5 — Portfolio & Job Apply (Week 25–26)
-- 2 bade projects (ek full-stack, ek API integration wala)
-- 8 chhote projects GitHub par
-- LinkedIn + Naukri profile me projects ka link
-- Roz 10 applications + 1 referral message
+## Step 5 — Portfolio and applications (Week 25–26)
+- Two large projects (one full-stack, one API integration)
+- Eight smaller projects on GitHub
+- LinkedIn and job portal profiles linking your work
+- Ten applications and one referral message every day
 
-## Reality check
-Sirf certificate kaam nahi karta. Hum students ko isliye projects par zyada focus karate hain — interview me aapka GitHub khulta hai, aur wahi aapka sabse bada proof hota hai. NextToGen ke Full Stack batch me har student 12 projects banata hai.`,
+## A reality check
+A certificate by itself rarely gets you hired. That is why we push projects so hard: in an interview your GitHub opens first, and that is your strongest evidence. Every student in our Full Stack batch builds 12 projects before graduating.`,
   },
   {
     slug: "data-science-vs-ai-vs-machine-learning",
-    title: "Data Science vs AI vs Machine Learning: Beginner Ke Liye Asaan Farq",
+    title: "Data Science vs AI vs Machine Learning: A Simple Guide for Beginners",
     excerpt:
-      "Teen sabse zyada confuse karne wale terms — ek dum simple bhasha me, example ke saath, aur kaunsi job kis skill se milti hai.",
+      "The three terms everyone mixes up — explained in plain English with examples, plus which job each skill set actually leads to.",
     category: "Data & AI",
     tags: ["Data Science", "AI", "Machine Learning", "Career Guide"],
     readMinutes: 6,
@@ -66,74 +66,74 @@ Sirf certificate kaam nahi karta. Hum students ko isliye projects par zyada focu
     daysAgo: 8,
     coverImage: "/images/blog-data-science.jpg",
     views: 1320,
-    content: `"Data Science aur AI me kya farq hai?" — ye sawaal humse har counselling session me aata hai. Chaliye ek example se samjhte hain.
+    content: `"What is the difference between data science and AI?" This question comes up in almost every counselling session. Here is the simplest way to think about it.
 
 ## Data Science
-Data ko samajhna aur usse decisions nikalna. Aap Excel/Python me data saaf karte hain, charts banate hain aur report dete hain. Job titles: Data Analyst, Business Analyst, MIS Executive.
+Understanding data and turning it into decisions. You clean data in Python or Excel, build charts and deliver reports. Job titles: Data Analyst, Business Analyst, MIS Executive.
 
 ## Machine Learning
-Data se **prediction** karna. Jaise "kaunse customer churn karenge" ya "agli mahine sales kitni hogi". Yah ML models ka kaam hai. Job titles: ML Engineer, Data Scientist.
+Using data to **predict**. Which customers are likely to leave? What will next month's sales look like? Those predictions are machine learning models. Job titles: ML Engineer, Data Scientist.
 
 ## Artificial Intelligence
-Sabse bada umbrella. ML iske andar aata hai. Aaj GenAI (chatbots, image generation) bhi isi ka hissa hai.
+The largest umbrella. Machine learning sits inside it, and today's generative AI — chatbots and image generation — is part of the same field.
 
-## Kaunsa pehle seekhein?
-1. **Pehle analytics** — Python + SQL + visualization. Isse 2–3 mahine me internship mil sakti hai.
-2. **Phir ML** — statistics aur scikit-learn.
-3. **Phir GenAI** — LLM APIs aur prompt engineering.
+## What should you learn first?
+1. **Start with analytics** — Python, SQL and visualisation. This alone can earn you an internship within two to three months.
+2. **Then machine learning** — statistics and scikit-learn.
+3. **Then generative AI** — LLM APIs and prompt engineering.
 
-## Salary reality (India, fresher)
+## Salary reality (India, freshers)
 - Data Analyst: ₹3.5–6 LPA
 - ML Engineer: ₹6–12 LPA
-- AI/GenAI specialist: ₹8–15 LPA
+- AI and GenAI specialist: ₹8–15 LPA
 
-Shuruat ke liye skill se zyada important hai **portfolio**. Ek dashboard aur ek end-to-end ML project aapko interview tak pahucha dega.`,
+At the start, your portfolio matters more than your certificate. One serious dashboard and one end-to-end machine learning project will carry you into interviews.`,
   },
   {
-    slug: "fresher-resume-kaise-banaye-2026",
-    title: "Fresher Resume Kaise Banaye Jo Shortlist Ho Jaye (Format + Examples)",
+    slug: "fresher-resume-that-gets-shortlisted",
+    title: "How to Write a Fresher Resume That Gets Shortlisted (Format + Examples)",
     excerpt:
-      "Fresher resume me sirf 3 cheezein matter karti hain: projects, skills aur clarity. Poora format aur common mistakes.",
+      "Only three things matter on a fresher resume: projects, skills and clarity. Here is a format you can copy, plus the mistakes to avoid.",
     category: "Career",
     tags: ["Resume", "Interview", "Fresher", "Job Search"],
     readMinutes: 5,
     featured: false,
-    author: "NextToGen Placement Cell",
+    author: "NextGen Placement Cell",
     authorRole: "Placement Team",
     daysAgo: 14,
     coverImage: "/images/blog-resume.jpg",
     views: 2210,
-    content: `HR ek resume par sabse pehle **6–8 second** deta hai. Isliye important cheezein upar rakhiye, kahani neeche.
+    content: `A recruiter spends **six to eight seconds** on a resume before deciding. Keep the important things at the top and the story below.
 
-## Resume ka structure (1 page)
-1. **Naam + contact** — phone, email, city, LinkedIn, GitHub
-2. **Objective (2 lines)** — "Fresher full-stack developer, 12 projects, MERN stack"
-3. **Skills section** — technical tools, 8–12 keywords
-4. **Projects** — 3 projects, har ek me: kaam kya tha, tools kya, result kya
-5. **Education** — latest pehle
-6. **Certifications / internships**
+## A structure that works (one page)
+1. **Name and contact** — phone, email, city, LinkedIn, GitHub
+2. **Objective (two lines)** — "Fresher full-stack developer with 12 projects in the MERN stack"
+3. **Skills** — 8 to 12 technical keywords
+4. **Projects** — three projects, each with what you built, the tools used and the outcome
+5. **Education** — most recent first
+6. **Certifications and internships**
 
-## Project lines kaise likhein
-Bukhaar wali line: "Made a website."
-Behtar line: "Built an e-commerce app with React & Node; Razorpay test payments; deployed on Vercel — 30 products, search aur cart functionality."
+## How to write project bullet points
+Weak: "Made a website."
+Better: "Built an e-commerce app with React and Node; integrated test payments; deployed on Vercel with 30 products and cart search."
 
-Formula: **Action + Tech + Result**.
+The formula is **action + technology + result**.
 
-## 5 common mistakes
-- Photo aur "Father's name" (private jobs me zaroori nahi)
-- MS Word ka fancy template — ATS ise parse nahi kar pata
-- "Hard working, self motivated" jaise empty words
-- Skills me sab kuch likh dena, jo aata nahi
-- File name "resume_final_final.pdf" — iske badle "Aman_Sharma_Web_Developer.pdf"
+## Five common mistakes
+- Photos and personal details that private employers do not need
+- Fancy Word templates that applicant tracking systems cannot parse
+- Empty phrases such as "hard working and self motivated"
+- Listing skills you cannot demonstrate
+- File names like "resume_final_final.pdf" — use "Aman_Sharma_Web_Developer.pdf" instead
 
-## Talent vs honesty
-Jo skill nahi aati, mat likhiye — interview me pakde jaayenge. Jo seekh rahe hain, uske liye "currently learning" likh dijiye. Humare placement cell me har student ka resume 3 baar review kiya jaata hai.`,
+## Be honest about skills
+If you cannot use a tool yet, leave it out — interviews expose it quickly. If you are learning it, write "currently learning". In our placement cell, every student's resume is reviewed three times before it goes out.`,
   },
   {
     slug: "digital-marketing-free-tools-2026",
-    title: "Digital Marketing Ke 12 Free Tools Jo Har Fresher Ko Aane Chahiye",
+    title: "12 Free Digital Marketing Tools Every Fresher Should Know",
     excerpt:
-      "Bina ek rupya kharch kiye content, SEO, ads aur analytics ka kaam karne wale practical tools — kaam ke saath.",
+      "Practical, zero-cost tools for content, SEO, ads and analytics — and exactly what to build with each one to prove your skills.",
     category: "Digital Marketing",
     tags: ["SEO", "Tools", "Google Ads", "Freelancing"],
     readMinutes: 4,
@@ -143,76 +143,76 @@ Jo skill nahi aati, mat likhiye — interview me pakde jaayenge. Jo seekh rahe h
     daysAgo: 21,
     coverImage: "/images/blog-marketing-tools.jpg",
     views: 980,
-    content: `Achhi khabar ye hai — digital marketing seekhne ke liye starting me paisa nahi lagta. Ye 12 tools har fresher ke laptop me hone chahiye.
+    content: `The good news about digital marketing is that you do not need to spend money to start learning. These twelve tools should be installed on every fresher's laptop.
 
-## SEO & Research
-1. **Google Search Console** — aapki site ka actual traffic aur errors
-2. **Google Trends** — konsa topic abhi chal raha hai
-3. **Ubersuggest / Keyword Planner** — free keyword ideas
-4. **Screaming Frog (free 500 URLs)** — technical SEO audit
+## SEO and research
+1. **Google Search Console** — the real traffic and errors for any site you manage
+2. **Google Trends** — which topics are rising right now
+3. **Ubersuggest or Keyword Planner** — free keyword ideas
+4. **Screaming Frog (free tier)** — technical SEO audits
 
-## Content & Creative
-5. **Canva** — social creatives aur reels templates
+## Content and creative
+5. **Canva** — social creatives and Reels templates
 6. **Google Looker Studio** — free client reporting dashboards
-7. **ChatGPT / Gemini** — captions aur ad copy ka pehla draft
-8. **CapCut** — reels aur YouTube shorts editing
+7. **ChatGPT or Gemini** — first drafts of captions and ad copy
+8. **CapCut** — Reels and YouTube Shorts editing
 
-## Ads & Analytics
-9. **Meta Ads Manager** — real campaign practice (₹500 se shuru)
+## Ads and analytics
+9. **Meta Ads Manager** — real campaign practice (start with a small budget)
 10. **Google Ads Editor** — bulk campaign editing
-11. **GA4** — user behaviour samajhna
+11. **GA4** — understanding user behaviour
 12. **Google Tag Manager** — conversion tracking
 
-## Kaam kaise karein?
-Har tool ka ek portfolio deliverable banayein: ek dashboard, ek audit report, ek ad campaign screenshot. Interview me "mujhe Canva aata hai" kehne se accha hai **file dikhana**.
+## How to actually use them
+Turn each tool into a portfolio deliverable: a dashboard, an audit report, a campaign screenshot. In an interview, showing the file beats saying "I know Canva".
 
-NextToGen ke digital marketing batch me students live campaign chalate hain — isse confidence aur proof dono milta hai.`,
+Students in our digital marketing batches run live campaigns, which builds both confidence and proof.`,
   },
   {
     slug: "government-vs-private-job-it-field",
-    title: "Government vs Private Job: IT Field Me Kya Choose Karein?",
+    title: "Government vs Private Jobs: What Should You Choose in IT?",
     excerpt:
-      "Stability, growth, salary aur work-life balance — dono raaste ka honest comparison, ek training institute ki nazar se.",
+      "Stability, growth, salary and work-life balance compared honestly — from the perspective of a training institute.",
     category: "Career",
-    tags: ["Government Jobs", "Private Jobs", "Career Counseling"],
+    tags: ["Government Jobs", "Private Jobs", "Career Counselling"],
     readMinutes: 5,
     featured: false,
-    author: "NextToGen Counselling Team",
+    author: "NextGen Counselling Team",
     authorRole: "Career Counsellor",
     daysAgo: 30,
     coverImage: "/images/blog-career-choice.jpg",
     views: 1560,
-    content: `Ye sawaal har student ke ghar me hota hai: "sarkari naukri karein ya private?" Sach ye hai — dono achhe hain, par aapki priority kya hai, wo decide karta hai.
+    content: `Almost every student hears this at home: "Should I prepare for a government job or go private?" Both paths are good — your priority decides which one suits you.
 
-## Government side
-- Stability aur pension
-- Fixed time table, leaves
-- Selection process lamba (6 mahine - 2 saal)
-- Technical skill growth slow ho sakti hai
+## The government side
+- Job security and a pension
+- Fixed working hours and leave benefits
+- Long selection cycle, often six months to two years
+- Technical skills can grow more slowly
 
-Government IT jobs (Programmer, DEO, Computer Operator) ke liye **DCA, CCC, typing aur Tally** jaisi qualification kaam aati hai.
+Government IT roles such as Programmer, Data Entry Operator and Computer Operator value qualifications like **DCA, CCC, typing speed and Tally**.
 
-## Private side
-- Fast growth aur skill learning
-- Salary aapki skill ke hisaab se badhti hai
-- Job security aapki skill hai, company ki nahi
-- Starting me pressure zyada
+## The private side
+- Fast growth and constant learning
+- Salary grows with your skills
+- Job security depends on your skill, not the company's promise
+- Initial pressure is higher
 
-Private IT me entry ke liye **projects + internship** sabse zyada matter karte hain.
+Private IT hiring weighs **projects and internships** more than marks.
 
-## Behtar rasta: dono ke liye tayyari
-1. Pehle ek technical skill skill seekhein (web, data, accounting ya marketing)
-2. 2–3 projects bana kar portfolio banayein
-3. Private jobs me apply karte rahein — experience milta rahega
-4. Sarkari exams ke liye parallel me typing, DCA jaisi qualification rakhein
+## The smarter approach: prepare for both
+1. Learn one technical skill first — web, data, accounting or marketing
+2. Build two or three projects and a portfolio
+3. Keep applying privately while you prepare for exams
+4. Maintain government-ready qualifications like typing and DCA in parallel
 
-Bahut humare students ne exactly yahi kiya — din me private job, shaam ko sarkari exam prep, aur dono me success mili.`,
+Many of our students did exactly this: a private job during the day, exam preparation in the evening, and success on both fronts.`,
   },
   {
     slug: "cyber-security-career-india-guide",
-    title: "Cyber Security Me Career: India Me Kaise Shuru Karein (2026 Guide)",
+    title: "Building a Cyber Security Career in India: A Complete 2026 Guide",
     excerpt:
-      "SOC analyst se lekar bug bounty tak — entry ka rasta, zaroori certifications aur practical labs, sab ek jagah.",
+      "From SOC analyst roles to bug bounty income — the entry path, the certifications worth paying for and the labs that build real skill.",
     category: "Cyber Security",
     tags: ["Cyber Security", "Ethical Hacking", "Certification", "Jobs"],
     readMinutes: 6,
@@ -222,29 +222,30 @@ Bahut humare students ne exactly yahi kiya — din me private job, shaam ko sark
     daysAgo: 40,
     coverImage: "/images/blog-cyber-security.jpg",
     views: 1120,
-    content: `Cyber security me job ke liye B.Tech zaroori nahi hai — **lab practice** zaroori hai. Lawa jaise yahan demand constant hai aur supply kam.
+    content: `You do not need a B.Tech to work in cyber security — you need **lab practice**. Demand is steady and the supply of skilled candidates is still limited.
 
 ## Entry-level roles
-- **SOC Analyst (L1)** — alerts monitor karna, log analysis. Freshers ke liye best entry.
-- **VAPT Trainee** — vulnerability assessment aur penetration testing.
-- **IT Security Support** — firewall, antivirus, endpoint management.
+- **SOC Analyst (L1)** — monitoring alerts and analysing logs; the best entry point for freshers
+- **VAPT Trainee** — vulnerability assessment and penetration testing
+- **IT Security Support** — firewalls, antivirus and endpoint management
 
-## Skills jo pehle chahiye
-1. Networking — TCP/IP, ports, DNS
-2. Linux command line
-3. Python scripting basics
-4. OWASP Top 10 aur Burp Suite
-5. Report writing (ye 60% log ignore karte hain, aur yahi interview me farq daalti hai)
+## The skills to build first
+1. Networking — TCP/IP, ports and DNS
+2. The Linux command line
+3. Basic Python scripting
+4. The OWASP Top 10 and Burp Suite
+5. Report writing, which 60% of candidates neglect and which decides interviews
 
-## Certifications
-- **CEH** — costly par HR-friendly
-- **CompTIA Security+** — fundamentals ke liye best
-- **eJPT** — practical, budget-friendly
-- Free: TryHackMe, Hack The Box ke learning paths
+## Certifications worth considering
+- **CEH** — expensive but recognised by recruiters
+- **CompTIA Security+** — strong on fundamentals
+- **eJPT** — practical and budget friendly
+- Free options: TryHackMe and Hack The Box learning paths
 
-## Legal warning
-Sirf apne lab ya jo systems aapko permission di gayi ho — sirf unhi par testing karein. Kisi bhi unauthorised system par testing Indian IT Act ke under punishable hai.
+## A legal warning
+Only test systems you own or have written permission to test. Unauthorised testing is punishable under the Indian IT Act.
 
-NextToGen ke course me 60+ isolated labs hain, jahan students legally practice karte hain. Legal padhte hain, uske baad tools chalate hain.`,
+Our course includes more than 60 isolated labs where students practise legally. We teach the law first, then hand over the tools.`,
   },
 ];
+

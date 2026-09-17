@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
     const settings = getSettings();
     if (settings.chatbotEnabled === "false") {
-      return NextResponse.json({ error: "Chatbot abhi available nahi hai. Aap humein call kar lijiye." });
+      return NextResponse.json({ error: "The chatbot is unavailable right now. Please call us and we will help you directly." });
     }
 
     const context = { settings, courses: listCourses(), faqs: listFaqs() };
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("[api/chatbot]", error);
     return NextResponse.json(
-      { text: "Thodi technical dikkat aa gayi 😅 Aap humein direct call ya WhatsApp kar lijiye." },
+      { text: "We hit a small technical issue 😅 Please call or WhatsApp us directly and we will take it from there." },
       { status: 500 },
     );
   }

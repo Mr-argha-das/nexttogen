@@ -42,8 +42,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!course) {
     return buildMetadata({
       settings,
-      title: "Course nahi mila",
-      description: "Ye course ab available nahi hai.",
+      title: "Course not found",
+      description: "This course is no longer available.",
       path: `/courses/${slug}`,
       noIndex: true,
     });
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${course.title} Course — Fees, Duration & Syllabus`,
     description: `${course.shortDesc} Duration ${course.duration}, mode ${course.mode}. Fees ${formatINR(
       course.discountFee && course.discountFee < course.fee ? course.discountFee : course.fee,
-    )} ke saath EMI option.`,
+    )} with 0% EMI options.`,
     path: `/courses/${course.slug}`,
     keywords: [course.title, `${course.title} fees`, `${course.title} syllabus`, `${course.category} course ${settings.city}`],
     type: "website",
@@ -77,7 +77,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
     { icon: Laptop, label: "Mode", value: course.mode },
     { icon: GraduationCap, label: "Level", value: course.level },
     { icon: Users, label: "Batch size", value: `Max ${course.seats} students` },
-    { icon: CalendarDays, label: "Next batch", value: course.startDate ? formatDate(course.startDate, "long") : "Har mahine" },
+    { icon: CalendarDays, label: "Next batch", value: course.startDate ? formatDate(course.startDate, "long") : "Every month" },
     { icon: IndianRupee, label: "Fees", value: formatINR(payable) },
   ];
 
@@ -93,7 +93,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
           <span className="chip chip-neutral">{course.category}</span>
           <span className="chip chip-neutral">{course.level}</span>
           <span className="chip chip-neutral">{course.mode}</span>
-          {off > 0 ? <span className="chip chip-accent">{off}% discount chal raha hai</span> : null}
+          {off > 0 ? <span className="chip chip-accent">{off}% discount available now</span> : null}
           {course.placementSupport ? <span className="chip">Placement support included</span> : null}
         </div>
       </PageHero>
@@ -108,7 +108,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
                   <p className="text-[12px] font-semibold uppercase tracking-wider text-white/70">Course overview</p>
                   <h2 className="font-heading text-xl font-bold text-white sm:text-2xl">
-                    {course.title} kya sikhaata hai?
+                    What you will learn in this course
                   </h2>
                 </div>
               </div>
@@ -138,8 +138,9 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
                 <h2 className="font-heading text-xl font-bold">Course syllabus / modules</h2>
               </div>
               <p className="mt-2 text-[14px] text-slate-600">
-                {course.syllabus.length} modules · {course.syllabus.reduce((sum, module) => sum + module.topics.length, 0)}{" "}
-                topics · hands-on projects shaamil
+                {course.syllabus.length} modules ·{" "}
+                {course.syllabus.reduce((sum, module) => sum + module.topics.length, 0)} topics · hands-on projects
+                included
               </p>
               <div className="mt-5 space-y-3">
                 {course.syllabus.map((module, index) => (
@@ -216,7 +217,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
             {/* Student feedback */}
             {testimonials.length ? (
               <div>
-                <h2 className="font-heading text-xl font-bold">Is course ke students ka feedback</h2>
+                <h2 className="font-heading text-xl font-bold">What students of this course say</h2>
                 <div className="mt-4 grid gap-5 sm:grid-cols-2">
                   {testimonials.map((testimonial) => (
                     <TestimonialCard key={testimonial.id} testimonial={testimonial} />
@@ -226,14 +227,14 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
                   href="/testimonials"
                   className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700"
                 >
-                  Aur reviews padhein <ArrowRight className="h-4 w-4" />
+                  Read more reviews <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             ) : null}
 
             {/* FAQs */}
             <div>
-              <h2 className="font-heading text-xl font-bold">Admission se judi common sawaal</h2>
+              <h2 className="font-heading text-xl font-bold">Common admission questions</h2>
               <div className="mt-4">
                 <FaqAccordion faqs={faqs} defaultOpen={-1} />
               </div>
@@ -253,7 +254,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
                 </p>
                 {off > 0 ? (
                   <p className="mt-1 text-[12.5px] font-semibold text-accent-100">
-                    Aap {formatINR(course.fee - payable)} bacha rahe hain ({off}% off)
+                    You save {formatINR(course.fee - payable)} with the current offer ({off}% off)
                   </p>
                 ) : null}
                 <p className="mt-3 rounded-lg bg-white/10 px-3 py-2 text-[12.5px]">
@@ -262,19 +263,19 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
               </div>
               <div className="space-y-3 p-5">
                 <Link href={`/apply?course=${course.slug}`} className="btn btn-primary w-full">
-                  Apply karein <ArrowRight className="h-4 w-4" />
+                  Apply now <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="btn btn-outline w-full">
                   <Phone className="h-4 w-4" /> {settings.phone}
                 </a>
                 <p className="text-center text-[12px] text-slate-500">
-                  Free counselling + 2 demo classes · Seat {course.seats} hi hain
+                  Free counselling and 2 demo classes · Only {course.seats} seats
                 </p>
               </div>
             </div>
 
             <div className="card p-5">
-              <h3 className="font-heading text-[15px] font-bold">Is course me kya milega?</h3>
+              <h3 className="font-heading text-[15px] font-bold">What is included in this course?</h3>
               <ul className="mt-3 space-y-2.5 text-[13px] text-slate-600">
                 {[
                   "Live classes + recorded backup",
@@ -303,7 +304,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
               </p>
               <p className="mt-2 text-[12.5px] text-slate-500">{settings.officeHours}</p>
               <Link href="/contact#map" className="mt-3 inline-flex items-center gap-1 text-[13px] font-semibold text-brand-700">
-                Directions dekhein <ArrowRight className="h-3.5 w-3.5" />
+                Get directions <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </aside>
@@ -315,17 +316,17 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
         <div className="container-x grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
             <p className="eyebrow">Apply</p>
-            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">{course.title} me admission lein</h2>
+            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Apply for {course.title}</h2>
             <p className="mt-4 text-[15px] leading-7 text-slate-600">
-              Form bharein — hamari admission team 24 ghante ke andar call karke batch, timing aur fees ki poori detail
-              de degi. Demo class bhi free hai.
+              Fill in the form and our admission team will call you within 24 hours with complete details on batches,
+              timings and fees. Demo classes are free.
             </p>
             <ul className="mt-6 space-y-3 text-[13.5px] text-slate-700">
               {[
                 "Documents: Aadhaar, 2 photos, last marksheet",
-                "Fees: 20% registration par, baaki EMI me",
-                "Scholarship: 75%+ marks par 15% off",
-                "Batch: subah / dopahar / shaam — aapki choice",
+                "Fees: 20% at registration, the rest in easy EMI",
+                "Scholarship: 15% off with 75% or higher marks",
+                "Batches: morning, afternoon or evening — your choice",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5">
                   <BookOpen className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
@@ -356,10 +357,10 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
             <div className="flex flex-wrap items-end justify-between gap-3">
               <div>
                 <p className="eyebrow">Related courses</p>
-                <h2 className="mt-2 text-2xl font-bold">Ye courses bhi dekh lijiye</h2>
+                <h2 className="mt-2 text-2xl font-bold">You may also like these courses</h2>
               </div>
               <Link href="/courses" className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
-                Saare courses <ArrowRight className="h-4 w-4" />
+                All courses <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
             <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -372,10 +373,10 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
       ) : null}
 
       <CtaBand
-        title="Seat book karwana chahte hain? Aaj hi confirm karein"
-        description="Nayi batch jaldi bhar jaati hai. Aaj apply karein aur apna slot lock karein — fees aur timing ki poori detail ke saath."
-        primary={{ href: `https://wa.me/${settings.whatsapp}`, label: "WhatsApp par baat karein" }}
-        secondary={{ href: `/apply?course=${course.slug}`, label: "Apply form bharein" }}
+        title="Want to reserve your seat? Confirm it today"
+        description="New batches fill up fast. Apply now to lock your seat — we will share complete fee and timing details during counselling."
+        primary={{ href: `https://wa.me/${settings.whatsapp}`, label: "Chat on WhatsApp" }}
+        secondary={{ href: `/apply?course=${course.slug}`, label: "Fill the application form" }}
       />
 
       <script

@@ -11,7 +11,7 @@ import { Analytics, ThemeStyle } from "@/components/site/theme-style";
 export async function generateMetadata(): Promise<Metadata> {
   const settings = getSettings();
   const title = `${settings.siteName} — ${settings.siteTagline}`;
-  const description = `${settings.siteName} (${settings.city}) me job-oriented computer courses — Full Stack Web Development, Python & Data Science, Digital Marketing, Tally with GST, Cyber Security aur DCA. ${settings.placementRate}% placement record, EMI option aur free counselling.`;
+  const description = `Job-oriented computer courses at ${settings.siteName} in ${settings.city} — Full Stack Web Development, Python & Data Science, Digital Marketing, Tally with GST, Cyber Security and DCA. A ${settings.placementRate}% placement record, EMI options and free counselling.`;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -56,7 +56,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#4f46e5",
+  themeColor: "#0b2a5b",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowRight,
   Award,
@@ -25,7 +24,7 @@ import {
 import { getSettings, listCourses, listFaqs, listPosts, listTestimonials } from "@/lib/data";
 import { SITE_CONTENT } from "@/content/settings";
 import { absoluteUrl, faqSchema, SITE_URL } from "@/lib/seo";
-import { formatDate, formatINR, safeJsonLd, truncate } from "@/lib/utils";
+import { formatINR, safeJsonLd, truncate } from "@/lib/utils";
 import {
   BlogCard,
   CourseCard,
@@ -57,6 +56,7 @@ export default function HomePage() {
   const posts = listPosts({ limit: 3 });
   const faqs = listFaqs().slice(0, 5);
   const years = Math.max(1, new Date().getFullYear() - Number(settings.foundedYear || "2014"));
+  const heroCourse = featured[0];
 
   const stats = [
     { icon: Users, value: `${Number(settings.studentsTrained).toLocaleString("en-IN")}+`, label: "Students trained" },
@@ -66,10 +66,10 @@ export default function HomePage() {
   ];
 
   const highlights = [
-    "Free counselling + 2 demo classes",
-    "Small batches (max 30 students)",
-    "0% EMI & scholarship option",
-    "Lifetime recorded class access",
+    "Free counselling and two demo classes",
+    "Small batches of up to 30 students",
+    "0% EMI and scholarship options",
+    "Lifetime access to class recordings",
   ];
 
   return (
@@ -85,19 +85,19 @@ export default function HomePage() {
             </span>
 
             <h1 className="mt-5 font-heading text-[2rem] font-extrabold leading-[1.1] text-ink sm:text-[2.6rem] lg:text-[3.1rem]">
-              {settings.siteTagline.split(" ").slice(0, 3).join(" ")}{" "}
+              Learn the skills that{" "}
               <span className="relative whitespace-nowrap">
                 <span className="relative z-10 bg-gradient-to-r from-brand-600 to-brand-800 bg-clip-text text-transparent">
-                  {settings.siteTagline.split(" ").slice(3).join(" ") || "job-ready"
-                }</span>
+                  get you hired
+                </span>
                 <span className="absolute inset-x-0 bottom-1 z-0 h-3 rounded bg-accent-100" />
               </span>
             </h1>
 
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-slate-600">
-              {settings.siteName} — {settings.city} ka trusted skill training institute. Live classes, real projects aur
-              placement support ke saath {courses.length}+ job-oriented courses. Ab tak{" "}
-              {Number(settings.studentsTrained).toLocaleString("en-IN")}+ students humare saath career bana chuke hain.
+              {settings.siteName}, {settings.city} — practical, project-based training in web development, data science,
+              design, digital marketing and more. Live classes, real projects and placement support from day one, with
+              more than {Number(settings.studentsTrained).toLocaleString("en-IN")} students trained so far.
             </p>
 
             <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
@@ -111,10 +111,10 @@ export default function HomePage() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/courses" className="btn btn-primary btn-lg">
-                Courses dekhein <ArrowRight className="h-4 w-4" />
+                Explore courses <ArrowRight className="h-4 w-4" />
               </Link>
               <Link href="/apply" className="btn btn-accent btn-lg">
-                <CalendarCheck className="h-4 w-4" /> Free counselling
+                <CalendarCheck className="h-4 w-4" /> Book free counselling
               </Link>
               <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="btn btn-outline btn-lg">
                 <Phone className="h-4 w-4" /> {settings.phone}
@@ -127,7 +127,7 @@ export default function HomePage() {
               </span>
               <span className="flex items-center gap-2">
                 <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                {settings.averageRating}/5 Google rating
+                {settings.averageRating}/5 average student rating
               </span>
             </div>
           </div>
@@ -139,26 +139,26 @@ export default function HomePage() {
                 <div>
                   <p className="eyebrow">Most popular course</p>
                   <h2 className="mt-1 font-heading text-lg font-bold">
-                    {featured[0]?.title ?? "Full Stack Web Development"}
+                    {heroCourse?.title ?? "Full Stack Web Development"}
                   </h2>
                 </div>
                 <span className="chip chip-accent">
-                  {featured[0]?.seats ?? 30} seats · {featured[0]?.mode ?? "Hybrid"}
+                  {heroCourse?.seats ?? 30} seats · {heroCourse?.mode ?? "Hybrid"}
                 </span>
               </div>
 
               <div className="mt-4 grid gap-3 sm:grid-cols-3">
                 {[
-                  { icon: BookOpen, label: "Duration", value: featured[0]?.duration ?? "6 Months" },
-                  { icon: Laptop, label: "Mode", value: featured[0]?.mode ?? "Hybrid" },
+                  { icon: BookOpen, label: "Duration", value: heroCourse?.duration ?? "6 Months" },
+                  { icon: Laptop, label: "Mode", value: heroCourse?.mode ?? "Hybrid" },
                   {
                     icon: Wallet,
                     label: "Fees",
                     value: formatINR(
-                      featured[0]
-                        ? (featured[0].discountFee && featured[0].discountFee < featured[0].fee
-                            ? featured[0].discountFee
-                            : featured[0].fee)
+                      heroCourse
+                        ? heroCourse.discountFee && heroCourse.discountFee < heroCourse.fee
+                          ? heroCourse.discountFee
+                          : heroCourse.fee
                         : 39999,
                     ),
                   },
@@ -172,11 +172,13 @@ export default function HomePage() {
               </div>
 
               <ul className="mt-4 space-y-2">
-                {(featured[0]?.highlights ?? [
-                  "12 industry-level projects",
-                  "Live classes + lifetime recordings",
-                  "Mock interviews & resume review",
-                ])
+                {(
+                  heroCourse?.highlights ?? [
+                    "12 industry-level projects",
+                    "Live classes with lifetime recordings",
+                    "Mock interviews and resume review",
+                  ]
+                )
                   .slice(0, 4)
                   .map((highlight) => (
                     <li key={highlight} className="flex items-start gap-2 text-[13px] text-slate-600">
@@ -188,16 +190,13 @@ export default function HomePage() {
 
               <div className="mt-5 flex gap-2">
                 <Link
-                  href={featured[0] ? `/courses/${featured[0].slug}` : "/courses"}
+                  href={heroCourse ? `/courses/${heroCourse.slug}` : "/courses"}
                   className="btn btn-primary flex-1"
                 >
-                  Syllabus dekhein
+                  View syllabus
                 </Link>
-                <Link
-                  href={featured[0] ? `/apply?course=${featured[0].slug}` : "/apply"}
-                  className="btn btn-outline flex-1"
-                >
-                  Apply karein
+                <Link href={heroCourse ? `/apply?course=${heroCourse.slug}` : "/apply"} className="btn btn-outline flex-1">
+                  Apply now
                 </Link>
               </div>
             </div>
@@ -210,7 +209,7 @@ export default function HomePage() {
                 <div>
                   <p className="text-[13px] font-bold text-ink">{testimonials[0]?.name ?? "Aman Sharma"}</p>
                   <p className="text-[11px] text-slate-500">
-                    {truncate(testimonials[0]?.role ?? "Software Engineer @ Infosys", 32)}
+                    {truncate(testimonials[0]?.role ?? "Software Engineer at Infosys", 32)}
                   </p>
                 </div>
               </div>
@@ -238,9 +237,9 @@ export default function HomePage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Courses"
-            title="Job-oriented courses jo industry maangti hai"
-            description="Har course me live projects, portfolio banwana aur placement support shaamil hai. Beginner se advanced tak — apna rasta chuniye."
-            action={{ href: "/courses", label: "Saare courses" }}
+            title="Job-oriented courses built around industry demand"
+            description="Every course includes live projects, a portfolio you can show and placement support. Choose your path from beginner to advanced."
+            action={{ href: "/courses", label: "All courses" }}
           />
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -250,9 +249,9 @@ export default function HomePage() {
           </div>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm text-slate-500">
-            <span>Confuse hain kaunsa course sahi hai?</span>
+            <span>Not sure which course suits you?</span>
             <Link href="/apply" className="font-semibold text-brand-700 hover:text-brand-900">
-              Free counselling book karein →
+              Book a free counselling session →
             </Link>
           </div>
         </div>
@@ -263,8 +262,8 @@ export default function HomePage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Why students choose us"
-            title="Sirf class nahi — poora career support system"
-            description="Humara focus sirf syllabus complete karana nahi, balki aapko interview-ready banane par hai."
+            title="More than classes — a complete career support system"
+            description="Our focus is not just finishing a syllabus. It is making sure you walk into interviews prepared."
             align="center"
           />
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -286,18 +285,19 @@ export default function HomePage() {
           <div>
             <p className="eyebrow">Placement support</p>
             <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
-              {settings.placementRate}% students ko placement — preparation se lekar offer letter tak
+              {settings.placementRate}% placement record — from preparation to offer letter
             </h2>
             <p className="mt-4 text-[15px] leading-7 text-slate-600">
-              Placement cell interview se 3 mahine pehle se kaam shuru kar deti hai: resume banwana, GitHub/LinkedIn
-              profile theek karna, 5 mock interviews aur 120+ companies me referrals.
+              Our placement cell starts working three months before you finish: rewriting your resume, cleaning up your
+              GitHub and LinkedIn profiles, running five mock interviews and referring you to more than 120 hiring
+              partners.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Resume + portfolio review (2 baar free)",
-                "Technical + HR mock interviews",
-                "Aptitude & communication practice sessions",
-                "Job openings WhatsApp group me daily updates",
+                "Resume and portfolio review, twice, at no cost",
+                "Technical and HR mock interviews",
+                "Aptitude and communication practice sessions",
+                "Daily job openings shared in a private group",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-[14px] text-slate-700">
                   <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-emerald-500" />
@@ -307,17 +307,17 @@ export default function HomePage() {
             </ul>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/testimonials" className="btn btn-primary">
-                <MessageSquareQuote className="h-4 w-4" /> Placed students ki kahaniyan
+                <MessageSquareQuote className="h-4 w-4" /> Read placed students&apos; stories
               </Link>
               <Link href="/about" className="btn btn-outline">
-                Institute ke baare me
+                About the institute
               </Link>
             </div>
           </div>
 
           <div className="card overflow-hidden p-6">
             <p className="text-center text-[13px] font-semibold uppercase tracking-wider text-slate-400">
-              Hamare students yahan kaam karte hain
+              Our students now work at
             </p>
             <div className="mt-5">
               <PlacementStrip partners={SITE_CONTENT.placementPartners} />
@@ -344,9 +344,9 @@ export default function HomePage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Student testimonials"
-            title="Humare students kya kehte hain"
-            description={`${settings.averageRating}/5 average rating · video reviews campus par available`}
-            action={{ href: "/testimonials", label: "Sabhi testimonials" }}
+            title="What our students say"
+            description={`Rated ${settings.averageRating}/5 on average by our students`}
+            action={{ href: "/testimonials", label: "All testimonials" }}
           />
           <div className="mt-8 grid gap-5 lg:grid-cols-3">
             {testimonials.map((testimonial) => (
@@ -361,9 +361,9 @@ export default function HomePage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Admission process"
-            title="Admission sirf 4 simple step me"
+            title="Admission in four simple steps"
             align="center"
-            description="Aaj apply karein — hamari team 24 ghante ke andar call karke poora process guide karegi."
+            description="Apply today and our team will call you within 24 hours to guide you through the whole process."
           />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {SITE_CONTENT.admissionsSteps.map((step, index) => (
@@ -379,7 +379,7 @@ export default function HomePage() {
           </div>
           <div className="mt-8 flex justify-center">
             <Link href="/apply" className="btn btn-primary btn-lg">
-              Apply form bharein <ArrowRight className="h-4 w-4" />
+              Fill the application form <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
@@ -390,9 +390,9 @@ export default function HomePage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Career blog"
-            title="Skills, roadmap aur job tips"
-            description="Humare trainers aur placement team ke experience se likhe practical guides."
-            action={{ href: "/blog", label: "Saare blogs" }}
+            title="Skills, roadmaps and job tips"
+            description="Practical guides written from the experience of our trainers and placement team."
+            action={{ href: "/blog", label: "All articles" }}
           />
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
@@ -407,17 +407,17 @@ export default function HomePage() {
         <div className="container-x grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="eyebrow">FAQs</p>
-            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Aapke sawaal, seedhe jawab</h2>
+            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Your questions, answered directly</h2>
             <p className="mt-4 text-[15px] leading-7 text-slate-600">
-              Admission, fees, EMI, batch timing ya placement — jo sabse zyada poochha jaata hai wo yahan hai. Aur kuch
-              ho to chatbot se poochhiye ya direct call kar lijiye.
+              Admission, fees, EMI, batch timings and placement — the questions we hear most often are answered here.
+              Anything else? Ask the chatbot or simply give us a call.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href="/faq" className="btn btn-outline">
-                Saare FAQs
+                All FAQs
               </Link>
               <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="btn btn-primary">
-                <Phone className="h-4 w-4" /> Call karein
+                <Phone className="h-4 w-4" /> Call us
               </a>
             </div>
             <div className="mt-8 rounded-2xl border border-slate-200 bg-canvas p-5">
@@ -429,29 +429,32 @@ export default function HomePage() {
                 {settings.city}, {settings.state} – {settings.pincode}
               </p>
               <p className="mt-2 text-[13px] text-slate-500">{settings.officeHours}</p>
-              <Link href="/contact#map" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
-                Map par dekhein <ArrowRight className="h-4 w-4" />
+              <Link
+                href="/contact#map"
+                className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-700"
+              >
+                View on the map <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
           <div>
             <FaqAccordion faqs={faqs} />
             <p className="mt-4 text-center text-[13px] text-slate-500">
-              Aur sawaal hain?{" "}
+              Still have a question?{" "}
               <Link href="/contact" className="font-semibold text-brand-700">
-                Contact page
-              </Link>{" "}
-              par message bhejein.
+                Send us a message
+              </Link>
+              .
             </p>
           </div>
         </div>
       </section>
 
       <CtaBand
-        title={`${settings.siteName} me admission ke liye aaj hi baat karein`}
-        description="Free counselling, 2 demo classes aur 0% EMI option ke saath. Seat limited hain — nayi batch jaldi bhar jaati hai."
-        primary={{ href: "/apply", label: "Apply Online" }}
-        secondary={{ href: "/contact", label: "Campus visit schedule karein" }}
+        title={`Talk to us about admission at ${settings.siteName}`}
+        description="Free counselling, two demo classes and 0% EMI options. Seats are limited and new batches fill up quickly."
+        primary={{ href: "/apply", label: "Apply online" }}
+        secondary={{ href: "/contact", label: "Schedule a campus visit" }}
       />
 
       <script

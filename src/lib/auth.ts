@@ -1,6 +1,6 @@
 /**
  * Admin authentication — signed JWT session cookie (jose) + bcrypt password hashes.
- * Login page: /admin/login. Admin routes ke server side par requireAdmin() call hota hai.
+ * Login page: /admin/login. Admin routes call requireAdmin() on the server side.
  */
 import "server-only";
 import { cookies } from "next/headers";
@@ -10,7 +10,7 @@ import bcrypt from "bcryptjs";
 import { findUserByEmail, getSettings } from "./data";
 
 export const SESSION_COOKIE = "ntg_session";
-const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 din
+const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
 function secretKey() {
   const secret = process.env.AUTH_SECRET || "nexttogen-dev-secret-change-me-please-1234567890";
@@ -77,7 +77,7 @@ export function hashPassword(password: string) {
   return bcrypt.hashSync(password, 10);
 }
 
-/** Login page ka heading/logo settings se aata hai (DB se, server side). */
+/** The login page heading and logo come from the database settings, resolved on the server. */
 export function siteBranding() {
   const settings = getSettings();
   return {

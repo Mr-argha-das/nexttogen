@@ -14,9 +14,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
     settings,
     title: "Student Testimonials — Success stories & reviews",
-    description: `Hamare students ke real experiences — placement, fees aur training quality ke baare me. ${settings.averageRating}/5 average rating, ${Number(
+    description: `Genuine experiences from our students about placement, fees and training quality. Average rating ${settings.averageRating}/5, with ${Number(
       settings.studentsTrained,
-    ).toLocaleString("en-IN")}+ students trained.`,
+    ).toLocaleString("en-IN")}+ students trained so far.`,
     path: "/testimonials",
     keywords: ["institute reviews", "student testimonials", "placement reviews", `${settings.city} institute feedback`],
   });
@@ -40,8 +40,8 @@ export default async function TestimonialsPage() {
     <>
       <PageHero
         eyebrow="Testimonials"
-        title="Hamare students ki kahaniyan, unhi ki zubaani"
-        description={`Ye reviews hum khud nahi likhte — students course complete karne ke baad apne experience likhte hain. ${cities.length} shehron se students humare saath padh chuke hain.`}
+        title="Real stories, in our students' own words"
+        description={`We do not write these reviews. Students write them after completing their course. Learners from ${cities.length} cities have studied with us and shared their experience here.`}
         crumbs={[{ label: "Testimonials" }]}
       />
 
@@ -59,10 +59,10 @@ export default async function TestimonialsPage() {
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
               <p className="eyebrow">Placement stories</p>
-              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Unlogon ki kahani jo job pa gaye 🎉</h2>
+              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Students who landed their first job 🎉</h2>
             </div>
             <p className="text-[13px] text-slate-500">
-              Salary figures students ne khud share kiye hain — privacy ke liye company ka naam kahin hide kiya gaya hai.
+              Salary figures are shared by the students themselves, and some company names are withheld for privacy.
             </p>
           </div>
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -78,8 +78,8 @@ export default async function TestimonialsPage() {
         <div className="container-x pt-14">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="eyebrow">Sabhi reviews</p>
-              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Students ne kya likha</h2>
+              <p className="eyebrow">All reviews</p>
+              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">What our students wrote</h2>
             </div>
             <span className="chip chip-neutral">
               <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" /> {settings.averageRating}/5 average
@@ -98,18 +98,18 @@ export default async function TestimonialsPage() {
         <div className="container-x grid gap-8 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="eyebrow">Video reviews</p>
-            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Students se direct sunna chahte hain?</h2>
+            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Prefer to hear it directly from students?</h2>
             <p className="mt-4 text-[15px] leading-7 text-slate-600">
-              Campus par video testimonials available hain — aap kisi bhi placed student se baat kar sakte hain (consent ke
-              saath). Ye sabse fast tarika hai sach jaanne ka: counsellor se kehiye, wo aapko 2–3 students ke numbers de
-              dega.
+              Video testimonials are available on campus, and with the student&apos;s consent you can speak to placed
+              alumni directly. It is the fastest way to verify everything: ask a counsellor and we will connect you with
+              two or three students.
             </p>
             <ul className="mt-6 space-y-3 text-[14px] text-slate-700">
               {[
-                "Placed students se direct baat karne ka option",
-                "Campus visit par live demo class attend karein",
-                "Fees aur EMI ka written breakdown lein",
-                "Placement record ke documents campus par dekh sakte hain",
+                "Speak directly with placed students",
+                "Attend a live demo class during a campus visit",
+                "Ask for a written breakdown of fees and EMI",
+                "Review placement records on campus in person",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5">
                   <Video className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
@@ -119,10 +119,10 @@ export default async function TestimonialsPage() {
             </ul>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/apply" className="btn btn-primary">
-                Free counselling book karein <ArrowRight className="h-4 w-4" />
+                Book free counselling <ArrowRight className="h-4 w-4" />
               </Link>
               <Link href="/contact" className="btn btn-outline">
-                Campus visit schedule
+                Schedule a campus visit
               </Link>
             </div>
           </div>
@@ -130,9 +130,9 @@ export default async function TestimonialsPage() {
           <div className="card p-6">
             <Quote className="h-8 w-8 text-brand-200" />
             <p className="mt-4 text-[15px] leading-8 text-slate-700">
-              “Hum students ko sirf course nahi bechte. Counselling me hum saaf-saaf batate hain kitna kaam karna
-              padega, kitna time lagega aur fees ka kya plan rahega. Jo students weekly 10–12 ghante de dete hain, unka
-              placement record humare paas {settings.placementRate}% hai.”
+              “We do not just sell courses. During counselling we are honest about the work involved, the time it takes
+              and what the fee plan will look like. For students who put in 10 to 12 hours a week, our placement record
+              is {settings.placementRate}%.”
             </p>
             <p className="mt-4 text-[13px] font-semibold text-ink">— Placement Cell, {settings.siteName}</p>
             <div className="mt-6 grid grid-cols-3 gap-3 border-t border-dashed border-slate-200 pt-5 text-center">
@@ -154,10 +154,10 @@ export default async function TestimonialsPage() {
       </section>
 
       <CtaBand
-        title="Agla success story aapki ho sakti hai"
-        description="Free counselling + demo class ke saath shuruat karein. Hum aapko honest plan denge — kaam kitna lagega, fees kitni hogi, placement ka kya chance hai."
-        primary={{ href: "/apply", label: "Apply karein" }}
-        secondary={{ href: "/courses", label: "Courses dekhein" }}
+        title="The next success story could be yours"
+        description="Start with a free counselling session and a demo class. We will give you an honest plan: how much work is involved, what the fees are and what your placement prospects look like."
+        primary={{ href: "/apply", label: "Apply now" }}
+        secondary={{ href: "/courses", label: "Browse courses" }}
       />
     </>
   );

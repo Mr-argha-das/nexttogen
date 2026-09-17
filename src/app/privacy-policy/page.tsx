@@ -9,49 +9,49 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
     settings,
     title: "Privacy Policy",
-    description: `Aapka data kaise collect, use aur protect kiya jaata hai — ${settings.siteName} ki privacy policy.`,
+    description: `How your data is collected, used and protected — the privacy policy of ${settings.siteName}.`,
     path: "/privacy-policy",
   });
 }
 
 export default function PrivacyPage() {
   const settings = getSettings();
-  const content = `## Kaunsa data collect karte hain
-Jab aap Apply form, Contact form ya Newsletter subscribe karte hain, hum ye information collect karte hain:
-- Naam, email address aur phone number
-- Course preference, city aur qualification (jaise aap bharte hain)
-- Message/subject jo aap likhte hain
+  const content = `## What data we collect
+When you submit the Apply form, the Contact form or subscribe to our newsletter, we collect the following:
+- Your name, email address and phone number
+- Course preference, city and qualification as entered by you
+- The message or subject you write
 
-Website automatically kuch technical data bhi collect karti hai — IP address, browser type aur pages visited (analytics ke liye).
+The website also collects some technical data automatically — IP address, browser type and pages visited — for analytics.
 
-## Data ka use kaha hota hai
-- Aapki admission enquiry ka reply dene ke liye (call/WhatsApp/email)
-- Course counselling aur batch allotment ke liye
-- Fee receipts, certificates aur student records ke liye
-- Website improvement aur analytics ke liye
+## How your data is used
+- To respond to your admission enquiry by phone, WhatsApp or email
+- For course counselling and batch allocation
+- For fee receipts, certificates and student records
+- For website improvement and analytics
 
-## Data kis ke saath share hota hai
-Hum aapka data **bechte nahi** hain. Sirf ye cases me share hota hai:
-- Aapki request par humari placement partners (agar aap placement drives me participate karein)
-- Payment gateway aur bank (fees/EMI ke liye)
-- Kanooni requirement par (court ya government authority ke order par)
+## Who your data is shared with
+We **never sell your data**. It is shared only in these cases:
+- With our placement partners, at your request and only if you take part in placement drives
+- With payment gateways and banks, to process fees or EMI
+- Where legally required, such as under a court or government order
 
-## Data kitne din rakhte hain
-Admission enquiry records 3 saal tak, aur enrolled students ke academic records institute policy ke hisaab se keep kiye jaate hain. Newsletter me se aap kabhi bhi unsubscribe kar sakte hain.
+## How long we keep it
+Admission enquiry records are kept for three years, and academic records of enrolled students are retained according to institute policy. You can unsubscribe from the newsletter at any time.
 
-## Aapke rights
-- Apna data dekhne ka, correct karwane ka aur delete karwane ka right
-- Marketing communication se opt-out karne ka right
-- Kisi bhi complaint ke liye humein ${settings.email} par likh sakte hain
+## Your rights
+- The right to see, correct or delete your data
+- The right to opt out of marketing communication
+- The right to raise any complaint by writing to us at ${settings.email}
 
 ## Cookies
-Website sessions, preferences aur analytics ke liye cookies use karti hai. Aap browser settings se cookies block kar sakte hain — kuch features tab theek se kaam nahi kar sakte.
+The website uses cookies for sessions, preferences and analytics. You can block cookies in your browser settings, though some features may then not work correctly.
 
 ## Security
-Aapka data secure servers par store hota hai, aur admin panel access sirf authorised staff ke paas password-protected hota hai. Online payments humare payment partner ke PCI-compliant gateway se hote hain — card details hum store nahi karte.
+Your data is stored on secure servers, and admin panel access is password-protected and limited to authorised staff. Online payments are processed through our payment partner's PCI-compliant gateway — we do not store card details.
 
 ## Contact
-Data ya privacy se juda koi bhi sawaal ho to likhiye: ${settings.email} ya call kijiye ${settings.phone}.`;
+If you have any question about your data or privacy, write to ${settings.email} or call ${settings.phone}.`;
   return (
     <>
       <PageHero
@@ -64,8 +64,8 @@ Data ya privacy se juda koi bhi sawaal ho to likhiye: ${settings.email} ya call 
         <div className="container-x max-w-3xl">
           <Markdown content={content} />
           <p className="mt-8 rounded-xl bg-amber-50 px-4 py-3 text-[13px] text-amber-900">
-            Ye policy template hai — launch se pehle apne legal advisor se verify karke apni institute details ke hisaab se
-            update kar lijiye.
+            This policy is a template. Before launch, have it verified by your legal advisor and update it with your
+            institute&apos;s actual details.
           </p>
         </div>
       </section>

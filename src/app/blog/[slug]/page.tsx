@@ -35,8 +35,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) {
     return buildMetadata({
       settings,
-      title: "Article nahi mila",
-      description: "Ye article ab available nahi hai.",
+      title: "Article not found",
+      description: "This article is no longer available.",
       path: `/blog/${slug}`,
       noIndex: true,
     });
@@ -176,10 +176,10 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
               <div className="mt-8 flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-canvas p-5">
                 <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-700">
-                  <ArrowLeft className="h-4 w-4" /> Saare articles
+                  <ArrowLeft className="h-4 w-4" /> All articles
                 </Link>
                 <Link href="/courses" className="btn btn-primary btn-sm">
-                  Courses dekhein <ArrowRight className="h-4 w-4" />
+                  Browse courses <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>
@@ -197,28 +197,28 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                   </div>
                 </div>
                 <p className="mt-3 text-[13px] leading-6 text-slate-600">
-                  {settings.siteName} me padhate hain aur students ko industry-ready banate hain.
+                  Teaches at {settings.siteName} and helps students become industry-ready.
                 </p>
                 <Link href="/about#faculty" className="mt-3 inline-flex items-center gap-1 text-[13px] font-semibold text-brand-700">
-                  Faculty ke baare me <ArrowRight className="h-3.5 w-3.5" />
+                  More about our faculty <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
 
               <div className="card overflow-hidden">
                 <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
-                  <p className="text-[12px] font-semibold uppercase tracking-wider text-white/70">Skill banaiye</p>
-                  <h3 className="mt-1 font-heading text-base font-bold">Is topic ka full course karein</h3>
+                  <p className="text-[12px] font-semibold uppercase tracking-wider text-white/70">Build the skill</p>
+                  <h3 className="mt-1 font-heading text-base font-bold">Take the full course on this topic</h3>
                   <p className="mt-2 text-[13px] text-white/80">
-                    Live projects, portfolio aur placement support ke saath.
+                    Live projects, a real portfolio and placement support.
                   </p>
                   <Link href="/courses" className="btn btn-accent mt-4 w-full">
-                    Course dekhein
+                    View courses
                   </Link>
                 </div>
               </div>
 
               <div className="card p-5">
-                <h3 className="font-heading text-[15px] font-bold">Aise hi articles</h3>
+                <h3 className="font-heading text-[15px] font-bold">More articles like this</h3>
                 <ul className="mt-3 space-y-3">
                   {listPosts({ limit: 4 })
                     .filter((item) => item.id !== post.id)
@@ -241,7 +241,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
               <div className="card p-5">
                 <h3 className="font-heading text-[15px] font-bold">Newsletter</h3>
                 <p className="mt-2 text-[13px] leading-6 text-slate-600">
-                  Naye articles aur batch updates — mahine me 2–4 email.
+                  New articles and batch updates — two to four emails a month.
                 </p>
                 <div className="mt-4">
                   <NewsletterForm compact />
@@ -254,9 +254,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           {suggestions.length ? (
             <div className="container-x mt-14">
               <div className="flex items-end justify-between gap-3">
-                <h2 className="font-heading text-xl font-bold">Ye bhi padhein</h2>
+                <h2 className="font-heading text-xl font-bold">Also worth reading</h2>
                 <Link href="/blog" className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
-                  Saare blogs <ArrowRight className="h-4 w-4" />
+                  All articles <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
               <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -270,10 +270,10 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
       </article>
 
       <CtaBand
-        title="Guide padh liya — ab practically seekhne ka time hai"
-        description={`${settings.siteName} me demo class book karein. Trainer se baat kijiye aur apne career ka plan banwaiye.`}
-        primary={{ href: "/apply", label: "Demo class book karein" }}
-        secondary={{ href: "/contact", label: "Contact karein" }}
+        title="Done reading? Time to learn it hands-on"
+        description={`Book a demo class at ${settings.siteName}, speak with a trainer and put together a plan for your career.`}
+        primary={{ href: "/apply", label: "Book a demo class" }}
+        secondary={{ href: "/contact", label: "Contact us" }}
       />
 
       <script

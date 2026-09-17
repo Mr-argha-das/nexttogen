@@ -6,7 +6,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // Honeypot — bots ise bharte hain
+    // Honeypot — only bots fill this in
     if (body.website_confirm) {
       return NextResponse.json({ ok: true, id: "app_ignored" });
     }
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("[api/applications]", error);
     return NextResponse.json(
-      { error: "Application save nahi ho payi. Aap humein call ya WhatsApp kar lijiye." },
+      { error: "We could not save your application. Please call or WhatsApp us instead." },
       { status: 500 },
     );
   }

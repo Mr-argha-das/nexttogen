@@ -12,17 +12,17 @@ type Props = {
 
 const COPY = {
   contact: {
-    button: "Message bhejein",
-    subjectLabel: "Kis baare me hai?",
+    button: "Send message",
+    subjectLabel: "What is this about?",
     subjects: ["Admission enquiry", "Course & fees", "Batch timing", "Demo class", "Other"],
   },
   support: {
-    button: "Support pledge bhejein",
-    subjectLabel: "Support ka type",
+    button: "Send a support pledge",
+    subjectLabel: "Type of support",
     subjects: ["One-time donation", "Student scholarship sponsor", "Lab / batch sponsor", "Laptop / equipment donate", "Guest lecture"],
   },
   partner: {
-    button: "Partnership request bhejein",
+    button: "Send partnership request",
     subjectLabel: "Partnership type",
     subjects: ["Hiring / placement drive", "CSR collaboration", "Internship program", "Guest faculty"],
   },
@@ -50,9 +50,9 @@ export function ContactForm({ variant = "contact", tiers = [], className }: Prop
         body: JSON.stringify(payload),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Message bhej nahi paye");
+      if (!res.ok) throw new Error(data.error || "We could not send your message");
       setState("done");
-      setMessage(data.message || "Message mil gaya! Hum jaldi contact karenge.");
+      setMessage(data.message || "Message received! We will contact you shortly.");
       event.currentTarget.reset();
     } catch (error) {
       setState("error");
@@ -66,12 +66,11 @@ export function ContactForm({ variant = "contact", tiers = [], className }: Prop
         <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
           <CheckCircle2 className="h-6 w-6" />
         </span>
-        <h3 className="mt-3 font-heading text-lg font-bold">Dhanyavaad! 🙏</h3>
+        <h3 className="mt-3 font-heading text-lg font-bold">Thank you! 🙏</h3>
         <p className="mt-2 text-sm leading-6 text-slate-600">{message}</p>
         {variant === "support" ? (
           <p className="mt-3 rounded-xl bg-brand-50 px-4 py-3 text-xs text-brand-800">
-            Transfer ke baad screenshot WhatsApp par bhej dijiye — hum 80G receipt aur thank-you certificate issue kar
-            denge.
+            After the transfer, please send us the screenshot on WhatsApp — we will issue your 80G receipt and a thank-you certificate.
           </p>
         ) : null}
       </div>
@@ -83,9 +82,9 @@ export function ContactForm({ variant = "contact", tiers = [], className }: Prop
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor={`${variant}-name`}>
-            Poora naam *
+            Full name *
           </label>
-          <input id={`${variant}-name`} name="name" required minLength={3} className="field" placeholder="Aapka naam" />
+          <input id={`${variant}-name`} name="name" required minLength={3} className="field" placeholder="Your full name" />
         </div>
         <div>
           <label className="label" htmlFor={`${variant}-phone`}>
@@ -110,7 +109,7 @@ export function ContactForm({ variant = "contact", tiers = [], className }: Prop
             type="email"
             required
             className="field"
-            placeholder="aap@email.com"
+            placeholder="you@email.com"
           />
         </div>
         <div className={variant === "support" ? "" : "sm:col-span-2"}>
@@ -165,7 +164,7 @@ export function ContactForm({ variant = "contact", tiers = [], className }: Prop
         ) : null}
         <div className="sm:col-span-2">
           <label className="label" htmlFor={`${variant}-message`}>
-            {variant === "support" ? "Kuch batana chahenge? *" : "Message *"}
+            {variant === "support" ? "Anything you would like to add? *" : "Message *"}
           </label>
           <textarea
             id={`${variant}-message`}
@@ -176,8 +175,8 @@ export function ContactForm({ variant = "contact", tiers = [], className }: Prop
             className="field resize-y"
             placeholder={
               variant === "support"
-                ? "Jaise: main ek student ki poori fees sponsor karna chahta hoon…"
-                : "Apna sawaal ya requirement likhiye…"
+                ? "For example: I would like to sponsor one student's full course fees…"
+                : "Tell us your question or requirement…"
             }
           />
         </div>
@@ -192,7 +191,7 @@ export function ContactForm({ variant = "contact", tiers = [], className }: Prop
       <button type="submit" disabled={state === "loading"} className="btn btn-primary btn-lg w-full sm:w-auto">
         {state === "loading" ? (
           <>
-            <Loader2 className="h-4 w-4 animate-spin" /> Bhej rahe hain…
+            <Loader2 className="h-4 w-4 animate-spin" /> Sending…
           </>
         ) : (
           <>
@@ -201,7 +200,7 @@ export function ContactForm({ variant = "contact", tiers = [], className }: Prop
         )}
       </button>
       <p className="text-xs text-slate-500">
-        Aapke details sirf communication ke liye use honge. Hum kisi third party ko share nahi karte.
+        Your details are used only for communication and are never shared with third parties.
       </p>
     </form>
   );

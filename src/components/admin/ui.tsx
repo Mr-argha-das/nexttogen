@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export function SubmitButton({
   children,
   className = "btn btn-primary",
-  pendingText = "Save ho raha hai…",
+  pendingText = "Saving…",
 }: {
   children: React.ReactNode;
   className?: string;
@@ -32,7 +32,7 @@ export function DeleteButton({
   action,
   id,
   label = "Delete",
-  confirmText = "Pakka delete karna hai? Ye wapas nahi aayega.",
+  confirmText = "Delete permanently? This cannot be undone.",
   className = "btn btn-sm border border-rose-200 bg-white text-rose-600 hover:bg-rose-50",
 }: {
   action: (formData: FormData) => void;
@@ -79,7 +79,7 @@ export function Toast({ state }: { state: { ok: boolean; message: string } | nul
     >
       {state.ok ? <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" /> : <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />}
       <span className="flex-1">{state.message}</span>
-      <button type="button" onClick={() => setVisible(false)} aria-label="Band karein">
+      <button type="button" onClick={() => setVisible(false)} aria-label="Close">
         <X className="h-4 w-4 opacity-60" />
       </button>
     </div>
@@ -126,12 +126,12 @@ export function StatusPill({ status }: { status: string }) {
     REPLIED: "bg-emerald-100 text-emerald-800",
   };
   const labels: Record<string, string> = {
-    NEW: "Naya",
-    CONTACTED: "Contact kiya",
+    NEW: "New",
+    CONTACTED: "Contacted",
     ENROLLED: "Enrolled",
     REJECTED: "Rejected",
-    READ: "Padha",
-    REPLIED: "Reply kiya",
+    READ: "Read",
+    REPLIED: "Replied",
   };
   return (
     <span className={cn("rounded-full px-2.5 py-1 text-[11px] font-bold", map[status] ?? "bg-slate-100 text-slate-600")}>

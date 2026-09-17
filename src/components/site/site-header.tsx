@@ -96,8 +96,8 @@ export function SiteHeader({ siteName, siteShortName, phone, tagline }: Props) {
             </Link>
             <button
               type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-label={open ? "Menu band karein" : "Menu kholein"}
+              onClick={() => setOpen((value) => !value)}
+              aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 text-slate-700 lg:hidden"
             >

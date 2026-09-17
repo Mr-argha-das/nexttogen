@@ -24,15 +24,15 @@ export function relativeTime(value: string | Date) {
   const date = typeof value === "string" ? new Date(value) : value;
   const diff = Date.now() - date.getTime();
   const minutes = Math.round(diff / 60000);
-  if (minutes < 1) return "abhi";
-  if (minutes < 60) return `${minutes} minute pehle`;
+  if (minutes < 1) return "just now";
+  if (minutes < 60) return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
   const hours = Math.round(minutes / 60);
-  if (hours < 24) return `${hours} ghante pehle`;
+  if (hours < 24) return `${hours} hour${hours === 1 ? "" : "s"} ago`;
   const days = Math.round(hours / 24);
-  if (days < 30) return `${days} din pehle`;
+  if (days < 30) return `${days} day${days === 1 ? "" : "s"} ago`;
   const months = Math.round(days / 30);
-  if (months < 12) return `${months} mahine pehle`;
-  return `${Math.round(months / 12)} saal pehle`;
+  if (months < 12) return `${months} month${months === 1 ? "" : "s"} ago`;
+  return `${Math.round(months / 12)} year${Math.round(months / 12) === 1 ? "" : "s"} ago`;
 }
 
 export function slugify(input: string) {
@@ -59,7 +59,7 @@ export function truncate(text: string, length = 140) {
   return `${text.slice(0, length).trimEnd()}…`;
 }
 
-/** WhatsApp link banane ke liye number clean karo */
+/** Strip everything but digits so the number can be used in a WhatsApp link */
 export function waLink(number: string, text?: string) {
   const clean = (number || "").replace(/[^\d]/g, "");
   const query = text ? `?text=${encodeURIComponent(text)}` : "";
@@ -95,7 +95,7 @@ export function capitalize(value: string) {
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
 }
 
-/** JSON-LD ko <script> me inject karne se pehle safe banayein */
+/** Escape JSON-LD before injecting it into a <script> tag */
 export function safeJsonLd(data: unknown) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }

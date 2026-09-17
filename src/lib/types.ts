@@ -1,6 +1,6 @@
 /**
  * Shared TypeScript types for the whole site.
- * DB rows store a few fields as JSON strings (SQLite me arrays nahi hote),
+ * DB rows store a few fields as JSON strings (SQLite has no native array type),
  * so each of those has a raw type + a parsed type.
  */
 

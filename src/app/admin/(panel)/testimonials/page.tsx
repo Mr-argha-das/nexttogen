@@ -28,7 +28,7 @@ export default function AdminTestimonialsPage() {
       {/* Inline create form */}
       <details className="card overflow-hidden">
         <summary className="flex cursor-pointer items-center gap-2 px-5 py-4 font-heading text-[15px] font-bold">
-          <Plus className="h-4 w-4 text-brand-600" /> Naya testimonial add karein
+          <Plus className="h-4 w-4 text-brand-600" /> Add a new testimonial
         </summary>
         <div className="border-t border-slate-100 p-5">
           <TestimonialForm />
@@ -66,14 +66,14 @@ export default function AdminTestimonialsPage() {
                 action={deleteTestimonialAction}
                 id={testimonial.id}
                 label=""
-                confirmText={`${testimonial.name} ka testimonial delete karna hai?`}
+                confirmText={`Delete the testimonial from ${testimonial.name}?`}
               />
             </div>
           </div>
         ))}
         {!testimonials.length ? (
           <p className="card p-6 text-center text-[13.5px] text-slate-500">
-            Abhi koi testimonial nahi hai — upar se add kar lijiye.
+            No testimonials yet — add one using the button above.
           </p>
         ) : null}
       </div>

@@ -1,12 +1,12 @@
 /**
  * SQLite data layer.
  *
- * Node 22 ka built-in `node:sqlite` use hota hai — koi native dependency,
- * koi engine download, koi extra setup nahi. Pehli baar chalane par DB file
- * khud ban jaati hai aur demo content se seed ho jaati hai.
+ * Uses Node 22's built-in `node:sqlite` — no native dependency, no engine
+ * download and no extra setup. On first run the database file is created and
+ * seeded with demo content.
  *
- * Prisma-style reference model `prisma/schema.prisma` me rakha hai, agar aap
- * baad me Postgres/Prisma par shift hona chahein.
+ * A Prisma-style reference model lives in `prisma/schema.prisma` in case you
+ * later want to move to Postgres/Prisma.
  */
 import { DatabaseSync } from "node:sqlite";
 import fs from "node:fs";
@@ -32,7 +32,7 @@ function resolveDbPath(): string {
   return path.join(process.cwd(), "data", "institute.db");
 }
 
-/** DB kholta hai; write access na ho to in-memory fallback (read-only hosts). */
+/** Opens the database, falling back to in-memory storage on read-only hosts. */
 function openDatabase(): DatabaseSync {
   const dbPath = resolveDbPath();
   try {
@@ -42,15 +42,15 @@ function openDatabase(): DatabaseSync {
     return db;
   } catch (error) {
     console.warn(
-      `[db] ${dbPath} open nahi ho paya (${(error as Error).message}). ` +
-        "In-memory DB par fallback kar raha hoon — changes persist nahi honge.",
+      `[db] Could not open ${dbPath} (${(error as Error).message}). ` +
+        "Falling back to an in-memory database — changes will not persist.",
     );
     const memory = new DatabaseSync(":memory:");
     return memory;
   }
 }
 
-/** Lazily create + migrate + seed the database (HMR me bhi singleton). */
+/** Lazily create, migrate and seed the database (a singleton even across HMR). */
 export function getDb(): DatabaseSync {
   if (!globalForDb.__nexttogenDb) {
     const db = openDatabase();
@@ -61,7 +61,7 @@ export function getDb(): DatabaseSync {
   const db = globalForDb.__nexttogenDb;
   if (!globalForDb.__nexttogenSeeded) {
     globalForDb.__nexttogenSeeded = true;
-    // Circular import se bachne ke liye lazy require
+    // Lazy require avoids a circular import
     const { seedIfEmpty } = require("./seed") as typeof import("./seed");
     try {
       seedIfEmpty(db);
@@ -109,7 +109,7 @@ export function transaction<T>(fn: () => T): T {
   }
 }
 
-/** Simple unique-ish id generator (cuid jaisa). */
+/** Simple unique-ish id generator (in the spirit of cuid). */
 export function newId(prefix = ""): string {
   const time = Date.now().toString(36);
   const random = Math.random().toString(36).slice(2, 10);

@@ -44,7 +44,7 @@ export function ApplyForm({ courses, preselected, compact = false }: Props) {
         body: JSON.stringify(payload),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Form submit nahi ho paya");
+      if (!res.ok) throw new Error(data.error || "We could not submit your form");
       setReference(data.id ? String(data.id).slice(-6).toUpperCase() : "");
       setState("done");
       window.scrollTo({ top: 200, behavior: "smooth" });
@@ -60,23 +60,22 @@ export function ApplyForm({ courses, preselected, compact = false }: Props) {
         <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
           <CheckCircle2 className="h-7 w-7" />
         </span>
-        <h3 className="mt-4 font-heading text-xl font-bold">Application mil gayi! 🎉</h3>
+        <h3 className="mt-4 font-heading text-xl font-bold">Application received! 🎉</h3>
         <p className="mt-2 text-sm leading-6 text-slate-600">
           {reference ? (
             <>
-              Aapka reference number: <strong className="text-ink">#{reference}</strong>
+              Your reference number: <strong className="text-ink">#{reference}</strong>
               <br />
             </>
           ) : null}
-          Hamari admission team 24 ghante ke andar aapko call karegi — counselling aur demo class ka slot confirm karne
-          ke liye.
+          Our admission team will call you within 24 hours to confirm your counselling session and a demo class slot.
         </p>
         <div className="mt-5 flex flex-wrap justify-center gap-3">
           <Link href="/courses" className="btn btn-outline">
-            Aur courses dekhein
+            Browse more courses
           </Link>
           <Link href="/faq" className="btn btn-primary">
-            Common sawaal padhein
+            Read common questions
           </Link>
         </div>
       </div>
@@ -88,11 +87,11 @@ export function ApplyForm({ courses, preselected, compact = false }: Props) {
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="fullName">
-            Poora naam *
+            Full name *
           </label>
           <div className="relative">
             <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <input id="fullName" name="fullName" required minLength={3} className="field pl-9" placeholder="Aapka naam" />
+            <input id="fullName" name="fullName" required minLength={3} className="field pl-9" placeholder="Your full name" />
           </div>
         </div>
         <div>
@@ -118,7 +117,7 @@ export function ApplyForm({ courses, preselected, compact = false }: Props) {
           </label>
           <div className="relative">
             <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <input id="email" name="email" type="email" required className="field pl-9" placeholder="aap@email.com" />
+            <input id="email" name="email" type="email" required className="field pl-9" placeholder="you@email.com" />
           </div>
         </div>
         <div>
@@ -132,7 +131,7 @@ export function ApplyForm({ courses, preselected, compact = false }: Props) {
         </div>
         <div>
           <label className="label" htmlFor="courseId">
-            Course chunein *
+            Choose a course *
           </label>
           <select
             id="courseId"
@@ -171,7 +170,7 @@ export function ApplyForm({ courses, preselected, compact = false }: Props) {
           <div className="relative">
             <Clock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <select id="preferredMode" name="preferredMode" className="field pl-9" defaultValue="Offline">
-              <option value="Offline">Offline (campus)</option>
+              <option value="Offline">Offline (on campus)</option>
               <option value="Online">Online (live + recording)</option>
               <option value="Hybrid">Hybrid</option>
             </select>
@@ -179,9 +178,9 @@ export function ApplyForm({ courses, preselected, compact = false }: Props) {
         </div>
         <div>
           <label className="label" htmlFor="message">
-            Kuch poochhna hai? (optional)
+            Anything you would like to ask? (optional)
           </label>
-          <input id="message" name="message" className="field" placeholder="Jaise: morning batch chahiye" />
+          <input id="message" name="message" className="field" placeholder="For example: I prefer the morning batch" />
         </div>
       </div>
 
@@ -212,16 +211,16 @@ export function ApplyForm({ courses, preselected, compact = false }: Props) {
         <button type="submit" disabled={state === "loading"} className="btn btn-primary btn-lg">
           {state === "loading" ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" /> Bhej rahe hain…
+              <Loader2 className="h-4 w-4 animate-spin" /> Submitting…
             </>
           ) : (
             <>
-              <Send className="h-4 w-4" /> Application bhejein
+              <Send className="h-4 w-4" /> Submit application
             </>
           )}
         </button>
         <p className="text-xs text-slate-500">
-          Submit karke aap humse call/WhatsApp par contact hone ki permission dete hain. Aapki details safe rahengi.
+          By submitting this form you allow us to contact you by phone or WhatsApp. Your details stay private.
         </p>
       </div>
     </form>

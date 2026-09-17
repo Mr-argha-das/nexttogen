@@ -19,7 +19,7 @@ type SeoInput = {
   noIndex?: boolean;
 };
 
-/** Har page ke liye consistent, SEO-friendly metadata. */
+/** Consistent, SEO-friendly metadata for every page. */
 export function buildMetadata({
   settings,
   title,

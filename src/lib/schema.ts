@@ -1,4 +1,4 @@
-/** SQLite schema — pehli baar DB banne par yahi tables create hote hain. */
+/** SQLite schema — these tables are created the first time the database is initialised. */
 export const SCHEMA_SQL = `
 CREATE TABLE IF NOT EXISTS users (
   id TEXT PRIMARY KEY,

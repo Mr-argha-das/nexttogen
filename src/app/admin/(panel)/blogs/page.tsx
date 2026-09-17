@@ -80,7 +80,7 @@ export default function AdminBlogsPage() {
                       <Link href={`/admin/blogs/${post.id}`} className="btn btn-outline btn-sm">
                         <Pencil className="h-3.5 w-3.5" /> Edit
                       </Link>
-                      <DeleteButton action={deletePostAction} id={post.id} label="" confirmText={`"${post.title}" delete karna hai?`} />
+                      <DeleteButton action={deletePostAction} id={post.id} label="" confirmText={`Delete "${post.title}"?`} />
                     </div>
                   </td>
                 </tr>
@@ -88,7 +88,7 @@ export default function AdminBlogsPage() {
               {!posts.length ? (
                 <tr>
                   <td colSpan={7} className="px-5 py-10 text-center">
-                    <p className="font-heading text-base font-bold">Abhi koi blog post nahi hai</p>
+                    <p className="font-heading text-base font-bold">No blog posts yet</p>
                     <Link href="/admin/blogs/new" className="btn btn-primary mt-4">
                       <Plus className="h-4 w-4" /> Pehla blog likhein
                     </Link>

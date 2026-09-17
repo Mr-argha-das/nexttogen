@@ -1,6 +1,6 @@
 // NextToGen Institute — Database schema (SQLite)
-// Admin panel isi DB ko manage karta hai: courses, blogs, testimonials,
-// applications, messages, FAQs, subscribers aur site settings.
+// The admin panel manages this database: courses, blogs, testimonials,
+// applications, messages, FAQs, subscribers and site settings.
 
 generator client {
   provider = "prisma-client-js"
@@ -95,8 +95,8 @@ model BlogPost {
 model Testimonial {
   id        String   @id @default(cuid())
   name      String
-  role      String? // "Full Stack Developer @ Infosys" jaisa current role
-  course    String? // jis course ka student tha
+  role      String? // current role, e.g. "Full Stack Developer @ Infosys"
+  course    String? // the course this student was enrolled in
   rating    Int      @default(5)
   message   String
   avatar    String?

@@ -1,7 +1,7 @@
 /**
- * DB seeding — pehli baar database banne par demo content insert karta hai.
- * Idempotent hai: agar data pehle se hai to kuch nahi karta.
- * `npm run db:seed` (scripts/seed.ts) bhi isi function ko call karta hai.
+ * Database seeding — inserts demo content the first time the database is created.
+ * It is idempotent: if data already exists it does nothing.
+ * `npm run db:seed` (scripts/seed.ts) calls this same function.
  */
 import type { DatabaseSync } from "node:sqlite";
 import bcrypt from "bcryptjs";
@@ -174,14 +174,14 @@ function seedApplications(db: DatabaseSync) {
   const pick = (i: number) => courses[i % courses.length];
 
   const demo = [
-    ["Aarti Kumari", "aarti.kumari@example.com", "9829012345", 0, "Jaipur", "12th", "Offline", "Morning batch chahiye", "NEW", -1],
+    ["Aarti Kumari", "aarti.kumari@example.com", "9829012345", 0, "Jaipur", "12th", "Offline", "I would prefer the morning batch", "NEW", -1],
     ["Harsh Vardhan", "harsh.v@example.com", "9988776655", 1, "Sikar", "B.Tech", "Online", "Weekend classes possible?", "CONTACTED", -2],
-    ["Ritu Sharma", "ritu.sharma@example.com", "9765432109", 2, "Jaipur", "B.Com", "Online", "EMI ke baare me jaanna hai", "ENROLLED", -5],
+    ["Ritu Sharma", "ritu.sharma@example.com", "9765432109", 2, "Jaipur", "B.Com", "Online", "I would like to know about the EMI option", "ENROLLED", -5],
     ["Salman Khan", "salman.k@example.com", "9123456780", 3, "Tonk", "12th", "Offline", "Design me career banana chahta hoon", "NEW", -1],
     ["Neha Gupta", "neha.g@example.com", "9876501234", 4, "Jaipur", "Graduate", "Offline", "", "CONTACTED", -3],
-    ["Pankaj Meena", "pankaj.m@example.com", "9090909090", 5, "Alwar", "B.Tech", "Hybrid", "Security field me interest hai", "NEW", -1],
+    ["Pankaj Meena", "pankaj.m@example.com", "9090909090", 5, "Alwar", "B.Tech", "Hybrid", "I am interested in the security field", "NEW", -1],
     ["Sunita Devi", "sunita.d@example.com", "9345678123", 6, "Dausa", "10th", "Offline", "Hindi medium me padhna chahti hoon", "ENROLLED", -8],
-    ["Yash Agarwal", "yash.a@example.com", "9456123789", 7, "Jaipur", "12th", "Hybrid", "English speaking improve karni hai", "REJECTED", -12],
+    ["Yash Agarwal", "yash.a@example.com", "9456123789", 7, "Jaipur", "12th", "Hybrid", "I want to improve my spoken English", "REJECTED", -12],
   ] as const;
 
   const now = Date.now();
@@ -214,12 +214,12 @@ function seedApplications(db: DatabaseSync) {
 function seedMessages(db: DatabaseSync) {
   const now = Date.now();
   const demo: (string | number | null)[][] = [
-    ["Kapil Jain", "kapil.jain@example.com", "9812345670", "Demo class ke liye slot", "Beti ko DCA me admission karana hai. Sunday ka slot mil sakta hai?", "CONTACT", null, "NEW", -1],
-    ["Meena Kumari", "meena.k@example.com", "9900112233", null, "Fees ki EMI kitni hogi? Aapka number nahi lag raha tha.", "CONTACT", null, "READ", -2],
-    ["Sanjay Tibrewal", "sanjay.t@company.com", "9867001122", "CSR collaboration", "Humari manufacturing company CSR budget se 1 lab sponsor karna chahti hai. Process bata dijiye.", "PARTNER", 150000, "NEW", -3],
-    ["Ankit Bansal", "ankit.b@example.com", null, null, "Alumni hoon (2019 batch). Bade din par 5,000 ka contribution bhejna chahta hoon.", "SUPPORT", 5000, "REPLIED", -6],
-    ["Farhan Ali", "farhan.a@example.com", "9765001234", "Online batch timing", "Main Bangalore me hoon, online batch ki timing aur recording access ke baare me bataiye.", "CONTACT", null, "NEW", -1],
-    ["Rekha Yadav", "rekha.y@example.com", "9871234509", "Scholarship", "12th me 82% mile hain. Scholarship ka process kya hai?", "CONTACT", null, "READ", -4],
+    ["Kapil Jain", "kapil.jain@example.com", "9812345670", "Slot request for a demo class", "I would like to enrol my daughter in the DCA course. Is a Sunday slot possible?", "CONTACT", null, "NEW", -1],
+    ["Meena Kumari", "meena.k@example.com", "9900112233", null, "What would the EMI amount be? I could not reach your number earlier.", "CONTACT", null, "READ", -2],
+    ["Sanjay Tibrewal", "sanjay.t@company.com", "9867001122", "CSR collaboration", "Our manufacturing company would like to sponsor one lab from its CSR budget. Please share the process.", "PARTNER", 150000, "NEW", -3],
+    ["Ankit Bansal", "ankit.b@example.com", null, null, "I am an alumnus of the 2019 batch and would like to contribute ₹5,000 towards the annual fund.", "SUPPORT", 5000, "REPLIED", -6],
+    ["Farhan Ali", "farhan.a@example.com", "9765001234", "Online batch timings", "I am based in Bangalore. Please share the online batch timings and how recording access works.", "CONTACT", null, "NEW", -1],
+    ["Rekha Yadav", "rekha.y@example.com", "9871234509", "Scholarship", "I scored 82% in 12th. How does the scholarship process work?", "CONTACT", null, "READ", -4],
   ];
 
   bulkInsert(

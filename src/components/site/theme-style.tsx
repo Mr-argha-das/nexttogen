@@ -1,8 +1,8 @@
 import type { SiteSettings } from "@/lib/types";
 
 /**
- * DB settings se theme colors inject karta hai. Admin panel se brand color
- * badalte hi poori site (buttons, badges, gradients) update ho jaati hai.
+ * Injects theme colors from the database settings. Changing the brand color in the
+ * admin panel instantly re-themes the whole site (buttons, badges, gradients).
  */
 export function ThemeStyle({ settings }: { settings: SiteSettings }) {
   const css = `:root{--brand:${settings.brandPrimary};--brand-accent:${settings.brandAccent};}`;

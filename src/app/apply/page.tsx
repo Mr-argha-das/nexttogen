@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
     settings,
     title: "Apply Online — Admission form",
-    description: `Online admission form — ${settings.siteName} me apply karein. Free counselling, 2 demo classes, 0% EMI aur scholarship option. Form 2 minute me bhar jaata hai.`,
+    description: `Apply online to ${settings.siteName}. Free counselling, two demo classes, 0% EMI and scholarship options — the form takes about two minutes.`,
     path: "/apply",
     keywords: ["admission form", "apply online", "course admission", `${settings.city} institute admission`],
   });
@@ -35,20 +35,20 @@ export default async function ApplyPage({
   const cheapest = courses.length ? Math.min(...courses.map((c) => c.discountFee ?? c.fee)) : 0;
 
   const trust = [
-    { icon: CalendarCheck, title: "24 ghante me callback", text: "Form bharne ke baad humari team turant contact karti hai." },
-    { icon: Percent, title: "0% interest EMI", text: "3, 6 ya 9 instalments — bina kisi hidden charge." },
-    { icon: Award, title: "Scholarship", text: "75%+ marks par 15% off, girl students ke liye extra concession." },
-    { icon: ShieldCheck, title: "Demo pehle, fees baad me", text: "2 free demo classes ke baad hi decide kijiye." },
+    { icon: CalendarCheck, title: "Callback within 24 hours", text: "Our team contacts you as soon as your form is submitted." },
+    { icon: Percent, title: "0% interest EMI", text: "3, 6 or 9 instalments, with no hidden charges." },
+    { icon: Award, title: "Scholarships", text: "15% off with 75%+ marks, plus extra concessions for girl students." },
+    { icon: ShieldCheck, title: "Demo first, fees later", text: "Attend two free demo classes before you decide." },
   ];
 
   return (
     <>
       <PageHero
         eyebrow="Apply now"
-        title="Admission form — 2 minute me complete"
-        description={`Form bharein aur humari admission team aapko call karke free counselling ka slot de degi. Fees ${formatINR(
+        title="Admission form — takes about two minutes"
+        description={`Fill in the form and our admission team will call you to arrange a free counselling session. Fees start at ${formatINR(
           cheapest,
-        )} se shuru, EMI aur scholarship options ke saath.`}
+        )}, with EMI and scholarship options available.`}
         crumbs={[{ label: "Apply" }]}
       >
         <div className="flex flex-wrap gap-2">
@@ -70,8 +70,8 @@ export default async function ApplyPage({
             <div>
               <h2 className="font-heading text-xl font-bold">Application form</h2>
               <p className="mt-2 text-[14px] text-slate-600">
-                * wale fields zaroori hain. Course confirm nahi hai? Koi baat nahi — “Other / Not sure” me rehne dijiye,
-                counsellor aapko sahi course suggest karega.
+                Fields marked with * are required. Not sure which course to pick? That is completely fine — a
+                counsellor will help you choose during the call.
               </p>
             </div>
 
@@ -115,7 +115,7 @@ export default async function ApplyPage({
                   "2 passport size photos",
                   "Last qualification ki marksheet",
                   "Previous course certificate (agar ho)",
-                  "Bank details / EMI ke liye (optional)",
+                  "Bank details for EMI (optional)",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500" />
@@ -124,7 +124,7 @@ export default async function ApplyPage({
                 ))}
               </ul>
               <p className="mt-3 rounded-lg bg-brand-50 px-3 py-2 text-[12px] text-brand-800">
-                Documents online (WhatsApp/email) bhi bhej sakte hain — campus aana zaroori nahi.
+                Documents can also be sent online by WhatsApp or email — visiting the campus is optional.
               </p>
             </div>
 
@@ -150,9 +150,9 @@ export default async function ApplyPage({
             <div className="card overflow-hidden">
               <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
                 <Sparkles className="h-5 w-5 text-accent-100" />
-                <h3 className="mt-2 font-heading text-base font-bold">Jaldi karna chahte hain?</h3>
+                <h3 className="mt-2 font-heading text-base font-bold">In a hurry?</h3>
                 <p className="mt-2 text-[13px] text-white/80">
-                  Form ke bina bhi baat kar sakte hain — seedha call ya WhatsApp kijiye.
+                  You can also reach us without filling the form — call or message us on WhatsApp.
                 </p>
                 <div className="mt-4 space-y-2">
                   <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="btn btn-accent w-full">
@@ -160,13 +160,13 @@ export default async function ApplyPage({
                   </a>
                   <a
                     href={`https://wa.me/${settings.whatsapp}?text=${encodeURIComponent(
-                      "Namaste! Mujhe admission ke baare me jaankari chahiye.",
+                      "Hello! I would like to know more about admission at your institute.",
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn w-full border border-white/25 bg-white/10 text-white hover:bg-white/20"
                   >
-                    WhatsApp par poochhein
+                    Ask on WhatsApp
                   </a>
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default async function ApplyPage({
                 <FaqAccordion faqs={faqs} defaultOpen={-1} />
               </div>
               <Link href="/faq" className="mt-3 inline-block text-[13px] font-semibold text-brand-700">
-                Saare FAQs padhein →
+                Read all FAQs →
               </Link>
             </div>
           </aside>

@@ -16,9 +16,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = getSettings();
   return buildMetadata({
     settings,
-    title: "Blog — Career guides, roadmaps aur job tips",
+    title: "Blog — Career guides, roadmaps and job tips",
     description:
-      "Web development roadmap, resume tips, data science vs AI, digital marketing tools aur cyber security career guides — hamare trainers aur placement team ke experience se.",
+      "Web development roadmap, resume writing tips, the difference between data science and AI, free marketing tools and a cyber security career guide — written from our trainers' and placement team's experience.",
     path: "/blog",
     keywords: ["career blog", "IT career tips", "fresher resume tips", "web development roadmap", "job search India"],
   });
@@ -70,8 +70,8 @@ export default async function BlogPage({
     <>
       <PageHero
         eyebrow="Blog"
-        title="Career guides, roadmaps aur industry tips"
-        description={`${countPosts()} articles — jo hum apne students ko class me sikhate hain, wahi yahan likh dete hain. Koi jargon nahi, seedhi baat.`}
+        title="Career guides, roadmaps and industry tips"
+        description={`${countPosts()} articles written by our trainers and placement team — the same practical advice we give students in class. No jargon, just what works.`}
         crumbs={[{ label: "Blogs" }]}
       >
         <form action="/blog" method="get" className="flex max-w-md gap-2">
@@ -80,7 +80,7 @@ export default async function BlogPage({
             <input
               name="q"
               defaultValue={params.q ?? ""}
-              placeholder="Topic search karein… (jaise resume, python)"
+              placeholder="Search a topic… (for example: resume, python)"
               className="field pl-9"
               aria-label="Blog search"
             />
@@ -118,7 +118,7 @@ export default async function BlogPage({
 
             {query ? (
               <p className="mt-5 text-[13.5px] text-slate-600">
-                “{params.q}” ke liye <strong>{total}</strong> result{total === 1 ? "" : "s"} mile ·{" "}
+                <strong>{total}</strong> result{total === 1 ? "" : "s"} for “{params.q}” ·{" "}
                 <Link href="/blog" className="font-semibold text-brand-700">
                   Clear
                 </Link>
@@ -144,7 +144,7 @@ export default async function BlogPage({
                     </h2>
                     <p className="mt-3 text-[14px] leading-7 text-slate-600">{featured.excerpt}</p>
                     <Link href={`/blog/${featured.slug}`} className="btn btn-primary mt-5">
-                      Poora padhein <ArrowRight className="h-4 w-4" />
+                      Read the article <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
                 </div>
@@ -160,10 +160,10 @@ export default async function BlogPage({
               </div>
             ) : (
               <div className="mt-10 rounded-2xl border border-dashed border-slate-300 p-10 text-center">
-                <p className="font-heading text-lg font-bold">Koi article nahi mila</p>
-                <p className="mt-1 text-sm text-slate-500">Doosra keyword try karein ya saare blogs dekhein.</p>
+                <p className="font-heading text-lg font-bold">No articles found</p>
+                <p className="mt-1 text-sm text-slate-500">Try another keyword, or browse every article.</p>
                 <Link href="/blog" className="btn btn-primary mt-5">
-                  Saare blogs
+                  All articles
                 </Link>
               </div>
             )}
@@ -176,7 +176,7 @@ export default async function BlogPage({
                   aria-disabled={currentPage === 1}
                   className={cn("btn btn-outline btn-sm", currentPage === 1 && "pointer-events-none opacity-40")}
                 >
-                  <ArrowLeft className="h-4 w-4" /> Pichla
+                  <ArrowLeft className="h-4 w-4" /> Previous
                 </Link>
                 {Array.from({ length: totalPages }).map((_, index) => (
                   <Link
@@ -200,7 +200,7 @@ export default async function BlogPage({
                     currentPage === totalPages && "pointer-events-none opacity-40",
                   )}
                 >
-                  Agla <ArrowRight className="h-4 w-4" />
+                  Next <ArrowRight className="h-4 w-4" />
                 </Link>
               </nav>
             ) : null}
@@ -224,9 +224,9 @@ export default async function BlogPage({
             </div>
 
             <div className="card p-5">
-              <h3 className="font-heading text-[15px] font-bold">Naye articles ke alert</h3>
+              <h3 className="font-heading text-[15px] font-bold">New article alerts</h3>
               <p className="mt-2 text-[13px] leading-6 text-slate-600">
-                Mahine me 2–4 career guides. Spam nahi, sirf kaam ki baat.
+                Two to four career guides a month. No spam, only useful content.
               </p>
               <div className="mt-4">
                 <NewsletterForm compact />
@@ -236,12 +236,12 @@ export default async function BlogPage({
             <div className="card overflow-hidden">
               <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
                 <p className="text-[12px] font-semibold uppercase tracking-wider text-white/70">Free counselling</p>
-                <h3 className="mt-1 font-heading text-lg font-bold">Kaunsa course aapke liye sahi hai?</h3>
+                <h3 className="mt-1 font-heading text-lg font-bold">Which course suits you best?</h3>
                 <p className="mt-2 text-[13px] text-white/80">
-                  Form bharein — hamari team aapke goal ke hisaab se course suggest karegi.
+                  Share your goal and our team will recommend the right course for you.
                 </p>
                 <Link href="/apply" className="btn btn-accent mt-4 w-full">
-                  Apply karein
+                  Apply now
                 </Link>
               </div>
             </div>
@@ -265,10 +265,10 @@ export default async function BlogPage({
       </section>
 
       <CtaBand
-        title="Padhna kaafi nahi — guidance bhi chahiye"
-        description={`${settings.siteName} me free counselling session book karein aur apne career ka clear roadmap banwaiye.`}
+        title="Reading helps — guidance helps more"
+        description={`Book a free counselling session at ${settings.siteName} and get a clear roadmap for your career.`}
         primary={{ href: "/apply", label: "Free counselling" }}
-        secondary={{ href: "/courses", label: "Courses dekhein" }}
+        secondary={{ href: "/courses", label: "Browse courses" }}
       />
     </>
   );

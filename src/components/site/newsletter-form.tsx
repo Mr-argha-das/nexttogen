@@ -18,9 +18,9 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
         body: JSON.stringify({ email }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Subscribe nahi ho paya");
+      if (!res.ok) throw new Error(data.error || "Subscription failed");
       setState("done");
-      setMessage(data.message || "Ho gaya! Ab career tips aapke inbox me aayenge.");
+      setMessage(data.message || "Done! Career tips will now reach your inbox.");
       setEmail("");
     } catch (error) {
       setState("error");
@@ -46,7 +46,7 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="aapka@email.com"
+            placeholder="you@email.com"
             className="field bg-white/95 pl-9"
             aria-label="Email address"
           />
@@ -56,7 +56,7 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
         </button>
       </div>
       {state === "error" && <p className="text-xs font-medium text-rose-600">{message}</p>}
-      <p className="text-xs text-slate-400">Career tips, new batch updates. Spam nahi bhejenge.</p>
+      <p className="text-xs text-slate-400">Career tips and new batch updates. No spam, ever.</p>
     </form>
   );
 }

@@ -44,7 +44,7 @@ export async function loginAction(_prev: ActionState, formData: FormData): Promi
   if (!parsed.success) return { ok: false, message: firstError(parsed.error) };
 
   const user = await verifyCredentials(parsed.data.email, parsed.data.password);
-  if (!user) return { ok: false, message: "Email ya password galat hai. Dobara try karein." };
+  if (!user) return { ok: false, message: "Incorrect email or password. Please try again." };
 
   await createSession(user);
   redirect("/admin");
@@ -63,14 +63,14 @@ export async function changePasswordAction(_prev: ActionState, formData: FormDat
 
   const record = findUserByEmail(user.email);
   if (!record || !(await bcrypt.compare(current, record.passwordHash))) {
-    return { ok: false, message: "Current password galat hai." };
+    return { ok: false, message: "The current password is incorrect." };
   }
   execute("UPDATE users SET passwordHash = ?, updatedAt = ? WHERE id = ?", [
     hashPassword(next),
     new Date().toISOString(),
     user.id,
   ]);
-  return { ok: true, message: "Password update ho gaya ✅" };
+  return { ok: true, message: "Password updated ✅" };
 }
 
 /* ------------------------------ courses -------------------------------- */
@@ -88,8 +88,8 @@ export async function saveCourseAction(data: Record<string, unknown>): Promise<A
     }
   } catch (error) {
     const message = (error as Error).message.includes("UNIQUE")
-      ? "Is slug ka course pehle se hai — slug badal dijiye."
-      : "Course save nahi ho paya: " + (error as Error).message;
+      ? "A course with this slug already exists — please use a different slug."
+      : "Could not save the course: " + (error as Error).message;
     return { ok: false, message };
   }
 
@@ -97,7 +97,7 @@ export async function saveCourseAction(data: Record<string, unknown>): Promise<A
   revalidatePath("/courses");
   revalidatePath(`/courses/${slug}`);
   revalidatePath("/");
-  return { ok: true, message: data.id ? "Course update ho gaya ✅" : "Naya course add ho gaya ✅" };
+  return { ok: true, message: data.id ? "Course updated ✅" : "New course added ✅" };
 }
 
 export async function deleteCourseAction(formData: FormData) {
@@ -125,8 +125,8 @@ export async function savePostAction(data: Record<string, unknown>): Promise<Act
     }
   } catch (error) {
     const message = (error as Error).message.includes("UNIQUE")
-      ? "Is slug ka blog pehle se hai — slug badal dijiye."
-      : "Blog save nahi ho paya: " + (error as Error).message;
+      ? "A blog post with this slug already exists — please use a different slug."
+      : "Could not save the blog post: " + (error as Error).message;
     return { ok: false, message };
   }
 
@@ -134,7 +134,7 @@ export async function savePostAction(data: Record<string, unknown>): Promise<Act
   revalidatePath("/blog");
   revalidatePath(`/blog/${slug}`);
   revalidatePath("/");
-  return { ok: true, message: data.id ? "Blog update ho gaya ✅" : "Naya blog publish ho gaya ✅" };
+  return { ok: true, message: data.id ? "Blog post updated ✅" : "Blog post published ✅" };
 }
 
 export async function deletePostAction(formData: FormData) {
@@ -155,12 +155,12 @@ export async function saveTestimonialAction(data: Record<string, unknown>): Prom
     if (data.id) updateTestimonial(String(data.id), data);
     else createTestimonial(data);
   } catch (error) {
-    return { ok: false, message: "Testimonial save nahi hua: " + (error as Error).message };
+    return { ok: false, message: "Could not save the testimonial: " + (error as Error).message };
   }
   revalidatePath("/admin/testimonials");
   revalidatePath("/testimonials");
   revalidatePath("/");
-  return { ok: true, message: data.id ? "Testimonial update ho gaya ✅" : "Testimonial add ho gaya ✅" };
+  return { ok: true, message: data.id ? "Testimonial updated ✅" : "Testimonial added ✅" };
 }
 
 export async function deleteTestimonialAction(formData: FormData) {
@@ -179,12 +179,12 @@ export async function saveFaqAction(data: Record<string, unknown>): Promise<Acti
     if (data.id) updateFaq(String(data.id), data);
     else createFaq(data as { question: string; answer: string; category?: string; sortOrder?: number; published?: boolean });
   } catch (error) {
-    return { ok: false, message: "FAQ save nahi hui: " + (error as Error).message };
+    return { ok: false, message: "Could not save the FAQ: " + (error as Error).message };
   }
   revalidatePath("/admin/faqs");
   revalidatePath("/faq");
   revalidatePath("/");
-  return { ok: true, message: data.id ? "FAQ update ho gayi ✅" : "Nayi FAQ add ho gayi ✅" };
+  return { ok: true, message: data.id ? "FAQ updated ✅" : "New FAQ added ✅" };
 }
 
 export async function deleteFaqAction(formData: FormData) {
@@ -254,7 +254,7 @@ export async function saveSettingsAction(data: Record<string, string>): Promise<
   try {
     updateSettings(data);
   } catch (error) {
-    return { ok: false, message: "Settings save nahi hui: " + (error as Error).message };
+    return { ok: false, message: "Could not save the settings: " + (error as Error).message };
   }
   // Poori site dobara render ho
   revalidatePath("/", "layout");
