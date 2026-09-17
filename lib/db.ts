@@ -9,6 +9,39 @@ import bcrypt from "bcryptjs";
 const DATA_DIR = path.join(process.cwd(), ".data");
 const DATA_FILE = path.join(DATA_DIR, "site.json");
 const AUTH_FILE = path.join(DATA_DIR, "auth.json");
+const SUBMISSIONS_FILE = path.join(DATA_DIR, "submissions.json");
+const MESSAGES_FILE = path.join(DATA_DIR, "messages.json");
+
+export type Application = {
+  id: string;
+  submittedAt: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  course: string;
+  startDate: string;
+  experience: string;
+  education: string;
+  goals: string;
+  linkedin: string;
+  resume: string;
+  hearAbout: string;
+  scholarship: boolean;
+  status: "new" | "reviewing" | "accepted" | "rejected";
+};
+
+export type ContactMessage = {
+  id: string;
+  submittedAt: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  read: boolean;
+};
 
 export type SiteData = {
   siteName: string;
@@ -99,4 +132,74 @@ export function slugify(s: string): string {
     .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
+}
+
+async function readJsonFile<T>(file: string, fallback: T): Promise<T> {
+  await ensureDataDir();
+  try {
+    const raw = await fs.readFile(file, "utf8");
+    return JSON.parse(raw) as T;
+  } catch {
+    await fs.writeFile(file, JSON.stringify(fallback, null, 2));
+    return fallback;
+  }
+}
+
+async function writeJsonFile<T>(file: string, data: T): Promise<void> {
+  await ensureDataDir();
+  await fs.writeFile(file, JSON.stringify(data, null, 2));
+}
+
+export async function getApplications(): Promise<Application[]> {
+  return readJsonFile<Application[]>(SUBMISSIONS_FILE, []);
+}
+
+export async function addApplication(a: Application): Promise<Application> {
+  const all = await getApplications();
+  all.unshift(a);
+  await writeJsonFile(SUBMISSIONS_FILE, all);
+  return a;
+}
+
+export async function updateApplicationStatus(id: string, status: Application["status"]): Promise<boolean> {
+  const all = await getApplications();
+  const idx = all.findIndex((x) => x.id === id);
+  if (idx === -1) return false;
+  all[idx].status = status;
+  await writeJsonFile(SUBMISSIONS_FILE, all);
+  return true;
+}
+
+export async function deleteApplication(id: string): Promise<boolean> {
+  const all = await getApplications();
+  const next = all.filter((x) => x.id !== id);
+  await writeJsonFile(SUBMISSIONS_FILE, next);
+  return next.length !== all.length;
+}
+
+export async function getMessages(): Promise<ContactMessage[]> {
+  return readJsonFile<ContactMessage[]>(MESSAGES_FILE, []);
+}
+
+export async function addMessage(m: ContactMessage): Promise<ContactMessage> {
+  const all = await getMessages();
+  all.unshift(m);
+  await writeJsonFile(MESSAGES_FILE, all);
+  return m;
+}
+
+export async function markMessageRead(id: string): Promise<boolean> {
+  const all = await getMessages();
+  const idx = all.findIndex((x) => x.id === id);
+  if (idx === -1) return false;
+  all[idx].read = true;
+  await writeJsonFile(MESSAGES_FILE, all);
+  return true;
+}
+
+export async function deleteMessage(id: string): Promise<boolean> {
+  const all = await getMessages();
+  const next = all.filter((x) => x.id !== id);
+  await writeJsonFile(MESSAGES_FILE, next);
+  return next.length !== all.length;
 }

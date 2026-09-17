@@ -20,6 +20,8 @@ export default function ContactPage() {
   const faqs = data.faqs;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -120,9 +122,25 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
                     e.preventDefault();
-                    setSent(true);
+                    setSending(true);
+                    setErr(null);
+                    try {
+                      const res = await fetch("/api/admin/submissions?kind=message", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(form)
+                      });
+                      const j = await res.json();
+                      if (!res.ok || !j.ok) throw new Error(j.error || "Failed to send");
+                      setSent(true);
+                      setForm({ name: "", email: "", subject: "General Inquiry", message: "" });
+                    } catch (ex: any) {
+                      setErr(ex.message || "Something went wrong");
+                    } finally {
+                      setSending(false);
+                    }
                   }}
                   className="mt-6 grid gap-5 md:grid-cols-2"
                 >
@@ -181,12 +199,17 @@ export default function ContactPage() {
                       className={inputCls + " resize-none"}
                     />
                   </div>
+                  {err && (
+                    <div className="md:col-span-2 rounded-xl bg-red-50 border border-red-200 p-3 text-sm text-red-800">
+                      {err}
+                    </div>
+                  )}
                   <div className="md:col-span-2 flex items-center justify-between flex-wrap gap-3">
                     <p className="text-xs text-ink-500">
                       By submitting, you agree to our privacy policy.
                     </p>
-                    <button className="btn-gold">
-                      Send Message <Send className="h-4 w-4" />
+                    <button disabled={sending} className="btn-gold disabled:opacity-60">
+                      {sending ? "Sending…" : (<>Send Message <Send className="h-4 w-4" /></>)}
                     </button>
                   </div>
                 </form>

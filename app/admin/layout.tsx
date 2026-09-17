@@ -15,7 +15,9 @@ import {
   Home,
   Menu,
   X,
-  Loader2
+  Loader2,
+  Inbox,
+  ClipboardList
 } from "lucide-react";
 import { useAdminAuth } from "@/lib/adminAuth";
 import clsx from "clsx";
@@ -23,9 +25,11 @@ import clsx from "clsx";
 const nav = [
   { href: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/courses", label: "Courses", icon: BookOpen },
-  { href: "/admin/testimonials", label: "Testimonials", icon: Quote },
   { href: "/admin/posts", label: "Blog Posts", icon: FileText },
+  { href: "/admin/testimonials", label: "Testimonials", icon: Quote },
   { href: "/admin/faqs", label: "FAQs", icon: MessageCircleQuestion },
+  { href: "/admin/applications", label: "Applications", icon: ClipboardList },
+  { href: "/admin/messages", label: "Messages", icon: Inbox },
   { href: "/admin/settings", label: "Site Settings", icon: Settings }
 ];
 
@@ -61,7 +65,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Sidebar */}
       <aside
         className={clsx(
-          "fixed lg:sticky top-0 left-0 h-screen w-72 bg-brand-950 text-white z-40 transition-transform",
+          "fixed lg:sticky top-0 left-0 h-screen w-72 bg-brand-950 text-white z-40 transition-transform overflow-y-auto",
           open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
       >
@@ -106,9 +110,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           })}
         </nav>
 
-        <div className="absolute bottom-0 inset-x-0 p-4 space-y-2">
+        <div className="mt-6 px-4 pt-4 border-t border-white/10 space-y-2">
           <Link
             href="/"
+            onClick={() => setOpen(false)}
             className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm text-white/70 hover:bg-white/10 hover:text-white transition"
           >
             <Home className="h-4 w-4" /> View Live Site
@@ -116,7 +121,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <button
             onClick={() => {
               logout();
-              router.push("/admin/login");
+              setOpen(false);
             }}
             className="w-full flex items-center gap-3 rounded-xl px-4 py-3 text-sm text-white/70 hover:bg-red-500/20 hover:text-red-200 transition"
           >

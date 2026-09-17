@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
-const ADMIN_ROUTES = ["/admin/dashboard", "/admin/courses", "/admin/testimonials", "/admin/posts", "/admin/faqs", "/admin/settings"];
+const ADMIN_ROUTES = ["/admin/dashboard", "/admin/courses", "/admin/testimonials", "/admin/posts", "/admin/faqs", "/admin/settings", "/admin/applications", "/admin/messages"];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -17,7 +17,7 @@ export async function middleware(req: NextRequest) {
     if (token) {
       try {
         const secret = new TextEncoder().encode(
-          process.env.ADMIN_JWT_SECRET || "dev-secret"
+          process.env.ADMIN_JWT_SECRET || "dev-secret-change-me"
         );
         await jwtVerify(token, secret);
         valid = true;

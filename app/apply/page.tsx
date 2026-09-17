@@ -27,6 +27,9 @@ const steps = [
 export default function ApplyPage() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [appId, setAppId] = useState<string>("");
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -66,7 +69,7 @@ export default function ApplyPage() {
             your application and reach out within 48 hours.
           </p>
           <p className="mt-2 text-ink-500 text-sm">
-            Application ID: NTG-{Math.floor(Math.random() * 900000 + 100000)}
+            Application ID: {appId}
           </p>
         </div>
       </section>
@@ -401,7 +404,26 @@ export default function ApplyPage() {
               <button
                 type="button"
                 disabled={!form.agree}
-                onClick={() => setSubmitted(true)}
+                onClick={async () => {
+                if (!form.agree) return;
+                setSubmitting(true);
+                setSubmitError(null);
+                try {
+                  const res = await fetch("/api/admin/submissions?kind=application", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(form)
+                  });
+                  const j = await res.json();
+                  if (!res.ok || !j.ok) throw new Error(j.error || "Submission failed");
+                  setAppId(j.id);
+                  setSubmitted(true);
+                } catch (e: any) {
+                  setSubmitError(e.message || "Could not submit application. Please try again.");
+                } finally {
+                  setSubmitting(false);
+                }
+              }}
                 className="btn-gold disabled:opacity-40"
               >
                 Submit Application <ArrowRight className="h-4 w-4" />
