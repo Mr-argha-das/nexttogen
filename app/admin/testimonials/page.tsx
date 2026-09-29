@@ -61,28 +61,28 @@ export default function AdminTestimonials() {
 
       <div className="grid gap-4 md:grid-cols-2">
         {data.testimonials.map((t, i) => (
-          <div key={i} className="rounded-2xl border border-ink-100 bg-white p-6 shadow-soft">
+          <div key={i} className="rounded-2xl border border-white/[0.08] bg-ink-100/70 p-6 shadow-soft">
             <div className="flex items-center gap-1 text-gold-400 mb-3">
               {[...Array(t.rating)].map((_, j) => <Star key={j} className="h-4 w-4 fill-current" />)}
             </div>
             <p className="font-serif italic text-ink-700 leading-[1.6]">"{t.quote}"</p>
-            <div className="mt-4 flex items-center justify-between pt-4 border-t border-ink-100 gap-3">
+            <div className="mt-4 flex items-center justify-between pt-4 border-t border-white/10 gap-3">
               <div className="flex items-center gap-3 min-w-0">
                 {t.avatar ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={t.avatar} className="h-10 w-10 rounded-full object-cover border-2 border-gold-300 shrink-0" alt={t.name} />
+                  <img src={t.avatar} className="h-10 w-10 rounded-full object-cover border-2 border-gold-400/40 shrink-0" alt={t.name} />
                 ) : (
                   <div className="h-10 w-10 rounded-full bg-gradient-to-br from-brand-700 to-brand-950 text-gold-400 flex items-center justify-center font-semibold text-xs shrink-0">{initials(t.name)}</div>
                 )}
                 <div className="min-w-0">
-                  <p className="font-semibold text-brand-900 text-sm truncate">{t.name}</p>
+                  <p className="font-semibold text-ink-900 text-sm truncate">{t.name}</p>
                   <p className="text-xs text-ink-500 truncate">{t.role}</p>
-                  {t.course && <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-gold-600 mt-0.5 truncate">{t.course}</p>}
+                  {t.course && <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-gold-300 mt-0.5 truncate">{t.course}</p>}
                 </div>
               </div>
               <div className="flex gap-2 shrink-0">
-                <button onClick={() => openEdit(i)} className="h-9 w-9 rounded-lg border border-ink-200 hover:border-brand-700 hover:text-brand-800 flex items-center justify-center text-ink-600"><Pencil className="h-4 w-4" /></button>
-                <button onClick={() => remove(i)} className="h-9 w-9 rounded-lg border border-red-200 hover:bg-red-50 text-red-600 flex items-center justify-center"><Trash2 className="h-4 w-4" /></button>
+                <button onClick={() => openEdit(i)} className="h-9 w-9 rounded-lg border border-white/15 hover:border-white/10 hover:text-ink-900 flex items-center justify-center text-ink-600"><Pencil className="h-4 w-4" /></button>
+                <button onClick={() => remove(i)} className="h-9 w-9 rounded-lg border border-red-500/30 hover:bg-red-500/10 text-red-400 flex items-center justify-center"><Trash2 className="h-4 w-4" /></button>
               </div>
             </div>
           </div>
@@ -111,20 +111,20 @@ export default function AdminTestimonials() {
   );
 }
 
-const inputCls = "w-full rounded-xl border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-800 focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100 transition";
+const inputCls = "field text-sm py-2.5";
 function Field({ label, children, required, className = "" }: any) {
   return <div className={className}><label className="mono-label mb-2 block">{label} {required && <span className="text-red-500">*</span>}</label>{children}</div>;
 }
 function Modal({ children, onClose, title, onSave, saving, error }: any) {
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center p-2 sm:p-6 bg-black/50 overflow-y-auto">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-4">
-        <div className="flex items-center justify-between p-5 border-b border-ink-100 sticky top-0 bg-white rounded-t-2xl z-10"><h3 className="heading text-xl">{title}</h3><button onClick={onClose} className="h-9 w-9 rounded-lg hover:bg-ink-100 flex items-center justify-center"><X className="h-5 w-5" /></button></div>
+      <div className="bg-[#0e1130] border border-white/10 rounded-2xl shadow-2xl w-full max-w-2xl my-4">
+        <div className="flex items-center justify-between p-5 border-b border-white/10 sticky top-0 bg-ink-100 rounded-t-2xl z-10"><h3 className="heading text-xl">{title}</h3><button onClick={onClose} className="h-9 w-9 rounded-lg hover:bg-ink-100 flex items-center justify-center"><X className="h-5 w-5" /></button></div>
         <div className="p-5 sm:p-6 grid gap-4 md:grid-cols-2 max-h-[75vh] overflow-y-auto">
-          {error && <div className="md:col-span-2 rounded-xl bg-red-50 border border-red-200 p-3 text-sm text-red-800">{error}</div>}
+          {error && <div className="md:col-span-2 rounded-xl bg-red-500/10 border border-red-500/30 p-3 text-sm text-red-300">{error}</div>}
           {children}
         </div>
-        <div className="p-5 border-t border-ink-100 flex items-center justify-end gap-3 sticky bottom-0 bg-white rounded-b-2xl">
+        <div className="p-5 border-t border-white/10 flex items-center justify-end gap-3 sticky bottom-0 bg-ink-100 rounded-b-2xl">
           <button onClick={onClose} className="btn-outline" disabled={saving}>Cancel</button>
           <button onClick={onSave} disabled={saving} className="btn-gold">
             {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}{saving ? "Saving…" : "Save"}

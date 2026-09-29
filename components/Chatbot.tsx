@@ -104,7 +104,7 @@ export default function Chatbot() {
           "fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full shadow-glow-gold transition",
           open
             ? "bg-brand-900 text-gold-400"
-            : "bg-gold-400 text-brand-950 hover:bg-gold-500 hover:text-white animate-float"
+            : "bg-gold-400 text-ink-900 hover:bg-gold-400/100 hover:text-white animate-float"
         )}
         aria-label="Open chat"
       >
@@ -115,12 +115,12 @@ export default function Chatbot() {
       </button>
 
       {open && (
-        <div className="fixed bottom-24 right-5 z-50 w-[92vw] max-w-sm rounded-2xl bg-white shadow-2xl border border-ink-100 overflow-hidden animate-in">
+        <div className="fixed bottom-24 right-5 z-50 w-[92vw] max-w-sm rounded-2xl bg-ink-100 shadow-2xl border border-white/10 overflow-hidden animate-in">
           <div className="bg-gradient-to-br from-brand-900 to-brand-700 p-4 text-white">
             <div className="flex items-center gap-3">
-              <div className="relative h-10 w-10 rounded-full bg-gold-400 text-brand-950 flex items-center justify-center">
+              <div className="relative h-10 w-10 rounded-full bg-gold-400 text-ink-900 flex items-center justify-center">
                 <Bot className="h-5 w-5" />
-                <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-green-400 ring-2 ring-brand-700" />
+                <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-green-400 ring-2 ring-gold-400/40" />
               </div>
               <div>
                 <p className="font-semibold flex items-center gap-1.5">
@@ -133,7 +133,7 @@ export default function Chatbot() {
 
           <div
             ref={scrollRef}
-            className="h-80 overflow-y-auto p-4 space-y-3 bg-brand-50/40"
+            className="h-80 overflow-y-auto p-4 space-y-3 bg-ink-100/40"
           >
             {messages.map((m, i) => (
               <div
@@ -144,7 +144,7 @@ export default function Chatbot() {
                 )}
               >
                 {m.from === "bot" && (
-                  <div className="h-7 w-7 rounded-full bg-brand-100 text-brand-800 flex items-center justify-center shrink-0">
+                  <div className="h-7 w-7 rounded-full bg-gold-400/15 text-ink-900 flex items-center justify-center shrink-0">
                     <GraduationCap className="h-4 w-4" />
                   </div>
                 )}
@@ -152,14 +152,14 @@ export default function Chatbot() {
                   className={clsx(
                     "max-w-[78%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed",
                     m.from === "bot"
-                      ? "bg-white text-ink-800 border border-ink-100 rounded-tl-sm"
+                      ? "bg-white/5 text-ink-800 border border-white/10 rounded-tl-sm"
                       : "bg-brand-800 text-white rounded-tr-sm"
                   )}
                 >
                   {m.text}
                 </div>
                 {m.from === "user" && (
-                  <div className="h-7 w-7 rounded-full bg-gold-400 text-brand-950 flex items-center justify-center shrink-0">
+                  <div className="h-7 w-7 rounded-full bg-gold-400 text-ink-900 flex items-center justify-center shrink-0">
                     <User className="h-4 w-4" />
                   </div>
                 )}
@@ -167,10 +167,10 @@ export default function Chatbot() {
             ))}
             {typing && (
               <div className="flex gap-2">
-                <div className="h-7 w-7 rounded-full bg-brand-100 text-brand-800 flex items-center justify-center shrink-0">
+                <div className="h-7 w-7 rounded-full bg-gold-400/15 text-ink-900 flex items-center justify-center shrink-0">
                   <GraduationCap className="h-4 w-4" />
                 </div>
-                <div className="bg-white border border-ink-100 rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1">
+                <div className="bg-ink-100 border border-white/10 rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1">
                   <span className="h-2 w-2 rounded-full bg-ink-300 animate-bounce" />
                   <span className="h-2 w-2 rounded-full bg-ink-300 animate-bounce [animation-delay:0.15s]" />
                   <span className="h-2 w-2 rounded-full bg-ink-300 animate-bounce [animation-delay:0.3s]" />
@@ -184,17 +184,17 @@ export default function Chatbot() {
               e.preventDefault();
               send();
             }}
-            className="flex items-center gap-2 p-3 border-t border-ink-100 bg-white"
+            className="flex items-center gap-2 p-3 border-t border-white/10 bg-ink-100"
           >
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about courses, apply, support…"
-              className="flex-1 rounded-full bg-ink-50 border border-ink-100 px-4 py-2.5 text-sm focus:outline-none focus:border-brand-500 focus:bg-white"
+              className="flex-1 rounded-full bg-ink-50 border border-white/10 px-4 py-2.5 text-sm focus:outline-none focus:border-gold-400/40 focus:bg-ink-100"
             />
             <button
               type="submit"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold-400 text-brand-950 hover:bg-gold-500 hover:text-white transition"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold-400 text-ink-900 hover:bg-gold-400/100 hover:text-white transition"
               aria-label="Send"
             >
               <Send className="h-4 w-4" />

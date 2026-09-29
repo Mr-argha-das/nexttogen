@@ -47,7 +47,7 @@ export default function SupportPage() {
             </a>
           </div>
         </div>
-        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-white" />
+        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#06081a]" />
       </section>
 
       {/* Impact numbers */}
@@ -61,7 +61,7 @@ export default function SupportPage() {
           ].map((s) => (
             <div key={s.l} className="card text-center">
               <s.icon className="h-7 w-7 text-gold-500 mx-auto" />
-              <div className="mt-3 font-display text-3xl font-bold text-brand-900">
+              <div className="mt-3 font-display text-3xl font-bold text-ink-900">
                 {s.n}
               </div>
               <div className="text-xs uppercase tracking-wider text-ink-500 mt-1">
@@ -112,10 +112,10 @@ export default function SupportPage() {
               }
             ].map((w) => (
               <div key={w.title} className="card h-full flex flex-col">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gold-100 text-gold-700">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gold-400/15 text-gold-300">
                   <w.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-5 font-display text-xl font-bold text-brand-900">
+                <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
                   {w.title}
                 </h3>
                 <p className="mt-2 text-sm text-ink-600 leading-relaxed flex-1">
@@ -123,7 +123,7 @@ export default function SupportPage() {
                 </p>
                 <a
                   href={w.href}
-                  className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-brand-800 hover:text-gold-600"
+                  className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-ink-900 hover:text-gold-300"
                 >
                   {w.cta} <ArrowRight className="h-4 w-4" />
                 </a>
@@ -134,7 +134,7 @@ export default function SupportPage() {
       </section>
 
       {/* Donate form */}
-      <section id="donate" className="section bg-gradient-to-b from-brand-50/40 to-white">
+      <section id="donate" className="section bg-gradient-to-b from-brand-900/40 to-[#06081a]">
         <div className="container-x grid gap-12 lg:grid-cols-2 items-center">
           <div>
             <span className="eyebrow">
@@ -166,8 +166,8 @@ export default function SupportPage() {
           <div className="card !p-8">
             {donated ? (
               <div className="text-center py-10">
-                <div className="mx-auto h-16 w-16 rounded-full bg-green-100 flex items-center justify-center">
-                  <CheckCircle2 className="h-8 w-8 text-green-600" />
+                <div className="mx-auto h-16 w-16 rounded-full bg-green-500/15 flex items-center justify-center">
+                  <CheckCircle2 className="h-8 w-8 text-green-400" />
                 </div>
                 <h3 className="heading mt-5 text-2xl">Thank you!</h3>
                 <p className="mt-3 text-ink-600">
@@ -198,8 +198,8 @@ export default function SupportPage() {
                       }}
                       className={`rounded-xl border px-3 py-4 text-sm font-bold transition whitespace-nowrap ${
                         amount === a && !custom
-                          ? "border-brand-800 bg-brand-50 ring-2 ring-brand-200 text-brand-900"
-                          : "border-ink-200 text-ink-700 hover:border-brand-500"
+                          ? "border-white/10 bg-ink-100 ring-2 ring-gold-400/40 text-ink-900"
+                          : "border-white/15 text-ink-700 hover:border-gold-400/40"
                       }`}
                     >
                       ₹{a.toLocaleString("en-IN")}
@@ -213,7 +213,7 @@ export default function SupportPage() {
                     value={custom}
                     onChange={(e) => setCustom(e.target.value)}
                     placeholder="Enter custom amount (₹)"
-                    className="w-full rounded-xl border border-ink-200 px-4 py-3 text-sm focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100"
+                    className="w-full field text-sm"
                   />
                 </div>
 
@@ -224,17 +224,17 @@ export default function SupportPage() {
                   <input
                     required
                     placeholder="Full name"
-                    className="w-full rounded-xl border border-ink-200 px-4 py-3 text-sm focus:outline-none focus:border-brand-700"
+                    className="w-full field text-sm"
                   />
                   <input
                     required
                     type="email"
                     placeholder="Email"
-                    className="w-full rounded-xl border border-ink-200 px-4 py-3 text-sm focus:outline-none focus:border-brand-700"
+                    className="w-full field text-sm"
                   />
                   <input
                     placeholder="PAN (for 80G receipt)"
-                    className="md:col-span-2 w-full rounded-xl border border-ink-200 px-4 py-3 text-sm focus:outline-none focus:border-brand-700"
+                    className="md:col-span-2 w-full field text-sm"
                   />
                 </div>
 

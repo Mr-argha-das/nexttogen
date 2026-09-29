@@ -45,14 +45,14 @@ export default function BlogPage() {
             />
           </div>
         </div>
-        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-white" />
+        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#06081a]" />
       </section>
 
       {featured && (
         <section className="container-x -mt-16 relative z-10">
           <Link
             href={`/blog/${featured.slug}`}
-            className="grid lg:grid-cols-2 gap-8 rounded-3xl overflow-hidden bg-white shadow-soft border border-ink-100 group hover:shadow-glow-brand transition"
+            className="grid lg:grid-cols-2 gap-8 rounded-3xl overflow-hidden bg-ink-100 shadow-soft border border-white/10 group hover:shadow-glow-brand transition"
           >
             <div className="relative aspect-[4/3] lg:aspect-auto bg-gradient-to-br from-brand-700 to-brand-950 overflow-hidden">
               {featured.image ? (
@@ -73,30 +73,24 @@ export default function BlogPage() {
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-brand-950/50 to-transparent" />
               <div className="absolute top-6 left-6">
-                <span className="rounded-full bg-gold-400 text-brand-950 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em]">
+                <span className="rounded-full bg-gold-400 text-ink-900 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em]">
                   Featured
                 </span>
               </div>
             </div>
             <div className="p-8 md:p-12 flex flex-col justify-center">
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-gold-600 font-semibold">
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-gold-300 font-semibold">
                 {featured.category}
               </span>
-              <h2 className="heading mt-3 text-2xl md:text-4xl group-hover:text-brand-700 transition">
+              <h2 className="heading mt-3 text-2xl md:text-4xl group-hover:text-ink-800 transition">
                 {featured.title}
               </h2>
               <p className="mt-4 text-ink-600 leading-[1.7]">
                 {featured.excerpt}
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-3 min-w-0">
-                  <img src={featured.avatar} alt={featured.author} className="h-10 w-10 rounded-full object-cover shrink-0" />
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold text-ink-800 truncate">{featured.author}</p>
-                    <p className="text-xs text-ink-500">{featured.date} · {featured.readTime}</p>
-                  </div>
-                </div>
-                <span className="inline-flex items-center gap-1 text-sm font-bold text-brand-800 group-hover:text-gold-600">
+                <p className="text-xs text-ink-500">{featured.date} · {featured.readTime}</p>
+                <span className="inline-flex items-center gap-1 text-sm font-bold text-ink-900 group-hover:text-gold-300">
                   Read <ArrowRight className="h-4 w-4" />
                 </span>
               </div>
@@ -112,14 +106,14 @@ export default function BlogPage() {
               key={t}
               className={`rounded-full px-4 py-2 text-sm font-semibold border transition ${
                 i === 0
-                  ? "bg-brand-800 text-white border-brand-800"
-                  : "bg-white text-ink-600 border-ink-200 hover:border-brand-700 hover:text-brand-800"
+                  ? "bg-brand-800 text-white border-white/10"
+                  : "bg-ink-100 text-ink-600 border-white/15 hover:border-white/10 hover:text-ink-900"
               }`}
             >
               {t}
             </button>
           ))}
-          <button className="ml-auto inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-2 text-sm font-semibold text-ink-700 hover:border-brand-700 hover:text-brand-800">
+          <button className="ml-auto inline-flex items-center gap-2 rounded-full border border-white/15 bg-ink-100 px-4 py-2 text-sm font-semibold text-ink-700 hover:border-white/10 hover:text-ink-900">
             <Rss className="h-4 w-4" /> Subscribe
           </button>
         </div>

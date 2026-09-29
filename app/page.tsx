@@ -5,7 +5,6 @@ import { useSiteData } from "@/lib/siteData";
 import {
   ArrowRight,
   PlayCircle,
-  Star,
   Award,
   Users,
   BookOpen,
@@ -13,15 +12,18 @@ import {
   CheckCircle2,
   Quote,
   Sparkles,
-  Globe,
   Briefcase,
   Heart,
-  GraduationCap,
-  Target
+  Target,
+  ShieldCheck,
+  Share2,
+  Stamp
 } from "lucide-react";
 import CourseCard from "@/components/CourseCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import BlogCard from "@/components/BlogCard";
+import { LogoMark } from "@/components/Logo";
+import CertificatePreview from "@/components/CertificatePreview";
 
 export default function HomePage() {
   const { data } = useSiteData();
@@ -41,16 +43,16 @@ export default function HomePage() {
             backgroundSize: "44px 44px"
           }}
         />
-        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-white" />
+        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#06081a]" />
 
         <div className="relative container-x pt-20 pb-28 md:pt-28 md:pb-40">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-10 items-center">
             <div className="lg:col-span-7">
-              <span className="eyebrow !border-gold-400/40 !bg-gold-400/10 !text-gold-300">
+              <span className="eyebrow !border-gold-400/40 !bg-gold-400/10 !text-gold-300 animate-fade-up">
                 <Sparkles className="h-3.5 w-3.5" /> Admissions Open · Fall 2026 Cohort
               </span>
               <div className="mt-4 h-[1px] w-24 bg-gradient-to-r from-gold-400 to-transparent" />
-              <h1 className="heading mt-5 text-[34px] xs:text-4xl sm:text-5xl md:text-6xl lg:text-[84px] text-white leading-[1.05]">
+              <h1 className="heading mt-5 text-[34px] xs:text-4xl sm:text-5xl md:text-6xl lg:text-[84px] text-white leading-[1.05] animate-fade-up [animation-delay:80ms]">
                 Shaping{" "}
                 <span className="relative inline-block italic font-[500] overflow-visible">
                   <span className="relative z-10 text-gold-400">tomorrow's</span>
@@ -59,13 +61,13 @@ export default function HomePage() {
                 leaders,<br className="hidden md:block" />
                 <span className="text-white/80 font-[400] italic font-serif tracking-wide">one mind at a time.</span>
               </h1>
-              <p className="mt-7 max-w-2xl text-[17px] text-white/75 leading-[1.75] font-light">
+              <p className="mt-7 max-w-2xl text-[17px] text-white/75 leading-[1.75] font-light animate-fade-up [animation-delay:160ms]">
                 NextToGen is a premium academy delivering industry-led courses,
                 1:1 mentorship from world-class practitioners, and career
                 programs designed to turn ambition into achievement.
               </p>
 
-              <div className="mt-9 flex flex-wrap items-center gap-4">
+              <div className="mt-9 flex flex-wrap items-center gap-4 animate-fade-up [animation-delay:240ms]">
                 <Link href="/apply" className="btn-gold">
                   Apply Now <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -75,26 +77,6 @@ export default function HomePage() {
                 >
                   <PlayCircle className="h-5 w-5" /> Explore Courses
                 </Link>
-              </div>
-
-              <div className="mt-10 grid grid-cols-3 gap-4 max-w-lg">
-                {[
-                  { k: "25K+", v: "Learners" },
-                  { k: "120+", v: "Expert Mentors" },
-                  { k: "94%", v: "Career Success" }
-                ].map((s) => (
-                  <div
-                    key={s.v}
-                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur"
-                  >
-                    <div className="num-display text-3xl md:text-4xl text-gold-400">
-                      {s.k}
-                    </div>
-                    <div className="text-[11px] uppercase tracking-[0.2em] text-white/60 mt-1">
-                      {s.v}
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
 
@@ -109,8 +91,8 @@ export default function HomePage() {
                     <div className="absolute bottom-0 -left-10 h-72 w-72 rounded-full bg-brand-400/30 blur-3xl" />
                   </div>
                   <div className="relative h-full w-full flex flex-col items-center justify-center p-8 text-center">
-                    <div className="h-20 w-20 rounded-2xl bg-gold-400 text-brand-950 flex items-center justify-center shadow-glow-gold animate-float">
-                      <GraduationCap className="h-10 w-10" />
+                    <div className="h-24 w-24 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shadow-glow-gold animate-float">
+                      <LogoMark className="h-14 w-auto" />
                     </div>
                     <h3 className="mt-6 font-display text-[28px] leading-tight font-medium text-white tracking-display">
                       Learn from the best.
@@ -135,28 +117,24 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Floating stat card */}
-                <div className="hidden sm:block absolute -left-4 md:-left-6 top-10 glass !bg-white/90 !text-ink-800 p-3 md:p-4 w-48 md:w-56 shadow-xl animate-float [animation-delay:0.5s]">
-                  <div className="flex items-center gap-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-3.5 w-3.5 md:h-4 md:w-4 fill-gold-400 text-gold-400"
-                      />
-                    ))}
+                {/* Floating brand highlight */}
+                <div className="hidden sm:block absolute -left-4 md:-left-6 top-10 glass !bg-ink-100/90 !text-ink-800 p-3 md:p-4 w-48 md:w-56 shadow-xl animate-float [animation-delay:0.5s]">
+                  <div className="flex items-center gap-2 text-gold-300">
+                    <Sparkles className="h-4 w-4" />
+                    <span className="text-xs font-mono uppercase tracking-[0.2em]">Premium</span>
                   </div>
-                  <p className="mt-2 text-sm font-semibold">4.9 / 5 rating</p>
-                  <p className="text-xs text-ink-500">from 3,200+ reviews</p>
+                  <p className="mt-2 text-sm font-semibold">Live mentor-led cohorts</p>
+                  <p className="text-xs text-ink-500">Learn by building real projects</p>
                 </div>
 
-                <div className="hidden sm:block absolute -right-2 md:-right-4 bottom-16 glass !bg-white/90 !text-ink-800 p-3 md:p-4 w-52 md:w-60 shadow-xl animate-float [animation-delay:1s]">
+                <div className="hidden sm:block absolute -right-2 md:-right-4 bottom-16 glass !bg-ink-100/90 !text-ink-800 p-3 md:p-4 w-52 md:w-60 shadow-xl animate-float [animation-delay:1s]">
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-xl bg-brand-100 text-brand-800 flex items-center justify-center shrink-0">
+                    <div className="h-10 w-10 rounded-xl bg-gold-400/15 text-ink-900 flex items-center justify-center shrink-0">
                       <Briefcase className="h-5 w-5" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold truncate">1,200+ Hiring Partners</p>
-                      <p className="text-xs text-ink-500 truncate">Google · Microsoft · Infosys</p>
+                      <p className="text-sm font-semibold truncate">Career support</p>
+                      <p className="text-xs text-ink-500 truncate">Portfolio & interview prep</p>
                     </div>
                   </div>
                 </div>
@@ -191,7 +169,7 @@ export default function HomePage() {
             </span>
             <h2 className="heading mt-4 text-3xl md:text-5xl">
               A learning experience<br />
-              <span className="heading-italic text-gold-600">designed for real-world impact.</span>
+              <span className="heading-italic text-gold-300">designed for real-world impact.</span>
             </h2>
             <p className="mt-5 body-large">
               We combine rigorous academics, industry mentorship and community
@@ -215,7 +193,7 @@ export default function HomePage() {
               {
                 icon: Award,
                 title: "Recognized Certifications",
-                desc: "Credentials respected by 1,200+ hiring partners globally."
+                desc: "Credentials respected by leading hiring partners globally."
               },
               {
                 icon: TrendingUp,
@@ -224,14 +202,14 @@ export default function HomePage() {
               }
             ].map((f, i) => (
               <div key={f.title} className="card group">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-700 group-hover:bg-brand-800 group-hover:text-gold-400 transition">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gold-400/15 text-gold-300 group-hover:bg-brand-800 group-hover:text-gold-400 transition">
                   <f.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-5 font-display text-[22px] font-semibold text-brand-900 tracking-display leading-tight">
+                <h3 className="mt-5 font-display text-[22px] font-semibold text-ink-900 tracking-display leading-tight">
                   {f.title}
                 </h3>
                 <p className="mt-2 text-[14.5px] text-ink-600 leading-[1.7]">{f.desc}</p>
-                <div className="mt-4 font-mono text-[10.5px] tracking-[0.25em] text-gold-600 font-medium">
+                <div className="mt-4 font-mono text-[10.5px] tracking-[0.25em] text-gold-300 font-medium">
                   0{i + 1} / 04
                 </div>
               </div>
@@ -241,7 +219,7 @@ export default function HomePage() {
       </section>
 
       {/* =============== FEATURED COURSES =============== */}
-      <section className="section bg-gradient-to-b from-white to-brand-50/50">
+      <section className="section bg-gradient-to-b from-[#06081a] to-brand-950/50">
         <div className="container-x">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
@@ -249,7 +227,7 @@ export default function HomePage() {
                 <BookOpen className="h-3.5 w-3.5" /> Featured Programs
               </span>
               <h2 className="heading mt-4 text-3xl md:text-5xl">
-                Explore our <span className="heading-italic text-gold-600">most loved</span> courses.
+                Explore our <span className="heading-italic text-gold-300">most loved</span> courses.
               </h2>
               <p className="mt-5 body-large">
                 Hand-picked programs that deliver transformative outcomes — from
@@ -263,8 +241,67 @@ export default function HomePage() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {featured.map((c) => (
-              <CourseCard key={c.slug} course={c} />
+              <CourseCard key={c.slug} course={c} showInstructor={false} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =============== CERTIFICATE =============== */}
+      <section className="section relative overflow-hidden">
+        <div className="absolute inset-0 bg-hero-radial opacity-40" />
+        <div className="relative container-x grid gap-12 lg:grid-cols-2 items-center">
+          <div>
+            <span className="eyebrow">
+              <Award className="h-3.5 w-3.5" /> Verified Certification
+            </span>
+            <h2 className="heading mt-4 text-3xl md:text-5xl">
+              Earn a certificate <span className="heading-italic">worth showing off.</span>
+            </h2>
+            <p className="mt-5 body-large">
+              Every NEXT GEN program ends with an official, verifiable certificate — complete
+              with an authorised e-signature and official e-stamp. Share it on LinkedIn, add it to
+              your resume, and prove your skills.
+            </p>
+
+            <div className="mt-8 grid sm:grid-cols-2 gap-4">
+              {[
+                { icon: ShieldCheck, t: "Verifiable", d: "Unique certificate ID for authenticity" },
+                { icon: Stamp, t: "Official e-stamp", d: "Sealed & signed by NEXT GEN" },
+                { icon: Share2, t: "Shareable", d: "LinkedIn, resume & portfolio ready" },
+                { icon: Award, t: "Industry-recognised", d: "Respected by hiring partners" }
+              ].map((f) => (
+                <div key={f.t} className="card !p-5">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gold-400/15 text-gold-300">
+                    <f.icon className="h-5 w-5" />
+                  </div>
+                  <p className="mt-3 font-display font-semibold text-ink-900">{f.t}</p>
+                  <p className="text-sm text-ink-600 mt-1 leading-relaxed">{f.d}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8">
+              <Link href="/certificates" className="btn-primary">
+                See how it works <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-gold-400/25 via-transparent to-brand-400/30 blur-2xl" />
+            <CertificatePreview
+              className="relative"
+              data={{
+                recipient: "Your Name Here",
+                program: "AI & Machine Learning Bootcamp",
+                template: "classic",
+                signatories: [
+                  { name: "", title: "Program Director" },
+                  { name: "", title: "Academic Head" }
+                ]
+              }}
+            />
           </div>
         </div>
       </section>
@@ -276,31 +313,31 @@ export default function HomePage() {
             <div className="relative">
               <div className="relative aspect-[5/4] rounded-3xl overflow-hidden shadow-glow-brand bg-gradient-to-br from-brand-700 to-brand-900">
                 <div className="absolute inset-0 bg-hero-radial opacity-90" />
-                <div className="absolute inset-0 flex items-center justify-center p-10">
-                  <div className="grid grid-cols-2 gap-6 w-full max-w-md">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-10 text-center">
+                  <div className="h-24 w-24 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shadow-glow-gold">
+                    <LogoMark className="h-14 w-auto" />
+                  </div>
+                  <h3 className="mt-6 font-display text-2xl font-semibold text-white tracking-display">
+                    Built for the next generation
+                  </h3>
+                  <p className="mt-3 font-serif italic text-white/75 text-[15px] max-w-xs">
+                    Practical, mentor-led learning that turns ambition into real-world skill.
+                  </p>
+                  <div className="mt-6 w-full max-w-xs space-y-3 text-left">
                     {[
-                      { n: "10+", l: "Years of Impact", icon: Award },
-                      { n: "25K+", l: "Alumni Worldwide", icon: Globe },
-                      { n: "120+", l: "Expert Mentors", icon: Users },
-                      { n: "94%", l: "Placement Rate", icon: TrendingUp }
-                    ].map((s) => (
-                      <div
-                        key={s.l}
-                        className="rounded-2xl bg-white/10 border border-white/10 p-5 backdrop-blur"
-                      >
-                        <s.icon className="h-6 w-6 text-gold-400" />
-                        <div className="mt-3 font-display text-3xl font-bold text-white">
-                          {s.n}
-                        </div>
-                        <div className="text-xs uppercase tracking-wider text-white/60 mt-1">
-                          {s.l}
-                        </div>
+                      "Industry-aligned curriculum",
+                      "1:1 mentorship & live cohorts",
+                      "Real projects, real outcomes"
+                    ].map((f) => (
+                      <div key={f} className="flex items-center gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-gold-400 shrink-0" />
+                        <span className="text-white/85">{f}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 w-40 rounded-2xl bg-gold-400 p-5 shadow-glow-gold text-brand-950 hidden md:block">
+              <div className="absolute -bottom-6 -right-6 w-40 rounded-2xl bg-gold-400 p-5 shadow-glow-gold text-ink-900 hidden md:block">
                 <Heart className="h-6 w-6" />
                 <div className="mt-2 font-display text-2xl font-bold">A+</div>
                 <div className="text-xs font-semibold uppercase tracking-wider">
@@ -314,7 +351,7 @@ export default function HomePage() {
                 <Sparkles className="h-3.5 w-3.5" /> Our Story
               </span>
               <h2 className="heading mt-4 text-3xl md:text-5xl">
-                We exist to unlock <span className="heading-italic text-gold-600">human potential.</span>
+                We exist to unlock <span className="heading-italic text-gold-300">human potential.</span>
               </h2>
               <p className="mt-5 body-large leading-relaxed">
                 Founded in 2015 by a team of IIT/IIM alumni and global
@@ -383,7 +420,7 @@ export default function HomePage() {
                 <BookOpen className="h-3.5 w-3.5" /> From the Blog
               </span>
               <h2 className="heading mt-4 text-3xl md:text-5xl">
-                Insights to <span className="heading-italic text-gold-600">fuel your growth.</span>
+                Insights to <span className="heading-italic text-gold-300">fuel your growth.</span>
               </h2>
               <p className="mt-5 body-large">
                 Deep dives, career guides, and student stories — published
@@ -436,22 +473,21 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4 max-w-md mx-auto w-full">
+              <div className="grid gap-3 max-w-md mx-auto w-full">
                 {[
-                  { n: "40+", l: "Courses" },
-                  { n: "25K+", l: "Learners" },
-                  { n: "120+", l: "Mentors" },
-                  { n: "94%", l: "Success Rate" }
+                  { t: "Industry-led courses", d: "Curriculum built with practitioners" },
+                  { t: "1:1 mentorship", d: "Guidance from working experts" },
+                  { t: "Hands-on projects", d: "Build a portfolio that stands out" },
+                  { t: "Career support", d: "Interview prep & placement help" }
                 ].map((s) => (
                   <div
-                    key={s.l}
-                    className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6"
+                    key={s.t}
+                    className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-5"
                   >
-                    <div className="num-display text-3xl md:text-4xl text-gold-400">
-                      {s.n}
-                    </div>
-                    <div className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/60 mt-2">
-                      {s.l}
+                    <CheckCircle2 className="h-5 w-5 text-gold-400 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-white">{s.t}</p>
+                      <p className="text-sm text-white/60 mt-0.5">{s.d}</p>
                     </div>
                   </div>
                 ))}

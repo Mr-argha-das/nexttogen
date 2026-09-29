@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useSiteData } from "@/lib/siteData";
+import Logo from "@/components/Logo";
 import {
-  GraduationCap,
   Mail,
   Phone,
   MapPin,
@@ -22,6 +22,7 @@ const cols = [
     title: "Learn",
     links: [
       { label: "All Courses", href: "/courses" },
+      { label: "Certificates", href: "/certificates" },
       { label: "Apply Now", href: "/apply" },
       { label: "Scholarships", href: "/support" },
       { label: "Mentors", href: "/about" },
@@ -66,20 +67,13 @@ export default function Footer() {
         className="absolute inset-0 opacity-20"
         style={{
           backgroundImage:
-            "radial-gradient(600px 300px at 10% 10%, rgba(232,177,42,0.25), transparent 60%), radial-gradient(700px 300px at 90% 90%, rgba(74,87,165,0.4), transparent 60%)"
+            "radial-gradient(600px 300px at 10% 10%, rgba(120,87,230,0.22), transparent 60%), radial-gradient(700px 300px at 90% 90%, rgba(92,103,207,0.28), transparent 60%)"
         }}
       />
       <div className="relative container-x pt-20 pb-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gold-400 text-brand-950">
-                <GraduationCap className="h-6 w-6" />
-              </span>
-              <span className="font-display text-[22px] font-semibold tracking-display">
-                Next<span className="text-gold-400">To</span>Gen
-              </span>
-            </Link>
+            <Logo variant="horizontal" markClassName="h-11" wordmarkClassName="text-[22px]" />
             <p className="mt-5 max-w-md text-white/70 leading-relaxed">
               Empowering the next generation of thinkers, creators, and leaders
               through world-class education, mentorship, and community. Your
@@ -111,7 +105,7 @@ export default function Footer() {
                   <a
                     key={i}
                     href="#"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 hover:bg-gold-400 hover:text-brand-950 hover:border-gold-400 transition"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 hover:bg-gold-400 hover:text-ink-900 hover:border-gold-400 transition"
                     aria-label="social"
                   >
                     <Icon className="h-4 w-4" />

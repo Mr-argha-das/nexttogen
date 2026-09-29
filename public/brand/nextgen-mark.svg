@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 210" fill="none" role="img" aria-label="NEXT GEN">
+  <defs>
+    <linearGradient id="navy" x1="30" y1="20" x2="150" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2f2f74"/>
+      <stop offset="1" stop-color="#1a1a4d"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="150" y1="20" x2="290" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8175e6"/>
+      <stop offset="1" stop-color="#5e51c6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- N (navy): left post + diagonal + right post -->
+  <g stroke="url(#navy)" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M44 32 V178"/>
+    <path d="M44 40 L140 170"/>
+    <path d="M140 32 V178"/>
+  </g>
+
+  <!-- G (violet): open ring + crossbar -->
+  <g stroke="url(#violet)" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M264 74 A66 66 0 1 0 264 146"/>
+    <path d="M266 110 H210"/>
+  </g>
+</svg>

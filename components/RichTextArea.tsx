@@ -21,7 +21,7 @@ export default function RichTextArea({
       onChange={(e) => onChange(e.target.value)}
       style={{ minHeight }}
       className={
-        "w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-800 placeholder-ink-400 focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100 transition font-sans leading-relaxed"
+        "w-full field text-sm font-sans leading-relaxed"
       }
       {...rest}
     />

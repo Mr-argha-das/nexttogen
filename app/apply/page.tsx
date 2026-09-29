@@ -57,8 +57,8 @@ export default function ApplyPage() {
     return (
       <section className="section">
         <div className="container-x max-w-2xl text-center">
-          <div className="mx-auto h-20 w-20 rounded-full bg-green-100 flex items-center justify-center">
-            <CheckCircle2 className="h-10 w-10 text-green-600" />
+          <div className="mx-auto h-20 w-20 rounded-full bg-green-500/15 flex items-center justify-center">
+            <CheckCircle2 className="h-10 w-10 text-green-400" />
           </div>
           <h1 className="heading mt-6 text-3xl md:text-5xl">
             Application received!
@@ -95,7 +95,7 @@ export default function ApplyPage() {
       </section>
 
       <section className="container-x -mt-10 relative z-10 pb-24">
-        <div className="glass !bg-white p-6 md:p-10">
+        <div className="glass !bg-ink-100 p-6 md:p-10">
           {/* Stepper */}
           <div className="mb-10">
             <div className="flex items-center justify-between">
@@ -104,7 +104,7 @@ export default function ApplyPage() {
                   <div
                     className={`flex items-center justify-center h-10 w-10 rounded-full text-sm font-bold transition ${
                       step >= s.id
-                        ? "bg-gold-400 text-brand-950 shadow-glow-gold"
+                        ? "bg-gold-400 text-ink-900 shadow-glow-gold"
                         : "bg-ink-100 text-ink-400"
                     }`}
                   >
@@ -116,7 +116,7 @@ export default function ApplyPage() {
                     </p>
                     <p
                       className={`text-sm font-semibold ${
-                        step >= s.id ? "text-brand-900" : "text-ink-400"
+                        step >= s.id ? "text-ink-900" : "text-ink-400"
                       }`}
                     >
                       {s.title}
@@ -226,11 +226,11 @@ export default function ApplyPage() {
                           onClick={() => set("startDate", d)}
                           className={`rounded-xl border p-4 text-left transition ${
                             form.startDate === d
-                              ? "border-brand-800 bg-brand-50 ring-2 ring-brand-200"
-                              : "border-ink-200 hover:border-brand-500"
+                              ? "border-white/10 bg-ink-100 ring-2 ring-gold-400/40"
+                              : "border-white/15 hover:border-gold-400/40"
                           }`}
                         >
-                          <p className="font-semibold text-brand-900">{d}</p>
+                          <p className="font-semibold text-ink-900">{d}</p>
                           <p className="text-xs text-ink-500 mt-1">Cohort starts</p>
                         </button>
                       )
@@ -238,7 +238,7 @@ export default function ApplyPage() {
                   </div>
                 </Field>
 
-                <label className="flex items-start gap-3 p-4 rounded-xl bg-gold-50 border border-gold-200 cursor-pointer">
+                <label className="flex items-start gap-3 p-4 rounded-xl bg-gold-400/10 border border-gold-400/40 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={form.scholarship}
@@ -246,7 +246,7 @@ export default function ApplyPage() {
                     className="mt-1 h-4 w-4 accent-gold-500"
                   />
                   <div>
-                    <p className="font-semibold text-brand-900">
+                    <p className="font-semibold text-ink-900">
                       Apply for a need-based scholarship
                     </p>
                     <p className="text-xs text-ink-600 mt-1">
@@ -312,8 +312,8 @@ export default function ApplyPage() {
                   />
                 </Field>
                 <Field icon={Upload} label="Resume / CV" className="md:col-span-2">
-                  <label className="flex items-center justify-center gap-2 border-2 border-dashed border-ink-200 rounded-xl p-6 cursor-pointer hover:border-brand-500 hover:bg-brand-50/50 transition">
-                    <Upload className="h-5 w-5 text-brand-700" />
+                  <label className="flex items-center justify-center gap-2 border-2 border-dashed border-white/15 rounded-xl p-6 cursor-pointer hover:border-gold-400/40 hover:bg-white/5 transition">
+                    <Upload className="h-5 w-5 text-ink-800" />
                     <span className="text-sm text-ink-600">
                       Click to upload (PDF, DOC) — or drag & drop
                     </span>
@@ -339,8 +339,8 @@ export default function ApplyPage() {
 
             {step === 4 && (
               <div className="space-y-5">
-                <div className="rounded-2xl border border-brand-100 bg-brand-50/50 p-6">
-                  <h3 className="font-display text-xl font-bold text-brand-900">
+                <div className="rounded-2xl border border-white/10 bg-ink-100/50 p-6">
+                  <h3 className="font-display text-xl font-bold text-ink-900">
                     Review your application
                   </h3>
                   <div className="mt-5 grid sm:grid-cols-2 gap-x-8 gap-y-4 text-sm">
@@ -360,7 +360,7 @@ export default function ApplyPage() {
                   </div>
                 </div>
 
-                <label className="flex items-start gap-3 p-4 rounded-xl border border-ink-200 cursor-pointer">
+                <label className="flex items-start gap-3 p-4 rounded-xl border border-white/15 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={form.agree}
@@ -369,8 +369,8 @@ export default function ApplyPage() {
                   />
                   <span className="text-sm text-ink-700">
                     I agree to the{" "}
-                    <a className="text-brand-800 underline">Terms of Service</a> and{" "}
-                    <a className="text-brand-800 underline">Privacy Policy</a>, and
+                    <a className="text-ink-900 underline">Terms of Service</a> and{" "}
+                    <a className="text-ink-900 underline">Privacy Policy</a>, and
                     consent to NextToGen contacting me about my application.
                   </span>
                 </label>
@@ -431,7 +431,7 @@ export default function ApplyPage() {
             )}
           </div>
           {submitError && (
-            <div className="mt-4 rounded-xl bg-red-50 border border-red-200 p-3 text-sm text-red-800">
+            <div className="mt-4 rounded-xl bg-red-500/10 border border-red-500/30 p-3 text-sm text-red-300">
               {submitError}
             </div>
           )}
@@ -442,7 +442,7 @@ export default function ApplyPage() {
 }
 
 const inputCls =
-  "w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-800 placeholder-ink-400 focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100 transition";
+  "w-full field text-sm";
 
 import { Globe, MapPin, Briefcase, Linkedin, Ear } from "lucide-react";
 
@@ -476,7 +476,7 @@ function Review({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <p className="text-xs uppercase tracking-wider text-ink-500">{label}</p>
-      <p className="mt-1 font-semibold text-brand-900">{value || "—"}</p>
+      <p className="mt-1 font-semibold text-ink-900">{value || "—"}</p>
     </div>
   );
 }

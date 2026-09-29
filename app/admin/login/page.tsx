@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Lock, GraduationCap, Eye, EyeOff, AlertCircle, ArrowLeft } from "lucide-react";
+import { Lock, Eye, EyeOff, AlertCircle, ArrowLeft } from "lucide-react";
 import { useAdminAuth } from "@/lib/adminAuth";
+import { LogoMark } from "@/components/Logo";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -74,13 +75,13 @@ export default function AdminLoginPage() {
           </div>
 
           <div className="max-w-md w-full mx-auto lg:ml-auto">
-            <div className="glass !bg-white !text-ink-900 p-8 md:p-10 shadow-2xl">
+            <div className="glass !bg-ink-100 !text-ink-900 p-8 md:p-10 shadow-2xl">
               <div className="flex items-center gap-3 mb-8">
-                <div className="h-12 w-12 rounded-xl bg-brand-800 text-gold-400 flex items-center justify-center">
-                  <GraduationCap className="h-6 w-6" />
+                <div className="h-12 w-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <LogoMark className="h-7 w-auto" />
                 </div>
                 <div>
-                  <p className="font-display text-xl font-semibold text-brand-900 tracking-display">NextToGen Admin</p>
+                  <p className="font-display text-xl font-semibold text-ink-900 tracking-display">NEXT GEN Admin</p>
                   <p className="text-xs text-ink-500 font-mono uppercase tracking-[0.2em] mt-0.5">Secure Login</p>
                 </div>
               </div>
@@ -98,7 +99,7 @@ export default function AdminLoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@academy.app"
-                    className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-800 placeholder-ink-400 focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100 transition"
+                    className="field text-sm"
                   />
                 </div>
                 <div>
@@ -110,12 +111,12 @@ export default function AdminLoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full rounded-xl border border-ink-200 bg-white px-4 py-3 pr-12 text-sm text-ink-800 placeholder-ink-400 focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100 transition"
+                      className="field text-sm pr-12"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPwd((s) => !s)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-400 hover:text-brand-800"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-400 hover:text-ink-900"
                       aria-label="Toggle password"
                     >
                       {showPwd ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -124,7 +125,7 @@ export default function AdminLoginPage() {
                 </div>
 
                 {error && (
-                  <div className="rounded-xl bg-red-50 border border-red-200 p-3 flex items-start gap-2 text-sm text-red-800">
+                  <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-3 flex items-start gap-2 text-sm text-red-300">
                     <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
                     <span>{error}</span>
                   </div>
@@ -135,8 +136,8 @@ export default function AdminLoginPage() {
                 </button>
               </form>
 
-              <div className="mt-6 rounded-xl bg-brand-50/60 border border-brand-100 p-4 text-xs text-ink-600 leading-relaxed">
-                <p className="font-mono uppercase tracking-[0.2em] text-[10.5px] text-brand-700 font-semibold mb-1">Default login</p>
+              <div className="mt-6 rounded-xl bg-ink-100/60 border border-white/10 p-4 text-xs text-ink-600 leading-relaxed">
+                <p className="font-mono uppercase tracking-[0.2em] text-[10.5px] text-ink-800 font-semibold mb-1">Default login</p>
                 Set <b>ADMIN_EMAIL</b> & <b>ADMIN_PASSWORD</b> in <code>.env.local</code>.
                 Defaults are shown in your project README.
               </div>

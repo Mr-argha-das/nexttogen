@@ -32,7 +32,7 @@ export default function TestimonialCard({ t }: { t: Testimonial }) {
             className="h-11 w-11 rounded-full object-cover border-2 border-gold-400"
           />
         ) : (
-          <div className="h-11 w-11 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 text-brand-950 border-2 border-gold-400 flex items-center justify-center font-bold text-sm">
+          <div className="h-11 w-11 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 text-ink-900 border-2 border-gold-400 flex items-center justify-center font-bold text-sm">
             {initials(t.name)}
           </div>
         )}

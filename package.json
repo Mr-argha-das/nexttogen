@@ -5,25 +5,27 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start -p 3000",
+    "start": "next start -p ${PORT:-3000}",
     "lint": "next lint",
     "seed": "node scripts/seed.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.3.24",
+    "html-to-image": "^1.11.11",
+    "jose": "^5.9.6",
+    "jspdf": "^2.5.2",
+    "lucide-react": "^0.427.0",
     "next": "14.2.32",
     "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "framer-motion": "^11.3.24",
-    "lucide-react": "^0.427.0",
-    "clsx": "^2.1.1",
-    "jose": "^5.9.6",
-    "bcryptjs": "^2.4.3"
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "20.14.10",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
-    "@types/bcryptjs": "^2.4.6",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.40",
     "tailwindcss": "^3.4.7",

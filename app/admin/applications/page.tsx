@@ -26,10 +26,10 @@ type App = {
 };
 
 const statusColors: Record<App["status"], string> = {
-  new: "bg-blue-100 text-blue-700 border-blue-200",
-  reviewing: "bg-amber-100 text-amber-700 border-amber-200",
-  accepted: "bg-green-100 text-green-700 border-green-200",
-  rejected: "bg-red-100 text-red-700 border-red-200"
+  new: "bg-blue-500/15 text-blue-300 border-blue-500/30",
+  reviewing: "bg-amber-500/15 text-amber-300 border-amber-500/30",
+  accepted: "bg-green-500/15 text-green-300 border-green-500/30",
+  rejected: "bg-red-500/15 text-red-300 border-red-500/30"
 };
 
 export default function AdminApplicationsPage() {
@@ -83,7 +83,7 @@ export default function AdminApplicationsPage() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-ink-100 bg-white shadow-soft">
+      <div className="rounded-2xl border border-white/[0.08] bg-ink-100/70 shadow-soft">
         <div className="p-4 flex items-center justify-between gap-3 flex-wrap">
           <div className="relative max-w-sm w-full">
             <Search className="h-4 w-4 text-ink-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -91,7 +91,7 @@ export default function AdminApplicationsPage() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search name, email, course, ID…"
-              className="w-full rounded-xl border border-ink-200 bg-white pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100"
+              className="w-full rounded-xl border border-white/15 bg-ink-100 pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:border-white/10 focus:ring-2 focus:ring-gold-400/40"
             />
           </div>
           <button onClick={load} className="btn-outline text-sm">Refresh</button>
@@ -107,7 +107,7 @@ export default function AdminApplicationsPage() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-brand-50/60 text-ink-600">
+              <thead className="bg-ink-100/60 text-ink-600">
                 <tr>
                   <th className="text-left px-4 py-3 font-medium">Name</th>
                   <th className="text-left px-4 py-3 font-medium">Course</th>
@@ -116,11 +116,11 @@ export default function AdminApplicationsPage() {
                   <th className="px-4 py-3"></th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-ink-100">
+              <tbody className="divide-y divide-white/10">
                 {filtered.map((a) => (
-                  <tr key={a.id} className="hover:bg-brand-50/30 cursor-pointer" onClick={() => setOpen(a)}>
+                  <tr key={a.id} className="hover:bg-white/5 cursor-pointer" onClick={() => setOpen(a)}>
                     <td className="px-4 py-3">
-                      <p className="font-semibold text-brand-900">{a.firstName} {a.lastName}</p>
+                      <p className="font-semibold text-ink-900">{a.firstName} {a.lastName}</p>
                       <p className="text-xs text-ink-500 flex items-center gap-1"><Mail className="h-3 w-3" />{a.email}</p>
                     </td>
                     <td className="px-4 py-3 text-ink-700">{a.course}</td>
@@ -136,7 +136,7 @@ export default function AdminApplicationsPage() {
                     <td className="px-4 py-3 text-right">
                       <button
                         onClick={(e) => { e.stopPropagation(); remove(a.id); }}
-                        className="p-2 rounded-lg text-red-500 hover:bg-red-50"
+                        className="p-2 rounded-lg text-red-500 hover:bg-red-500/10"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -151,8 +151,8 @@ export default function AdminApplicationsPage() {
 
       {open && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setOpen(null)}>
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            <div className="p-6 border-b border-ink-100 flex items-start justify-between">
+          <div className="bg-[#0e1130] border border-white/10 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="p-6 border-b border-white/10 flex items-start justify-between">
               <div>
                 <p className="mono-label">Application</p>
                 <h3 className="heading text-2xl mt-1">{open.firstName} {open.lastName}</h3>
@@ -167,7 +167,7 @@ export default function AdminApplicationsPage() {
                     key={s}
                     onClick={() => changeStatus(open.id, s)}
                     className={clsx("px-3 py-1.5 rounded-lg text-sm font-medium border transition",
-                      open.status === s ? statusColors[s] : "border-ink-200 text-ink-600 hover:bg-ink-50"
+                      open.status === s ? statusColors[s] : "border-white/15 text-ink-600 hover:bg-ink-50"
                     )}
                   >{s}</button>
                 ))}
@@ -185,12 +185,12 @@ export default function AdminApplicationsPage() {
                   ["Heard From", open.hearAbout],
                   ["Scholarship", open.scholarship ? "Yes" : "No"]
                 ].map(([k, v]) => (
-                  <div key={k as string} className="rounded-xl border border-ink-100 p-3">
+                  <div key={k as string} className="rounded-xl border border-white/10 p-3">
                     <dt className="mono-label !text-[10px]">{k}</dt>
                     <dd className="mt-1 text-ink-800 break-words">{v || "—"}</dd>
                   </div>
                 ))}
-                <div className="rounded-xl border border-ink-100 p-3 sm:col-span-2">
+                <div className="rounded-xl border border-white/10 p-3 sm:col-span-2">
                   <dt className="mono-label !text-[10px]">Goals</dt>
                   <dd className="mt-1 text-ink-800 whitespace-pre-wrap">{open.goals || "—"}</dd>
                 </div>

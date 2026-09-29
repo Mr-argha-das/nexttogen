@@ -30,7 +30,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   const check = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/me", { cache: "no-store" });
+      const res = await fetch("/api/admin/me", { cache: "no-store", credentials: "same-origin" });
       if (res.ok) {
         const j = await res.json();
         setIsAuthenticated(true);
@@ -54,14 +54,41 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
       const res = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
         body: JSON.stringify({ email, password })
       });
-      const j = await res.json();
+      // The response may be a non-JSON error page (e.g. a 502 from the
+      // preview proxy when the dev server is restarting). Parse defensively.
+      const ct = res.headers.get("content-type") || "";
+      let j: any = null;
+      if (ct.includes("application/json")) {
+        j = await res.json().catch(() => null);
+      } else {
+        await res.text().catch(() => "");
+      }
+      if (!j) {
+        return {
+          ok: false,
+          error:
+            res.status >= 500 || res.status === 0
+              ? "Server is not responding. Please wait a moment and try again."
+              : `Login failed (HTTP ${res.status}).`
+        };
+      }
       if (!res.ok || !j.ok) return { ok: false, error: j.error || "Login failed" };
-      await check();
+      // Login succeeded and the auth cookie is set — mark authenticated
+      // immediately so navigation to the dashboard is not blocked by a
+      // subsequent verification round-trip. Refresh details in the background.
+      setIsAuthenticated(true);
+      setEmail(email.trim().toLowerCase());
+      setLoading(false);
+      check();
       return { ok: true };
     } catch (e: any) {
-      return { ok: false, error: e.message };
+      return {
+        ok: false,
+        error: "Could not reach the server. Please check your connection and try again."
+      };
     }
   };
 

@@ -69,15 +69,15 @@ export default function AdminMessagesPage() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-ink-100 bg-white shadow-soft overflow-hidden">
-        <div className="p-4 flex items-center justify-between gap-3 flex-wrap border-b border-ink-100">
+      <div className="rounded-2xl border border-white/[0.08] bg-ink-100/70 shadow-soft overflow-hidden">
+        <div className="p-4 flex items-center justify-between gap-3 flex-wrap border-b border-white/10">
           <div className="relative max-w-sm w-full">
             <Search className="h-4 w-4 text-ink-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search…"
-              className="w-full rounded-xl border border-ink-200 bg-white pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100"
+              className="w-full rounded-xl border border-white/15 bg-ink-100 pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:border-white/10 focus:ring-2 focus:ring-gold-400/40"
             />
           </div>
           <button onClick={load} className="btn-outline text-sm">Refresh</button>
@@ -91,23 +91,23 @@ export default function AdminMessagesPage() {
             <p className="mt-3">No messages yet.</p>
           </div>
         ) : (
-          <ul className="divide-y divide-ink-100">
+          <ul className="divide-y divide-white/10">
             {filtered.map((m) => (
               <li
                 key={m.id}
                 onClick={() => openMsg(m)}
-                className={clsx("p-4 hover:bg-brand-50/40 cursor-pointer flex items-start gap-4",
-                  !m.read && "bg-blue-50/30"
+                className={clsx("p-4 hover:bg-white/5 cursor-pointer flex items-start gap-4",
+                  !m.read && "bg-blue-500/10/30"
                 )}
               >
                 <div className={clsx("h-10 w-10 rounded-full flex items-center justify-center shrink-0",
-                  m.read ? "bg-ink-100 text-ink-500" : "bg-gold-100 text-gold-700"
+                  m.read ? "bg-ink-100 text-ink-500" : "bg-gold-400/15 text-gold-300"
                 )}>
                   {m.read ? <MailOpen className="h-4 w-4" /> : <Mail className="h-4 w-4" />}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 flex-wrap">
-                    <p className="font-semibold text-brand-900 truncate">
+                    <p className="font-semibold text-ink-900 truncate">
                       {!m.read && <span className="inline-block h-2 w-2 rounded-full bg-gold-500 mr-2 align-middle" />}
                       {m.name} <span className="text-ink-400 font-normal text-xs">&lt;{m.email}&gt;</span>
                     </p>
@@ -120,7 +120,7 @@ export default function AdminMessagesPage() {
                 </div>
                 <button
                   onClick={(e) => { e.stopPropagation(); remove(m.id); }}
-                  className="p-2 rounded-lg text-red-500 hover:bg-red-50 shrink-0"
+                  className="p-2 rounded-lg text-red-500 hover:bg-red-500/10 shrink-0"
                 >
                   <Trash2 className="h-4 w-4" />
                 </button>

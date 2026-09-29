@@ -64,24 +64,24 @@ export default function AdminPosts() {
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {data.posts.map((p) => (
-          <div key={p.slug} className="rounded-2xl border border-ink-100 bg-white overflow-hidden shadow-soft group">
+          <div key={p.slug} className="rounded-2xl border border-white/[0.08] bg-ink-100/70 overflow-hidden shadow-soft group">
             <div className="aspect-[16/10] bg-gradient-to-br from-brand-700 to-brand-950 relative overflow-hidden">
               {p.image ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={p.image} alt={p.title} className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition" />
               ) : null}
               <div className={`absolute inset-0 ${p.image ? "bg-gradient-to-t from-brand-950/70 to-transparent" : ""}`} />
-              <div className="absolute bottom-4 left-4"><span className="rounded-full bg-gold-400 text-brand-950 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em]">{p.category}</span></div>
+              <div className="absolute bottom-4 left-4"><span className="rounded-full bg-gold-400 text-ink-900 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em]">{p.category}</span></div>
             </div>
             <div className="p-5">
               <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">
                 <span>{p.date}</span><span className="inline-flex items-center gap-1"><Clock className="h-3 w-3" />{p.readTime}</span>
               </div>
-              <h3 className="mt-2 font-display text-[18px] font-semibold text-brand-900 leading-snug tracking-display line-clamp-2">{p.title}</h3>
+              <h3 className="mt-2 font-display text-[18px] font-semibold text-ink-900 leading-snug tracking-display line-clamp-2">{p.title}</h3>
               <p className="mt-1 text-xs text-ink-500">by {p.author}</p>
               <div className="mt-4 flex items-center justify-end gap-2">
-                <button onClick={() => openEdit(p)} className="h-9 w-9 rounded-lg border border-ink-200 hover:border-brand-700 hover:text-brand-800 text-ink-600 flex items-center justify-center"><Pencil className="h-4 w-4" /></button>
-                <button onClick={() => remove(p.slug)} className="h-9 w-9 rounded-lg border border-red-200 hover:bg-red-50 text-red-600 flex items-center justify-center"><Trash2 className="h-4 w-4" /></button>
+                <button onClick={() => openEdit(p)} className="h-9 w-9 rounded-lg border border-white/15 hover:border-white/10 hover:text-ink-900 text-ink-600 flex items-center justify-center"><Pencil className="h-4 w-4" /></button>
+                <button onClick={() => remove(p.slug)} className="h-9 w-9 rounded-lg border border-red-500/30 hover:bg-red-500/10 text-red-400 flex items-center justify-center"><Trash2 className="h-4 w-4" /></button>
               </div>
             </div>
           </div>
@@ -91,8 +91,8 @@ export default function AdminPosts() {
       {editing && (
         <div className="fixed inset-0 z-50 bg-black/50 overflow-y-auto">
           <div className="min-h-full flex items-start justify-center p-2 sm:p-6">
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl my-4">
-              <div className="flex items-center justify-between p-5 border-b border-ink-100 sticky top-0 bg-white rounded-t-2xl z-10">
+            <div className="bg-[#0e1130] border border-white/10 rounded-2xl shadow-2xl w-full max-w-3xl my-4">
+              <div className="flex items-center justify-between p-5 border-b border-white/10 sticky top-0 bg-ink-100 rounded-t-2xl z-10">
                 <div>
                   <p className="mono-label">{isNew ? "New" : "Edit"} Post</p>
                   <h3 className="heading text-xl mt-0.5">{editing.title}</h3>
@@ -100,7 +100,7 @@ export default function AdminPosts() {
                 <button onClick={close} className="h-9 w-9 rounded-lg hover:bg-ink-100 flex items-center justify-center"><X className="h-5 w-5" /></button>
               </div>
               <div className="p-5 sm:p-6 space-y-5 max-h-[75vh] overflow-y-auto">
-                {error && <div className="rounded-xl bg-red-50 border border-red-200 p-3 text-sm text-red-800">{error}</div>}
+                {error && <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-3 text-sm text-red-300">{error}</div>}
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <Field label="Title" required className="md:col-span-2"><input value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value })} className={inputCls} /></Field>
@@ -144,7 +144,7 @@ export default function AdminPosts() {
                   <p className="mt-1 text-[11px] text-ink-400">Blank line = new paragraph. Lines starting with "- " become bullets.</p>
                 </Field>
               </div>
-              <div className="p-5 border-t border-ink-100 flex items-center justify-end gap-3 sticky bottom-0 bg-white rounded-b-2xl">
+              <div className="p-5 border-t border-white/10 flex items-center justify-end gap-3 sticky bottom-0 bg-ink-100 rounded-b-2xl">
                 <button onClick={close} className="btn-outline" disabled={saving}>Cancel</button>
                 <button onClick={save} disabled={saving} className="btn-gold">
                   {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}{saving ? "Saving…" : "Publish"}
@@ -158,7 +158,7 @@ export default function AdminPosts() {
   );
 }
 
-const inputCls = "w-full rounded-xl border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-800 focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100 transition";
+const inputCls = "field text-sm py-2.5";
 function Field({ label, children, required, className = "" }: any) {
   return <div className={className}><label className="mono-label mb-2 block">{label} {required && <span className="text-red-500">*</span>}</label>{children}</div>;
 }

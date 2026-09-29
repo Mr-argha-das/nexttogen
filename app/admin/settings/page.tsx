@@ -47,12 +47,12 @@ export default function AdminSettings() {
       </div>
 
       {saved && (
-        <div className="rounded-xl bg-green-50 border border-green-200 p-4 flex items-center gap-2 text-sm text-green-800">
+        <div className="rounded-xl bg-green-500/10 border border-green-500/30 p-4 flex items-center gap-2 text-sm text-green-300">
           <CheckCircle2 className="h-5 w-5" /> Changes saved successfully!
         </div>
       )}
 
-      <div className="rounded-2xl border border-ink-100 bg-white p-6 shadow-soft space-y-5">
+      <div className="rounded-2xl border border-white/[0.08] bg-ink-100/70 p-6 shadow-soft space-y-5">
         <h3 className="heading text-xl">Branding</h3>
         <div className="grid gap-4 md:grid-cols-2">
           <Field label="Site Name"><input value={form.siteName} onChange={(e) => set("siteName", e.target.value)} className={inputCls} /></Field>
@@ -60,14 +60,14 @@ export default function AdminSettings() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-ink-100 bg-white p-6 shadow-soft space-y-5">
+      <div className="rounded-2xl border border-white/[0.08] bg-ink-100/70 p-6 shadow-soft space-y-5">
         <h3 className="heading text-xl">Hero Section (Homepage)</h3>
         <Field label="Headline"><input value={form.heroHeadline} onChange={(e) => set("heroHeadline", e.target.value)} className={inputCls} /></Field>
         <Field label="Italic phrase"><input value={form.heroItalic} onChange={(e) => set("heroItalic", e.target.value)} className={inputCls} /></Field>
         <Field label="Description"><textarea rows={3} value={form.heroDescription} onChange={(e) => set("heroDescription", e.target.value)} className={inputCls + " resize-none"} /></Field>
       </div>
 
-      <div className="rounded-2xl border border-ink-100 bg-white p-6 shadow-soft space-y-5">
+      <div className="rounded-2xl border border-white/[0.08] bg-ink-100/70 p-6 shadow-soft space-y-5">
         <h3 className="heading text-xl">Contact Information</h3>
         <div className="grid gap-4 md:grid-cols-2">
           <Field label="Email"><input value={form.contactEmail} onChange={(e) => set("contactEmail", e.target.value)} className={inputCls} /></Field>
@@ -88,7 +88,7 @@ export default function AdminSettings() {
   );
 }
 
-const inputCls = "w-full rounded-xl border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-800 focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100 transition";
+const inputCls = "field text-sm py-2.5";
 function Field({ label, children, className = "" }: any) {
   return <div className={className}><label className="mono-label mb-2 block">{label}</label>{children}</div>;
 }

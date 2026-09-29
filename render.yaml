@@ -1,0 +1,26 @@
+# Render.com blueprint — deploy as a persistent Node web service.
+# In the Render dashboard: New + > Blueprint, point it at this repo.
+services:
+  - type: web
+    name: nexttogen
+    runtime: node
+    plan: starter            # persistent disk requires a paid plan (Starter+)
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /
+    autoDeploy: true
+    disk:
+      name: nexttogen-data
+      mountPath: /opt/render/project/src/.data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_JWT_SECRET
+        generateValue: true   # Render generates a strong random secret
+      - key: ADMIN_EMAIL
+        sync: false           # set in dashboard
+      - key: ADMIN_PASSWORD
+        sync: false           # set in dashboard
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false           # set to your public URL, e.g. https://nexttogen.onrender.com

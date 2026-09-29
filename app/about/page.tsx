@@ -4,15 +4,11 @@ import {
   Target,
   Heart,
   Users,
-  Award,
   Globe,
-  GraduationCap,
-  Briefcase,
-  TrendingUp,
-  CheckCircle2,
   ArrowRight
 } from "lucide-react";
 import { testimonials } from "@/lib/data";
+import { LogoMark } from "@/components/Logo";
 
 const team = [
   {
@@ -24,13 +20,13 @@ const team = [
   {
     name: "Prof. Kunal Sethi",
     role: "Chief Academic Officer",
-    bio: "Former faculty at Stanford. 20+ years in pedagogy & curriculum design.",
+    bio: "Former faculty at Stanford, focused on pedagogy & curriculum design.",
     initials: "KS"
   },
   {
     name: "Meera Joshi",
     role: "Head of Mentorship",
-    bio: "Ex-Google PM. Has mentored 2,000+ students into top tech careers.",
+    bio: "Ex-Google PM passionate about mentoring students into top tech careers.",
     initials: "MJ"
   },
   {
@@ -82,29 +78,7 @@ export default function AboutPage() {
             willing to put in the work.
           </p>
         </div>
-        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-white" />
-      </section>
-
-      {/* Stats */}
-      <section className="container-x -mt-16 relative z-10">
-        <div className="grid gap-4 md:grid-cols-4">
-          {[
-            { n: "10+", l: "Years of Impact", icon: Award },
-            { n: "25K+", l: "Alumni Worldwide", icon: GraduationCap },
-            { n: "120+", l: "Mentors & Faculty", icon: Users },
-            { n: "94%", l: "Career Placement", icon: TrendingUp }
-          ].map((s) => (
-            <div key={s.l} className="card !p-6 text-center">
-              <s.icon className="h-7 w-7 text-gold-500 mx-auto" />
-              <div className="mt-3 font-display text-3xl font-bold text-brand-900">
-                {s.n}
-              </div>
-              <div className="text-xs uppercase tracking-wider text-ink-500 mt-1">
-                {s.l}
-              </div>
-            </div>
-          ))}
-        </div>
+        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#06081a]" />
       </section>
 
       {/* Mission */}
@@ -146,8 +120,8 @@ export default function AboutPage() {
                 }}
               />
               <div className="relative h-full flex flex-col items-center justify-center p-10 text-center text-white">
-                <div className="h-20 w-20 rounded-2xl bg-gold-400 text-brand-950 flex items-center justify-center shadow-glow-gold">
-                  <GraduationCap className="h-10 w-10" />
+                <div className="h-24 w-24 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shadow-glow-gold">
+                  <LogoMark className="h-14 w-auto" />
                 </div>
                 <p className="mt-6 font-display text-2xl italic leading-snug">
                   "Education is the most powerful weapon which you can use to
@@ -163,7 +137,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section bg-gradient-to-b from-white to-brand-50/50">
+      <section className="section bg-gradient-to-b from-[#06081a] to-brand-950/50">
         <div className="container-x">
           <div className="max-w-2xl mx-auto text-center">
             <span className="eyebrow">
@@ -176,10 +150,10 @@ export default function AboutPage() {
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {values.map((v) => (
               <div key={v.title} className="card text-center">
-                <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-700">
+                <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gold-400/15 text-gold-300">
                   <v.icon className="h-7 w-7" />
                 </div>
-                <h3 className="mt-5 font-display text-xl font-bold text-brand-900">
+                <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
                   {v.title}
                 </h3>
                 <p className="mt-2 text-sm text-ink-600 leading-relaxed">
@@ -213,10 +187,10 @@ export default function AboutPage() {
                 <div className="mx-auto h-24 w-24 rounded-full bg-gradient-to-br from-brand-700 to-brand-950 text-gold-400 flex items-center justify-center text-2xl font-display font-bold">
                   {m.initials}
                 </div>
-                <h3 className="mt-5 font-display text-lg font-bold text-brand-900">
+                <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
                   {m.name}
                 </h3>
-                <p className="text-xs uppercase tracking-wider text-gold-600 mt-1">
+                <p className="text-xs uppercase tracking-wider text-gold-300 mt-1">
                   {m.role}
                 </p>
                 <p className="mt-3 text-sm text-ink-600 leading-relaxed">
@@ -255,7 +229,7 @@ export default function AboutPage() {
                       className="h-10 w-10 rounded-full border-2 border-gold-400 object-cover"
                     />
                   ) : (
-                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 text-brand-950 border-2 border-gold-400 flex items-center justify-center font-bold text-xs">
+                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 text-ink-900 border-2 border-gold-400 flex items-center justify-center font-bold text-xs">
                       {t.name.split(" ").map((s: string) => s[0]).filter(Boolean).slice(0, 2).join("").toUpperCase()}
                     </div>
                   )}

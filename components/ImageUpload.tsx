@@ -47,7 +47,7 @@ export default function ImageUpload({
       </label>
 
       {value ? (
-        <div className={clsx("relative rounded-xl overflow-hidden border border-ink-200 bg-ink-50", aspect)}>
+        <div className={clsx("relative rounded-xl overflow-hidden border border-white/15 bg-ink-50", aspect)}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={value} alt="upload preview" className="h-full w-full object-cover" />
           <button
@@ -61,7 +61,7 @@ export default function ImageUpload({
           <button
             type="button"
             onClick={() => inputRef.current?.click()}
-            className="absolute bottom-2 right-2 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-brand-900 hover:bg-white"
+            className="absolute bottom-2 right-2 rounded-full bg-ink-100/90 px-3 py-1 text-xs font-semibold text-ink-900 hover:bg-ink-100"
           >
             Change
           </button>
@@ -71,14 +71,14 @@ export default function ImageUpload({
           type="button"
           onClick={() => inputRef.current?.click()}
           className={clsx(
-            "w-full rounded-xl border-2 border-dashed border-ink-200 bg-ink-50/40 hover:border-brand-500 hover:bg-brand-50/40 transition flex flex-col items-center justify-center text-ink-500 gap-2",
+            "w-full rounded-xl border-2 border-dashed border-white/15 bg-ink-50/40 hover:border-gold-400/40 hover:bg-white/5 transition flex flex-col items-center justify-center text-ink-500 gap-2",
             aspect,
             uploading && "opacity-60 pointer-events-none"
           )}
         >
           {uploading ? (
             <>
-              <Loader2 className="h-6 w-6 animate-spin text-brand-700" />
+              <Loader2 className="h-6 w-6 animate-spin text-ink-800" />
               <span className="text-xs font-semibold">Uploading…</span>
             </>
           ) : (
@@ -107,7 +107,7 @@ export default function ImageUpload({
         }}
       />
 
-      {error && <p className="mt-2 text-xs text-red-600">{error}</p>}
+      {error && <p className="mt-2 text-xs text-red-400">{error}</p>}
 
       {value && (
         <p className="mt-1 text-[11px] text-ink-400 font-mono truncate">{value}</p>

@@ -145,10 +145,10 @@ export default function AdminCoursesPage() {
         <button onClick={openNew} className="btn-gold"><Plus className="h-4 w-4" /> Add Course</button>
       </div>
 
-      <div className="rounded-2xl border border-ink-100 bg-white shadow-soft overflow-hidden">
+      <div className="rounded-2xl border border-white/[0.08] bg-ink-100/70 shadow-soft overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-brand-50/60">
+            <thead className="bg-ink-100/60">
               <tr className="text-left">
                 <th className="px-6 py-4 mono-label">Course</th>
                 <th className="px-6 py-4 mono-label">Category</th>
@@ -158,33 +158,33 @@ export default function AdminCoursesPage() {
                 <th className="px-6 py-4 mono-label text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-ink-100">
+            <tbody className="divide-y divide-white/10">
               {data.courses.map((c) => (
-                <tr key={c.slug} className="hover:bg-brand-50/30">
+                <tr key={c.slug} className="hover:bg-white/5">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       {c.bannerImage || c.image ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={c.bannerImage || c.image} alt="" className="h-10 w-14 rounded-lg object-cover shrink-0 border border-ink-100" />
+                        <img src={c.bannerImage || c.image} alt="" className="h-10 w-14 rounded-lg object-cover shrink-0 border border-white/10" />
                       ) : (
                         <div className={`h-10 w-14 rounded-lg bg-gradient-to-br ${c.accent} flex items-center justify-center text-white shrink-0`}>
                           <BookOpen className="h-4 w-4" />
                         </div>
                       )}
                       <div className="min-w-0">
-                        <p className="font-semibold text-brand-900 truncate max-w-[220px]">{c.title}</p>
+                        <p className="font-semibold text-ink-900 truncate max-w-[220px]">{c.title}</p>
                         <p className="text-xs text-ink-500 truncate">{c.instructor}</p>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 text-ink-700">{c.category}</td>
-                  <td className="px-6 py-4"><span className="rounded-full bg-brand-50 text-brand-800 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.2em] font-semibold">{c.level}</span></td>
+                  <td className="px-6 py-4"><span className="rounded-full bg-white/[0.06] text-ink-800 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.2em] font-semibold">{c.level}</span></td>
                   <td className="px-6 py-4 text-ink-700 inline-flex items-center gap-1"><Clock className="h-3 w-3" /> {c.duration}</td>
                   <td className="px-6 py-4 text-ink-700 inline-flex items-center gap-1"><Users className="h-3 w-3" /> {c.students.toLocaleString()}</td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2 justify-end">
-                      <button onClick={() => openEdit(c)} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200 text-ink-600 hover:border-brand-700 hover:text-brand-800 transition"><Pencil className="h-4 w-4" /></button>
-                      <button onClick={() => remove(c.slug, c.title)} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-red-200 text-red-600 hover:bg-red-50 transition"><Trash2 className="h-4 w-4" /></button>
+                      <button onClick={() => openEdit(c)} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 text-ink-600 hover:border-white/10 hover:text-ink-900 transition"><Pencil className="h-4 w-4" /></button>
+                      <button onClick={() => remove(c.slug, c.title)} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-red-500/30 text-red-400 hover:bg-red-500/10 transition"><Trash2 className="h-4 w-4" /></button>
                     </div>
                   </td>
                 </tr>
@@ -197,8 +197,8 @@ export default function AdminCoursesPage() {
       {editing && (
         <div className="fixed inset-0 z-50 bg-black/50 overflow-y-auto">
           <div className="min-h-full flex items-start justify-center p-2 sm:p-6">
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl my-4">
-              <div className="flex items-center justify-between p-5 border-b border-ink-100 sticky top-0 bg-white z-10 rounded-t-2xl">
+            <div className="bg-[#0e1130] border border-white/10 rounded-2xl shadow-2xl w-full max-w-4xl my-4">
+              <div className="flex items-center justify-between p-5 border-b border-white/10 sticky top-0 bg-ink-100 z-10 rounded-t-2xl">
                 <div>
                   <p className="mono-label">{isNew ? "Create" : "Edit"} Course</p>
                   <h3 className="heading text-xl mt-0.5">{editing.title}</h3>
@@ -207,7 +207,7 @@ export default function AdminCoursesPage() {
               </div>
 
               <div className="p-5 sm:p-6 space-y-8">
-                {error && <div className="rounded-xl bg-red-50 border border-red-200 p-3 text-sm text-red-800">{error}</div>}
+                {error && <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-3 text-sm text-red-300">{error}</div>}
 
                 {/* BASIC */}
                 <Section title="Basic Info">
@@ -234,7 +234,7 @@ export default function AdminCoursesPage() {
                     <Field label="Accent color (fallback if no image)" className="md:col-span-2">
                       <div className="flex flex-wrap gap-2">
                         {accents.map((a) => (
-                          <button key={a} type="button" onClick={() => setEditing({ ...editing, accent: a })} className={`h-9 w-16 rounded-lg bg-gradient-to-br ${a} ring-2 ${editing.accent === a ? "ring-brand-800" : "ring-transparent"} transition`} />
+                          <button key={a} type="button" onClick={() => setEditing({ ...editing, accent: a })} className={`h-9 w-16 rounded-lg bg-gradient-to-br ${a} ring-2 ${editing.accent === a ? "ring-gold-400/40" : "ring-transparent"} transition`} />
                         ))}
                       </div>
                     </Field>
@@ -316,21 +316,21 @@ export default function AdminCoursesPage() {
                 <Section title="Curriculum">
                   <div className="space-y-4">
                     {(editing.curriculum || []).map((mod, mi) => (
-                      <div key={mi} className="rounded-xl border border-ink-200 p-4">
+                      <div key={mi} className="rounded-xl border border-white/15 p-4">
                         <div className="flex items-center gap-2 mb-3">
                           <span className="mono-label">Module {mi + 1}</span>
                           <input value={mod.title} onChange={(e) => updateModule(mi, { title: e.target.value })} className={inputCls + " flex-1"} />
-                          <button type="button" onClick={() => removeModule(mi)} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-red-200 text-red-600 hover:bg-red-50 shrink-0"><Trash className="h-4 w-4" /></button>
+                          <button type="button" onClick={() => removeModule(mi)} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-red-500/30 text-red-400 hover:bg-red-500/10 shrink-0"><Trash className="h-4 w-4" /></button>
                         </div>
                         <div className="space-y-2 pl-2">
                           {mod.lessons.map((ls, li) => (
                             <div key={li} className="flex items-center gap-2">
                               <span className="text-ink-400 text-xs w-5 text-right">{li + 1}.</span>
                               <input value={ls} onChange={(e) => updateLesson(mi, li, e.target.value)} className={inputCls + " flex-1"} />
-                              <button type="button" onClick={() => removeLesson(mi, li)} className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-red-500 hover:bg-red-50 shrink-0"><X className="h-4 w-4" /></button>
+                              <button type="button" onClick={() => removeLesson(mi, li)} className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-red-500 hover:bg-red-500/10 shrink-0"><X className="h-4 w-4" /></button>
                             </div>
                           ))}
-                          <button type="button" onClick={() => addLesson(mi)} className="text-xs font-semibold text-brand-700 hover:text-gold-600 inline-flex items-center gap-1 mt-1"><ListPlus className="h-3.5 w-3.5" /> Add lesson</button>
+                          <button type="button" onClick={() => addLesson(mi)} className="text-xs font-semibold text-ink-800 hover:text-gold-300 inline-flex items-center gap-1 mt-1"><ListPlus className="h-3.5 w-3.5" /> Add lesson</button>
                         </div>
                       </div>
                     ))}
@@ -339,7 +339,7 @@ export default function AdminCoursesPage() {
                 </Section>
               </div>
 
-              <div className="p-5 border-t border-ink-100 flex items-center justify-end gap-3 sticky bottom-0 bg-white rounded-b-2xl">
+              <div className="p-5 border-t border-white/10 flex items-center justify-end gap-3 sticky bottom-0 bg-ink-100 rounded-b-2xl">
                 <button onClick={close} className="btn-outline" disabled={saving}>Cancel</button>
                 <button onClick={save} disabled={saving} className="btn-gold">
                   {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
@@ -357,7 +357,7 @@ export default function AdminCoursesPage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section>
-      <h4 className="mono-label !text-brand-800 mb-4 flex items-center gap-2"><span className="h-1 w-6 bg-gold-400 rounded-full" /> {title}</h4>
+      <h4 className="mono-label !text-ink-900 mb-4 flex items-center gap-2"><span className="h-1 w-6 bg-gold-400 rounded-full" /> {title}</h4>
       {children}
     </section>
   );
@@ -373,7 +373,7 @@ function ListEditor({ title, items, onAdd, onUpdate, onRemove }: {
         {items.map((v, i) => (
           <div key={i} className="flex items-center gap-2">
             <input value={v} onChange={(e) => onUpdate(i, e.target.value)} className={inputCls + " flex-1"} />
-            <button type="button" onClick={() => onRemove(i)} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-red-200 text-red-600 hover:bg-red-50 shrink-0"><Trash className="h-4 w-4" /></button>
+            <button type="button" onClick={() => onRemove(i)} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-red-500/30 text-red-400 hover:bg-red-500/10 shrink-0"><Trash className="h-4 w-4" /></button>
           </div>
         ))}
         <button type="button" onClick={onAdd} className="btn-outline text-sm">+ Add Item</button>
@@ -382,7 +382,7 @@ function ListEditor({ title, items, onAdd, onUpdate, onRemove }: {
   );
 }
 
-const inputCls = "w-full rounded-xl border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-800 focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100 transition";
+const inputCls = "field text-sm py-2.5";
 function Field({ label, children, required, className = "" }: any) {
   return <div className={className}><label className="mono-label mb-2 block">{label} {required && <span className="text-red-500">*</span>}</label>{children}</div>;
 }

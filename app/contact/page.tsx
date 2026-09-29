@@ -47,7 +47,7 @@ export default function ContactPage() {
             Our team is here to help — Mon–Sat, 9 AM to 8 PM IST.
           </p>
         </div>
-        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-white" />
+        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#06081a]" />
       </section>
 
       <section className="container-x -mt-20 relative z-10 pb-24">
@@ -79,13 +79,13 @@ export default function ContactPage() {
             }
           ].map((c) => (
             <div key={c.label} className="card">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gold-400/15 text-gold-300">
                 <c.icon className="h-6 w-6" />
               </div>
               <p className="mt-4 text-xs font-bold uppercase tracking-wider text-ink-500">
                 {c.label}
               </p>
-              <p className="mt-1 font-display text-lg font-bold text-brand-900">
+              <p className="mt-1 font-display text-lg font-bold text-ink-900">
                 {c.value}
               </p>
               <p className="text-xs text-ink-500 mt-1">{c.sub}</p>
@@ -102,19 +102,19 @@ export default function ContactPage() {
               </p>
 
               {sent ? (
-                <div className="mt-8 rounded-2xl bg-green-50 border border-green-200 p-6 flex items-start gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-green-600 shrink-0" />
+                <div className="mt-8 rounded-2xl bg-green-500/10 border border-green-500/30 p-6 flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-green-400 shrink-0" />
                   <div>
-                    <p className="font-semibold text-green-800">
+                    <p className="font-semibold text-green-300">
                       Message sent successfully!
                     </p>
-                    <p className="text-sm text-green-700 mt-1">
+                    <p className="text-sm text-green-300 mt-1">
                       Thanks for reaching out, {form.name}. We'll reply to{" "}
                       <b>{form.email}</b> shortly.
                     </p>
                     <button
                       onClick={() => setSent(false)}
-                      className="mt-3 text-xs font-semibold text-green-800 underline"
+                      className="mt-3 text-xs font-semibold text-green-300 underline"
                     >
                       Send another message
                     </button>
@@ -200,7 +200,7 @@ export default function ContactPage() {
                     />
                   </div>
                   {err && (
-                    <div className="md:col-span-2 rounded-xl bg-red-50 border border-red-200 p-3 text-sm text-red-800">
+                    <div className="md:col-span-2 rounded-xl bg-red-500/10 border border-red-500/30 p-3 text-sm text-red-300">
                       {err}
                     </div>
                   )}
@@ -230,13 +230,13 @@ export default function ContactPage() {
                   }}
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-gold-400 text-brand-950 shadow-glow-gold">
+                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-gold-400 text-ink-900 shadow-glow-gold">
                     <MapPin className="h-7 w-7" />
                   </div>
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="font-display text-lg font-bold text-brand-900">
+                <h3 className="font-display text-lg font-bold text-ink-900">
                   Visit our campus
                 </h3>
                 <p className="text-sm text-ink-600 mt-1">
@@ -245,7 +245,7 @@ export default function ContactPage() {
                 </p>
                 <a
                   href="#"
-                  className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-brand-800 hover:text-gold-600"
+                  className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-ink-900 hover:text-gold-300"
                 >
                   Get directions →
                 </a>
@@ -253,7 +253,7 @@ export default function ContactPage() {
             </div>
 
             <div className="card">
-              <h3 className="font-display text-lg font-bold text-brand-900 flex items-center gap-2">
+              <h3 className="font-display text-lg font-bold text-ink-900 flex items-center gap-2">
                 <HelpCircle className="h-5 w-5 text-gold-500" /> Quick answers
               </h3>
               <p className="text-xs text-ink-500 mt-1">
@@ -278,13 +278,13 @@ export default function ContactPage() {
             {faqs.map((f, i) => (
               <div
                 key={i}
-                className="rounded-2xl border border-ink-100 bg-white p-5"
+                className="rounded-2xl border border-white/[0.08] bg-ink-100/70 p-5"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="flex items-center justify-between w-full text-left"
                 >
-                  <span className="font-semibold text-brand-900 pr-4">
+                  <span className="font-semibold text-ink-900 pr-4">
                     {f.q}
                   </span>
                   <ChevronDown
@@ -312,4 +312,4 @@ export default function ContactPage() {
 }
 
 const inputCls =
-  "w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-800 placeholder-ink-400 focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100 transition";
+  "w-full field text-sm";

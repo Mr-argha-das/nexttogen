@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
-const ADMIN_ROUTES = ["/admin/dashboard", "/admin/courses", "/admin/testimonials", "/admin/posts", "/admin/faqs", "/admin/settings", "/admin/applications", "/admin/messages"];
+const ADMIN_ROUTES = ["/admin/dashboard", "/admin/courses", "/admin/testimonials", "/admin/posts", "/admin/faqs", "/admin/certificates", "/admin/settings", "/admin/applications", "/admin/messages"];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;

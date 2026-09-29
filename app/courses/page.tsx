@@ -64,12 +64,12 @@ export default function CoursesPage() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search courses, topics or instructors…"
+              placeholder="Search courses or topics…"
               className="w-full rounded-full bg-white/10 border border-white/15 pl-14 pr-5 py-4 text-white placeholder-white/50 focus:outline-none focus:border-gold-400 backdrop-blur"
             />
           </div>
         </div>
-        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-white" />
+        <div className="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#06081a]" />
       </section>
 
       <section className="container-x -mt-16 relative z-10 pb-10">
@@ -83,15 +83,15 @@ export default function CoursesPage() {
                 onClick={() => setActiveCat(c.name)}
                 className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition border ${
                   active
-                    ? "bg-brand-800 text-white border-brand-800 shadow-glow-brand"
-                    : "bg-white text-ink-700 border-ink-200 hover:border-brand-700 hover:text-brand-800"
+                    ? "bg-brand-800 text-white border-white/10 shadow-glow-brand"
+                    : "bg-ink-100 text-ink-700 border-white/15 hover:border-white/10 hover:text-ink-900"
                 }`}
               >
                 <Icon className="h-4 w-4" />
                 {c.name}
                 <span
                   className={`ml-1 text-xs px-2 py-0.5 rounded-full ${
-                    active ? "bg-gold-400 text-brand-950" : "bg-ink-100 text-ink-500"
+                    active ? "bg-gold-400 text-ink-900" : "bg-ink-100 text-ink-500"
                   }`}
                 >
                   {c.count}
@@ -105,7 +105,7 @@ export default function CoursesPage() {
       <section className="container-x pb-24">
         <div className="flex items-center justify-between mb-8 flex-wrap gap-3">
           <p className="text-ink-600">
-            Showing <span className="font-bold text-brand-900">{filtered.length}</span> course
+            Showing <span className="font-bold text-ink-900">{filtered.length}</span> course
             {filtered.length !== 1 ? "s" : ""}
           </p>
           <div className="flex flex-wrap items-center gap-2">
@@ -115,8 +115,8 @@ export default function CoursesPage() {
                 onClick={() => setLevel(l)}
                 className={`rounded-full px-4 py-2 text-xs font-semibold border transition ${
                   level === l
-                    ? "bg-gold-400 text-brand-950 border-gold-400"
-                    : "bg-white text-ink-600 border-ink-200 hover:border-gold-400"
+                    ? "bg-gold-400 text-ink-900 border-gold-400"
+                    : "bg-ink-100 text-ink-600 border-white/15 hover:border-gold-400"
                 }`}
               >
                 {l}
@@ -126,13 +126,13 @@ export default function CoursesPage() {
         </div>
 
         {filtered.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-ink-200 p-16 text-center">
+          <div className="rounded-2xl border border-dashed border-white/15 p-16 text-center">
             <p className="text-ink-500">No courses match your filters yet.</p>
           </div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((c) => (
-              <CourseCard key={c.slug} course={c} />
+              <CourseCard key={c.slug} course={c} showInstructor={false} />
             ))}
           </div>
         )}

@@ -11,15 +11,16 @@ import {
   MessageCircleQuestion,
   Settings,
   LogOut,
-  GraduationCap,
   Home,
   Menu,
   X,
   Loader2,
   Inbox,
-  ClipboardList
+  ClipboardList,
+  Award
 } from "lucide-react";
 import { useAdminAuth } from "@/lib/adminAuth";
+import { LogoMark } from "@/components/Logo";
 import clsx from "clsx";
 
 const nav = [
@@ -28,6 +29,7 @@ const nav = [
   { href: "/admin/posts", label: "Blog Posts", icon: FileText },
   { href: "/admin/testimonials", label: "Testimonials", icon: Quote },
   { href: "/admin/faqs", label: "FAQs", icon: MessageCircleQuestion },
+  { href: "/admin/certificates", label: "Certificates", icon: Award },
   { href: "/admin/applications", label: "Applications", icon: ClipboardList },
   { href: "/admin/messages", label: "Messages", icon: Inbox },
   { href: "/admin/settings", label: "Site Settings", icon: Settings }
@@ -40,17 +42,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (!isAuthenticated && pathname !== "/admin/login") {
+    if (!loading && !isAuthenticated && pathname !== "/admin/login") {
       router.replace("/admin/login");
     }
-  }, [isAuthenticated, pathname, router]);
+  }, [loading, isAuthenticated, pathname, router]);
 
   if (pathname === "/admin/login") return <>{children}</>;
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-brand-50/40">
+      <div className="min-h-screen flex items-center justify-center bg-ink-100/40">
         <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin text-brand-800 mx-auto" />
+          <Loader2 className="h-8 w-8 animate-spin text-ink-900 mx-auto" />
           <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.25em] text-ink-500">
             Verifying session…
           </p>
@@ -61,7 +63,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   if (!isAuthenticated) return null;
 
   return (
-    <div className="min-h-screen bg-brand-50/40 flex">
+    <div className="min-h-screen bg-ink-100/40 flex">
       {/* Sidebar */}
       <aside
         className={clsx(
@@ -70,13 +72,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         )}
       >
         <div className="p-6 flex items-center justify-between">
-          <Link href="/admin/dashboard" className="flex items-center gap-2">
-            <span className="h-10 w-10 rounded-xl bg-gold-400 text-brand-950 flex items-center justify-center">
-              <GraduationCap className="h-5 w-5" />
+          <Link href="/admin/dashboard" className="flex items-center gap-2.5">
+            <span className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+              <LogoMark className="h-6 w-auto" />
             </span>
             <div>
-              <p className="font-display text-lg font-semibold tracking-display">NextToGen</p>
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold-400">Admin</p>
+              <p className="font-display text-lg font-semibold tracking-display leading-none">
+                <span className="text-white">NEXT</span> <span className="text-gold-300">GEN</span>
+              </p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold-300 mt-1">Admin</p>
             </div>
           </Link>
           <button
@@ -99,7 +103,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 className={clsx(
                   "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition",
                   active
-                    ? "bg-gold-400 text-brand-950 shadow-glow-gold"
+                    ? "bg-gold-400 text-ink-900 shadow-glow-gold"
                     : "text-white/75 hover:bg-white/10 hover:text-white"
                 )}
               >
@@ -132,15 +136,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Main */}
       <div className="flex-1 min-w-0">
-        <header className="sticky top-0 z-30 bg-white/80 backdrop-blur border-b border-ink-100 px-6 h-16 flex items-center justify-between">
+        <header className="sticky top-0 z-30 bg-ink-100/90 backdrop-blur border-b border-white/10 px-6 h-16 flex items-center justify-between">
           <button
             onClick={() => setOpen(true)}
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-ink-200 text-brand-800"
+            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 text-ink-900"
             aria-label="Open menu"
           >
             <Menu className="h-5 w-5" />
           </button>
-          <h1 className="font-display text-lg font-semibold text-brand-900 tracking-display">
+          <h1 className="font-display text-lg font-semibold text-ink-900 tracking-display">
             {nav.find((n) => n.href === pathname)?.label || "Admin"}
           </h1>
           <div className="flex items-center gap-3">

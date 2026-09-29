@@ -13,20 +13,18 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#1f2554",
-          borderRadius: 14,
-          border: "2px solid #e8b12a"
+          background: "linear-gradient(135deg, #0a0b22 0%, #141737 100%)",
+          borderRadius: 16,
+          border: "2px solid rgba(139,116,239,0.5)"
         }}
       >
-        <div
-          style={{
-            color: "#e8b12a",
-            fontSize: 36,
-            fontWeight: 800,
-            fontFamily: "serif"
-          }}
-        >
-          N
+        <div style={{ display: "flex", alignItems: "baseline" }}>
+          <span style={{ color: "#c9cef0", fontSize: 34, fontWeight: 800, letterSpacing: -1 }}>
+            N
+          </span>
+          <span style={{ color: "#8b74ef", fontSize: 34, fontWeight: 800, letterSpacing: -1 }}>
+            G
+          </span>
         </div>
       </div>
     ),

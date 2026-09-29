@@ -4,7 +4,7 @@ import type { BlogPost } from "@/lib/data";
 
 export default function BlogCard({ post }: { post: BlogPost }) {
   return (
-    <article className="group overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-glow-brand">
+    <article className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-b from-[#161b3f]/80 to-[#0c0e26]/80 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-gold-400/40 hover:shadow-glow-gold">
       <Link href={`/blog/${post.slug}`} className="block">
         <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-brand-700 via-brand-800 to-brand-950">
           {post.image ? (
@@ -16,12 +16,12 @@ export default function BlogCard({ post }: { post: BlogPost }) {
               className="absolute inset-0 opacity-25"
               style={{
                 backgroundImage:
-                  "radial-gradient(circle at 30% 30%, rgba(232,177,42,0.4), transparent 60%), radial-gradient(circle at 80% 70%, rgba(106,119,186,0.5), transparent 60%)"
+                  "radial-gradient(circle at 30% 30%, rgba(139,116,239,0.45), transparent 60%), radial-gradient(circle at 80% 70%, rgba(92,103,207,0.55), transparent 60%)"
               }}
             />
           </div>
           <div className="absolute inset-0 flex items-end p-5">
-            <span className="rounded-full bg-gold-400 text-brand-950 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em]">
+            <span className="rounded-full bg-gold-400 text-ink-900 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em]">
               {post.category}
             </span>
           </div>
@@ -34,26 +34,16 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             <Clock className="h-3 w-3" /> {post.readTime}
           </span>
         </div>
-        <h3 className="mt-3 font-display text-lg font-bold text-brand-900 leading-snug group-hover:text-brand-700 transition">
+        <h3 className="mt-3 font-display text-lg font-bold text-ink-900 leading-snug group-hover:text-ink-800 transition">
           <Link href={`/blog/${post.slug}`}>{post.title}</Link>
         </h3>
         <p className="mt-2 text-sm text-ink-600 leading-relaxed line-clamp-2">
           {post.excerpt}
         </p>
-        <div className="mt-5 flex items-center justify-between pt-4 border-t border-ink-100">
-          <div className="flex items-center gap-3">
-            <img
-              src={post.avatar}
-              alt={post.author}
-              className="h-8 w-8 rounded-full object-cover"
-            />
-            <span className="text-xs font-semibold text-ink-700">
-              {post.author}
-            </span>
-          </div>
+        <div className="mt-5 flex items-center justify-end pt-4 border-t border-white/10">
           <Link
             href={`/blog/${post.slug}`}
-            className="inline-flex items-center gap-1 text-xs font-bold text-brand-800 group-hover:text-gold-600 transition"
+            className="inline-flex items-center gap-1 text-xs font-bold text-ink-900 group-hover:text-gold-300 transition"
           >
             Read <ArrowRight className="h-3 w-3" />
           </Link>

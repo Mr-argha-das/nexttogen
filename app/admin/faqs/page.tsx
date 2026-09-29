@@ -43,16 +43,16 @@ export default function AdminFaqs() {
         <button onClick={openNew} className="btn-gold"><Plus className="h-4 w-4" /> Add FAQ</button>
       </div>
 
-      <div className="rounded-2xl border border-ink-100 bg-white shadow-soft divide-y divide-ink-100">
+      <div className="rounded-2xl border border-white/[0.08] bg-ink-100/70 shadow-soft divide-y divide-white/10">
         {data.faqs.map((f, i) => (
           <div key={i} className="p-5 flex items-start justify-between gap-4">
             <div className="flex-1">
-              <p className="font-semibold text-brand-900">{f.q}</p>
+              <p className="font-semibold text-ink-900">{f.q}</p>
               <p className="text-sm text-ink-600 mt-1 leading-relaxed">{f.a}</p>
             </div>
             <div className="flex gap-2 shrink-0">
-              <button onClick={() => openEdit(i)} className="h-9 w-9 rounded-lg border border-ink-200 hover:border-brand-700 hover:text-brand-800 text-ink-600 flex items-center justify-center"><Pencil className="h-4 w-4" /></button>
-              <button onClick={() => remove(i)} className="h-9 w-9 rounded-lg border border-red-200 hover:bg-red-50 text-red-600 flex items-center justify-center"><Trash2 className="h-4 w-4" /></button>
+              <button onClick={() => openEdit(i)} className="h-9 w-9 rounded-lg border border-white/15 hover:border-white/10 hover:text-ink-900 text-ink-600 flex items-center justify-center"><Pencil className="h-4 w-4" /></button>
+              <button onClick={() => remove(i)} className="h-9 w-9 rounded-lg border border-red-500/30 hover:bg-red-500/10 text-red-400 flex items-center justify-center"><Trash2 className="h-4 w-4" /></button>
             </div>
           </div>
         ))}
@@ -60,13 +60,13 @@ export default function AdminFaqs() {
 
       {editing && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-xl">
-            <div className="flex items-center justify-between p-6 border-b border-ink-100">
+          <div className="bg-[#0e1130] border border-white/10 rounded-2xl shadow-2xl w-full max-w-xl">
+            <div className="flex items-center justify-between p-6 border-b border-white/10">
               <h3 className="heading text-xl">{isNew ? "Add FAQ" : "Edit FAQ"}</h3>
               <button onClick={close} className="h-9 w-9 rounded-lg hover:bg-ink-100 flex items-center justify-center"><X className="h-5 w-5" /></button>
             </div>
             <div className="p-6 space-y-4">
-              {error && <div className="rounded-xl bg-red-50 border border-red-200 p-3 text-sm text-red-800">{error}</div>}
+              {error && <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-3 text-sm text-red-300">{error}</div>}
               <div><label className="mono-label mb-2 block">Question</label>
                 <input value={editing.q} onChange={(e) => setEditing({ ...editing, q: e.target.value })} className={inputCls} />
               </div>
@@ -74,7 +74,7 @@ export default function AdminFaqs() {
                 <textarea rows={5} value={editing.a} onChange={(e) => setEditing({ ...editing, a: e.target.value })} className={inputCls + " resize-none"} />
               </div>
             </div>
-            <div className="p-6 border-t border-ink-100 flex items-center justify-end gap-3">
+            <div className="p-6 border-t border-white/10 flex items-center justify-end gap-3">
               <button onClick={close} className="btn-outline" disabled={saving}>Cancel</button>
               <button onClick={save} disabled={saving} className="btn-gold">
                 {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}{saving ? "Saving…" : "Save"}
@@ -87,4 +87,4 @@ export default function AdminFaqs() {
   );
 }
 
-const inputCls = "w-full rounded-xl border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-800 focus:outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100 transition";
+const inputCls = "field text-sm py-2.5";

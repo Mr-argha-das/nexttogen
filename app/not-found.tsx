@@ -1,14 +1,15 @@
 import Link from "next/link";
-import { GraduationCap, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import { LogoMark } from "@/components/Logo";
 
 export default function NotFound() {
   return (
     <section className="min-h-[70vh] flex items-center">
       <div className="container-x text-center py-20">
-        <div className="mx-auto h-20 w-20 rounded-2xl bg-brand-900 text-gold-400 flex items-center justify-center shadow-glow-brand">
-          <GraduationCap className="h-10 w-10" />
+        <div className="mx-auto h-20 w-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shadow-glow-brand">
+          <LogoMark className="h-11 w-auto" />
         </div>
-        <p className="mt-8 text-xs uppercase tracking-[0.3em] text-gold-600 font-bold">
+        <p className="mt-8 text-xs uppercase tracking-[0.3em] text-gold-300 font-bold">
           404
         </p>
         <h1 className="heading mt-3 text-4xl md:text-6xl">Page not found</h1>
