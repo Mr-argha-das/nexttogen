@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import {
-  Clock, Users, Star, CheckCircle2, Award, Globe, PlayCircle, ArrowLeft
+  Clock, Users, BookOpen, CheckCircle2, Award, Globe, PlayCircle, ArrowLeft
 } from "lucide-react";
 import { useSiteData } from "@/lib/siteData";
 import { RenderRich } from "@/components/RichTextArea";
@@ -79,8 +79,7 @@ export default function CourseDetail() {
               <p className="mt-5 text-white/75 text-base md:text-[17px] leading-[1.7] font-light max-w-2xl">{c.description}</p>
 
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-                <span className="inline-flex items-center gap-1.5"><Star className="h-4 w-4 fill-gold-400 text-gold-400" /><b>{c.rating}</b><span className="text-white/60">({c.reviews.toLocaleString()} reviews)</span></span>
-                <span className="inline-flex items-center gap-1.5 text-white/80"><Users className="h-4 w-4" /> {c.students.toLocaleString()} students</span>
+                <span className="inline-flex items-center gap-1.5 text-white/80"><BookOpen className="h-4 w-4" /> {c.lessons} lessons</span>
                 <span className="inline-flex items-center gap-1.5 text-white/80"><Clock className="h-4 w-4" /> {c.duration}</span>
                 <span className="inline-flex items-center gap-1.5 text-white/80"><Globe className="h-4 w-4" /> English · Hindi</span>
               </div>

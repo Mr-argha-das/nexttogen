@@ -5,9 +5,9 @@ import {
   BookOpen,
   Cpu,
   Palette,
-  Briefcase,
-  TrendingUp,
-  Target,
+  Film,
+  Box,
+  Code,
   Search
 } from "lucide-react";
 import CourseCard from "@/components/CourseCard";
@@ -18,9 +18,9 @@ const iconMap: Record<string, any> = {
   BookOpen,
   Cpu,
   Palette,
-  Briefcase,
-  TrendingUp,
-  Target
+  Film,
+  Box,
+  Code
 };
 
 export default function CoursesPage() {

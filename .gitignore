@@ -12,3 +12,4 @@ dist
 .data/
 public/uploads/*
 !public/uploads/README.txt
+tsconfig.tsbuildinfo

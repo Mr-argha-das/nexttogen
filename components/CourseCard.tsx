@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Clock, Users, Star, ArrowRight, BookOpen } from "lucide-react";
+import { Clock, ArrowRight, BookOpen } from "lucide-react";
 import type { Course } from "@/lib/data";
 
 export default function CourseCard({
@@ -42,10 +42,6 @@ export default function CourseCard({
               )}
             </div>
           </div>
-          <div className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-full bg-ink-100/90 px-2.5 py-1 text-xs font-bold text-ink-900">
-            <Star className="h-3.5 w-3.5 fill-gold-400 text-gold-400" />
-            {course.rating}
-          </div>
         </div>
       </Link>
 
@@ -57,9 +53,6 @@ export default function CourseCard({
           <span className="inline-flex items-center gap-1">
             <BookOpen className="h-3.5 w-3.5" /> {course.lessons} lessons
           </span>
-          <span className="inline-flex items-center gap-1">
-            <Users className="h-3.5 w-3.5" /> {course.students.toLocaleString()}
-          </span>
         </div>
 
         <h3 className="mt-3 font-display text-[22px] font-semibold text-ink-900 group-hover:text-ink-800 transition leading-[1.2] tracking-display">
@@ -69,7 +62,7 @@ export default function CourseCard({
           {course.description}
         </p>
 
-        {showInstructor && (
+        {showInstructor && course.instructor && (
           <div className="mt-5 flex items-center gap-3">
             <div className="h-9 w-9 rounded-full bg-gradient-to-br from-brand-700 to-brand-900 text-gold-400 flex items-center justify-center font-semibold text-xs">
               {course.instructor
