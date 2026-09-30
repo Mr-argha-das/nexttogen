@@ -38,7 +38,7 @@ const intents: { keys: string[]; reply: string }[] = [
   {
     keys: ["contact", "reach", "email", "phone"],
     reply:
-      "You can reach us at hello@nexttogen.app or +91 87409 04944. We reply within 24 hours (Mon–Sat)."
+      "You can reach us at info@nexttogen.com or +91 87409 04944. We reply within 24 hours (Mon–Sat)."
   },
   {
     keys: ["blog", "article", "resource"],
