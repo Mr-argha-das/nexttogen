@@ -66,9 +66,9 @@ const defaultData: SiteData = {
   heroDescription:
     "NextToGen is a premium academy delivering industry-led courses, 1:1 mentorship from world-class practitioners, and career programs designed to turn ambition into achievement.",
   contactEmail: "hello@nexttogen.app",
-  contactPhone: "+91 12345 67890",
+  contactPhone: "+91 87409 04944",
   contactAddress:
-    "221B Knowledge Avenue, Education Hub, Jaipur, Rajasthan 302001, India",
+    "28-C Nagar Parishad Colony, Kanwar Nagar, Jaipur, Rajasthan 302002, India",
   courses: allCourses,
   testimonials: testimonials,
   posts: allPosts,

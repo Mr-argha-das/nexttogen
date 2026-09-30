@@ -8,7 +8,8 @@
     "start": "next start -p ${PORT:-3000}",
     "lint": "next lint",
     "seed": "node scripts/seed.js",
-    "courses:reset": "node scripts/reset-courses.mjs"
+    "courses:reset": "node scripts/reset-courses.mjs",
+    "contact:update": "node scripts/update-contact.mjs"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

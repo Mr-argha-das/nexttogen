@@ -240,11 +240,12 @@ export default function ContactPage() {
                   Visit our campus
                 </h3>
                 <p className="text-sm text-ink-600 mt-1">
-                  221B Knowledge Avenue, Education Hub, Jaipur, Rajasthan 302001,
-                  India
+                  28-C Nagar Parishad Colony, Kanwar Nagar, Jaipur, Rajasthan 302002, India
                 </p>
                 <a
-                  href="#"
+                  href="https://www.google.com/maps/search/?api=1&query=Kanwar+Nagar%2C+Jaipur%2C+Rajasthan+302002"
+                  target="_blank"
+                  rel="noreferrer"
                   className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-ink-900 hover:text-gold-300"
                 >
                   Get directions →
