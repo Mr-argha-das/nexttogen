@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+dist
+.DS_Store
+*.log
+.env
+.env.local
+.env.*.local
+
+# Admin data (generated at runtime)
+.data/
+public/uploads/*
+!public/uploads/README.txt
